@@ -1,0 +1,53 @@
+{
+  "V1": [
+    { "key": "consent", "name": "了解研究并签署知情同意", "short": "知情同意", "place": "知情室 A", "room": "3F · 301", "minutes": 20, "kind": "self", "icon": "file-signature", "selfRoute": "/consent",
+      "tip": "你可以在手机上阅读，有任何不清楚的地方都可以当面问研究人员。签不签完全由你决定。" },
+    { "key": "crc_review", "name": "研究协调员核对签字", "short": "核对", "place": "知情室 A", "room": "3F · 301", "minutes": 5, "kind": "staff", "icon": "badge-check",
+      "tip": "工作人员会核对签字页，并把副本交给你保存。" },
+    { "key": "basic_info", "name": "登记基础信息", "short": "基础信息", "place": "问诊室", "room": "3F · 302", "minutes": 8, "kind": "staff", "icon": "id-card",
+      "tip": "需要核对身份证，登记身高体重和紧急联系人。" },
+    { "key": "history", "name": "医生问诊", "short": "病史", "place": "问诊室", "room": "3F · 302", "minutes": 15, "kind": "staff", "icon": "stethoscope",
+      "tip": "医生会问过敏史、近期用药、是否怀孕等，请如实回答，这关系到你的安全。" },
+    { "key": "questionnaire_screen", "name": "填写皮肤自评问卷", "short": "问卷", "place": "大厅休息区", "room": "3F · 大厅", "minutes": 10, "kind": "self", "icon": "clipboard-list", "selfRoute": "/questionnaire",
+      "tip": "在手机上完成就好，大约 10 道题。" },
+    { "key": "cleanse", "name": "统一洁面", "short": "洁面", "place": "洁面室", "room": "3F · 305", "minutes": 5, "kind": "staff", "icon": "droplets",
+      "tip": "用中心统一的洁面产品洗脸，洗完后请不要再触碰面部。" },
+    { "key": "balance", "name": "恒温室静坐", "short": "静坐", "place": "恒温平衡室", "room": "3F · 306", "minutes": 30, "kind": "wait", "icon": "thermometer",
+      "tip": "让皮肤适应室内温度湿度，测量才准。可以看手机，但别喝热饮、别碰脸。" },
+    { "key": "lactate", "name": "皮肤敏感测试", "short": "敏感测试", "place": "乳酸刺痛室", "room": "3F · 307", "minutes": 10, "kind": "staff", "icon": "flask-conical",
+      "tip": "在鼻翼两侧涂一点测试液，按照你的感受打分。可能会有几分钟轻微刺痒，属于正常。" },
+    { "key": "measure_screen", "name": "仪器测量", "short": "测量", "place": "仪器测量室", "room": "3F · 310", "minutes": 12, "kind": "staff", "icon": "gauge",
+      "tip": "用探头轻触面颊，测水分和屏障，全程无痛。" },
+    { "key": "gate", "name": "研究者判定是否入组", "short": "入组判定", "place": "大厅休息区", "room": "3F · 大厅", "minutes": 5, "kind": "gate", "icon": "scale",
+      "tip": "研究者会综合今天所有结果做判断，一般 5–10 分钟，请在休息区稍候。" },
+    { "key": "imaging", "name": "拍摄标准照片", "short": "拍照", "place": "影像室", "room": "3F · 311", "minutes": 8, "kind": "staff", "icon": "camera", "afterEnroll": true,
+      "tip": "拍正面和左右侧面，请摘下眼镜和发饰。照片只用于研究分析。" },
+    { "key": "product_dispense", "name": "领取试用产品", "short": "领产品", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 6, "kind": "staff", "icon": "package", "afterEnroll": true,
+      "tip": "工作人员会讲解用法用量，请当面确认产品编号。" },
+    { "key": "diary_training", "name": "学习使用日记打卡", "short": "日记培训", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 5, "kind": "staff", "icon": "graduation-cap", "afterEnroll": true,
+      "tip": "之后 28 天每天早晚在 App 里打卡，大约 10 秒。" }
+  ],
+  "V2": [
+    { "key": "diary_check", "name": "核对使用日记", "short": "日记核对", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 5, "kind": "staff", "icon": "notebook-pen", "tip": "漏打的天数没关系，如实说明就好。" },
+    { "key": "product_return", "name": "交回产品称重", "short": "产品称重", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 6, "kind": "staff", "icon": "package-open", "tip": "请交回产品，包括用完的空瓶。" },
+    { "key": "cleanse", "name": "统一洁面", "short": "洁面", "place": "洁面室", "room": "3F · 305", "minutes": 5, "kind": "staff", "icon": "droplets", "tip": "洗完后请不要再触碰面部。" },
+    { "key": "balance", "name": "恒温室静坐", "short": "静坐", "place": "恒温平衡室", "room": "3F · 306", "minutes": 30, "kind": "wait", "icon": "thermometer", "tip": "静坐 30 分钟，别喝热饮、别碰脸。" },
+    { "key": "measure", "name": "仪器测量", "short": "测量", "place": "仪器测量室", "room": "3F · 310", "minutes": 12, "kind": "staff", "icon": "gauge", "tip": "全程无痛。" },
+    { "key": "imaging", "name": "拍摄标准照片", "short": "拍照", "place": "影像室", "room": "3F · 311", "minutes": 8, "kind": "staff", "icon": "camera", "tip": "请摘下眼镜和发饰。" },
+    { "key": "clinical_assessment", "name": "医生评估皮肤", "short": "评估", "place": "临床评估室", "room": "3F · 312", "minutes": 8, "kind": "staff", "icon": "scan-face", "tip": "医生会目测泛红、干燥等情况。" },
+    { "key": "ae", "name": "询问使用感受", "short": "问询", "place": "临床评估室", "room": "3F · 312", "minutes": 5, "kind": "staff", "icon": "shield-alert", "tip": "用了之后有任何不舒服都请告诉医生。" },
+    { "key": "product_dispense", "name": "领取下一阶段产品", "short": "领产品", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 6, "kind": "staff", "icon": "package", "tip": "当面确认产品编号。" }
+  ],
+  "V3": [
+    { "key": "diary_check", "name": "核对使用日记", "short": "日记核对", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 5, "kind": "staff", "icon": "notebook-pen", "tip": "如实说明即可。" },
+    { "key": "product_return", "name": "交回全部产品", "short": "回收", "place": "产品与日记台", "room": "3F · 前台东侧", "minutes": 6, "kind": "staff", "icon": "package-open", "tip": "最后一次称重回收。" },
+    { "key": "cleanse", "name": "统一洁面", "short": "洁面", "place": "洁面室", "room": "3F · 305", "minutes": 5, "kind": "staff", "icon": "droplets", "tip": "洗完后请不要再触碰面部。" },
+    { "key": "balance", "name": "恒温室静坐", "short": "静坐", "place": "恒温平衡室", "room": "3F · 306", "minutes": 30, "kind": "wait", "icon": "thermometer", "tip": "静坐 30 分钟。" },
+    { "key": "measure", "name": "仪器测量", "short": "测量", "place": "仪器测量室", "room": "3F · 310", "minutes": 12, "kind": "staff", "icon": "gauge", "tip": "全程无痛。" },
+    { "key": "imaging", "name": "拍摄标准照片", "short": "拍照", "place": "影像室", "room": "3F · 311", "minutes": 8, "kind": "staff", "icon": "camera", "tip": "请摘下眼镜和发饰。" },
+    { "key": "questionnaire_self", "name": "填写使用感受问卷", "short": "问卷", "place": "大厅休息区", "room": "3F · 大厅", "minutes": 8, "kind": "self", "icon": "smile", "selfRoute": "/questionnaire", "tip": "在手机上完成。" },
+    { "key": "clinical_assessment", "name": "医生评估皮肤", "short": "评估", "place": "临床评估室", "room": "3F · 312", "minutes": 8, "kind": "staff", "icon": "scan-face", "tip": "最后一次评估。" },
+    { "key": "ae", "name": "询问使用感受", "short": "问询", "place": "临床评估室", "room": "3F · 312", "minutes": 5, "kind": "staff", "icon": "shield-alert", "tip": "有任何不适请告诉医生。" },
+    { "key": "exit", "name": "完成研究 · 领取补偿", "short": "完成", "place": "临床评估室", "room": "3F · 312", "minutes": 5, "kind": "staff", "icon": "flag", "tip": "感谢你陪伴我们完成这项研究！" }
+  ]
+}

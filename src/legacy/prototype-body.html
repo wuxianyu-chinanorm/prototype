@@ -10,7 +10,52 @@
         <button type="button" data-phase="prep" class="is-active" aria-current="page">立项准备</button>
         <button type="button" data-phase="schedule">执行调度</button>
         <button type="button" data-phase="recruit">招募预约</button>
-        <button type="button" data-phase="visit-collect">访视执行</button>
+        <div class="phase-visit-dd" id="phase-visit-dd">
+          <button
+            type="button"
+            class="phase-visit-dd__trigger"
+            data-phase="visit-collect"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="phase-visit-menu"
+          >
+            <span>访视执行</span>
+            <svg class="phase-visit-dd__chevron" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="phase-visit-dd__menu" id="phase-visit-menu" role="menu" hidden>
+            <div class="phase-visit-dd__head">切换访视端</div>
+            <button type="button" class="phase-visit-dd__item" role="menuitem" data-visit-target="kis">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--kis" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 9h18M8 14h4"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">访视执行台</span>
+                <span class="phase-visit-dd__desc">当前 · KIS 作业台 / CRF</span>
+              </span>
+              <span class="phase-visit-dd__badge">当前</span>
+            </button>
+            <a class="phase-visit-dd__item" role="menuitem" href="staff/" data-visit-target="staff">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--staff" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="5" cy="12" r="2"/><circle cx="19" cy="6" r="2"/><circle cx="19" cy="18" r="2"/><path d="M7 12h4l6-6M11 12l6 6"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">访视中枢</span>
+                <span class="phase-visit-dd__desc">现场控制塔 · 工位 / 签到</span>
+              </span>
+            </a>
+            <a class="phase-visit-dd__item" role="menuitem" href="subject/" data-visit-target="subject">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--subject" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">受试者 App</span>
+                <span class="phase-visit-dd__desc">试验伙伴 · 手机端导览</span>
+              </span>
+            </a>
+          </div>
+        </div>
         <button type="button" data-phase="quality">质量审核</button>
         <button type="button" data-phase="deliver">交付归档</button>
         <button type="button" data-phase="settings">系统设置</button>

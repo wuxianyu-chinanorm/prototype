@@ -1,0 +1,17 @@
+{
+  "startDate": "2026-09-28",
+  "days": 28,
+  "reminders": { "morning": "08:00", "evening": "21:30" },
+  "entries": [
+    { "day": 1, "morning": true, "evening": true },
+    { "day": 2, "morning": true, "evening": true },
+    { "day": 3, "morning": true, "evening": true, "feeling": "mild", "note": "晚上用完有点痒，10 分钟后消退" },
+    { "day": 4, "morning": true, "evening": true },
+    { "day": 5, "morning": true, "evening": false, "note": "加班忘记了" },
+    { "day": 6, "morning": true, "evening": true },
+    { "day": 7, "morning": true, "evening": true },
+    { "day": 8, "morning": true, "evening": true },
+    { "day": 9, "morning": true, "evening": false }
+  ],
+  "symptoms": ["刺痛", "瘙痒", "发红", "干燥紧绷", "脱皮", "起疹子", "其他"]
+}

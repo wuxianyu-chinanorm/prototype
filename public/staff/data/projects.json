@@ -1,0 +1,36 @@
+[
+  {
+    "id": "PRJ-2609",
+    "name": "舒缓修护精华 28 天功效评价",
+    "sponsor": "[CLIENT_A]",
+    "product": "舒缓修护精华 30mL",
+    "blind": "double",
+    "tone": "teal",
+    "pi": "王立群",
+    "targetN": 40,
+    "screenedN": 31,
+    "enrolledN": 24,
+    "visitPlan": [
+      { "code": "V1", "name": "筛选 + 基线", "day": 0, "minus": 0, "plus": 0, "kind": "screening" },
+      { "code": "V2", "name": "中期回访", "day": 14, "minus": 2, "plus": 2, "kind": "followup" },
+      { "code": "V3", "name": "末次访视", "day": 28, "minus": 3, "plus": 3, "kind": "final" }
+    ]
+  },
+  {
+    "id": "PRJ-2611",
+    "name": "美白淡斑精华 56 天功效评价",
+    "sponsor": "[CLIENT_B]",
+    "product": "淡斑精华 50mL",
+    "blind": "single",
+    "tone": "violet",
+    "pi": "陈思远",
+    "targetN": 36,
+    "screenedN": 22,
+    "enrolledN": 15,
+    "visitPlan": [
+      { "code": "V1", "name": "筛选 + 基线", "day": 0, "minus": 0, "plus": 0, "kind": "screening" },
+      { "code": "V2", "name": "中期回访", "day": 28, "minus": 3, "plus": 3, "kind": "followup" },
+      { "code": "V3", "name": "末次访视", "day": 56, "minus": 3, "plus": 3, "kind": "final" }
+    ]
+  }
+]

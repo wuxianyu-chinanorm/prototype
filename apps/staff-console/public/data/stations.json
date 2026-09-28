@@ -1,0 +1,14 @@
+[
+  { "id": "st-icf", "name": "知情室 A", "room": "301", "capacity": 2, "staff": ["周敏"], "tone": "violet" },
+  { "id": "st-interview", "name": "问诊室", "room": "302", "capacity": 2, "staff": ["陈思远"], "tone": "sky" },
+  { "id": "st-survey", "name": "自助问卷区", "room": "大厅 · 平板 ×6", "capacity": 6, "staff": ["韩璐"], "tone": "indigo" },
+  { "id": "st-cleanse", "name": "洁面室", "room": "305", "capacity": 3, "staff": ["唐怡"], "tone": "cyan" },
+  { "id": "st-balance", "name": "恒温平衡室", "room": "306 · 21℃ / 50%RH", "capacity": 8, "staff": ["唐怡"], "tone": "teal" },
+  { "id": "st-lactate", "name": "乳酸刺痛室", "room": "307", "capacity": 2, "staff": ["唐怡"], "tone": "amber" },
+  { "id": "st-infrared", "name": "红外照灯室", "room": "308", "capacity": 2, "staff": ["徐鸣"], "tone": "orange" },
+  { "id": "st-measure", "name": "仪器测量室", "room": "310", "capacity": 3, "staff": ["徐鸣"], "tone": "blue" },
+  { "id": "st-imaging", "name": "影像室", "room": "311 · VISIA", "capacity": 2, "staff": ["徐鸣"], "tone": "fuchsia" },
+  { "id": "st-assess", "name": "临床评估室", "room": "312", "capacity": 2, "staff": ["陈思远", "唐怡"], "tone": "emerald" },
+  { "id": "st-gate", "name": "入排判定台", "room": "313 · PI 办公室", "capacity": 3, "staff": ["王立群"], "tone": "rose" },
+  { "id": "st-product", "name": "产品与日记台", "room": "前台东侧", "capacity": 3, "staff": ["郭倩"], "tone": "lime" }
+]

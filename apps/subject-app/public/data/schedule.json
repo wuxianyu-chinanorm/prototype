@@ -1,0 +1,40 @@
+[
+  {
+    "code": "V1",
+    "title": "首次到访 · 筛选与基线",
+    "day": 0,
+    "window": { "start": "2026-09-28", "end": "2026-09-28" },
+    "appointment": { "date": "2026-09-28", "start": "08:30", "end": "11:00" },
+    "durationText": "约 2.5 小时",
+    "prep": [
+      { "id": "nomakeup", "text": "当天不化妆，早上只用清水洗脸", "why": "护肤品会影响仪器测量" },
+      { "id": "nodrug", "text": "前 24 小时不服用抗过敏药", "why": "会影响皮肤敏感测试" },
+      { "id": "id", "text": "带上身份证原件", "why": "现场核验身份" },
+      { "id": "time", "text": "预留 2.5 小时，中间有 30 分钟静坐", "why": "皮肤需要适应室内温湿度" }
+    ]
+  },
+  {
+    "code": "V2",
+    "title": "中期回访",
+    "day": 14,
+    "window": { "start": "2026-10-10", "end": "2026-10-14" },
+    "appointment": { "date": "2026-10-12", "start": "09:00", "end": "11:00" },
+    "durationText": "约 1.5 小时",
+    "prep": [
+      { "id": "product", "text": "带回试用产品（包括空瓶）", "why": "称重计算用量" },
+      { "id": "diary", "text": "确认日记打卡已同步", "why": "研究员会核对" },
+      { "id": "nomakeup", "text": "当天不化妆", "why": "影响测量与拍照" }
+    ]
+  },
+  {
+    "code": "V3",
+    "title": "末次访视",
+    "day": 28,
+    "window": { "start": "2026-10-23", "end": "2026-10-29" },
+    "durationText": "约 1.5 小时",
+    "prep": [
+      { "id": "product", "text": "带回全部试用产品", "why": "最后一次称重回收" },
+      { "id": "nomakeup", "text": "当天不化妆", "why": "影响测量与拍照" }
+    ]
+  }
+]

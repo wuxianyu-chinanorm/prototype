@@ -1,0 +1,41 @@
+name: deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+        env:
+          VITE_BASE: /prototype/
+
+      - name: Publish to volc
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.VOLC_SSH_KEY }}
+          SSH_HOST: 118.196.64.48
+          SSH_USER: root
+          DEPLOY_PATH: /var/www/prototype
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh
+          printf '%s\n' "$SSH_PRIVATE_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "$SSH_HOST" >> ~/.ssh/known_hosts
+          ssh -i ~/.ssh/id_deploy -o BatchMode=yes "$SSH_USER@$SSH_HOST" "mkdir -p '$DEPLOY_PATH'"
+          rsync -az --delete -e "ssh -i ~/.ssh/id_deploy -o BatchMode=yes" dist/ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/"

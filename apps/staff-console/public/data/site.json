@@ -1,0 +1,22 @@
+{
+  "site": {
+    "id": "sh-xh",
+    "name": "徐汇临床评价中心",
+    "short": "徐汇中心",
+    "address": "上海市徐汇区漕溪北路 88 号 3F"
+  },
+  "today": "2026-09-28",
+  "weekday": "周一",
+  "clockStart": "09:42:00",
+  "operator": { "id": "u-zhoumin", "name": "周敏", "role": "CRC 协调员", "hue": 186 },
+  "people": [
+    { "id": "u-zhoumin", "name": "周敏", "role": "CRC 协调员" },
+    { "id": "u-lixin", "name": "李昕", "role": "现场督导", "canOverride": true },
+    { "id": "u-drwang", "name": "王立群", "role": "主要研究者 PI", "canSign": true },
+    { "id": "u-drchen", "name": "陈思远", "role": "研究医生", "canSign": true },
+    { "id": "u-tangyi", "name": "唐怡", "role": "评估员" },
+    { "id": "u-xuming", "name": "徐鸣", "role": "仪器技师" },
+    { "id": "u-guoqian", "name": "郭倩", "role": "产品管理员" },
+    { "id": "u-hanlu", "name": "韩璐", "role": "前台接待" }
+  ]
+}

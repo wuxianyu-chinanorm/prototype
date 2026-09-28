@@ -1,0 +1,253 @@
+[
+  {
+    "id": "v01", "subjectId": "s01", "projectId": "PRJ-2609", "visitPoint": "V1", "guideVersion": 3,
+    "slot": { "start": "08:30", "end": "11:00" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "in_progress",
+    "checkin": { "no": "A06", "at": "08:26", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "consent": { "status": "done", "start": "08:30", "end": "08:52", "operator": "周敏", "result": "pass", "note": "ICF V2.1，理解测验 5/5" },
+      "crc_review": { "status": "done", "start": "08:52", "end": "08:57", "operator": "周敏", "result": "pass" },
+      "basic_info": { "status": "done", "start": "08:58", "end": "09:04", "operator": "陈思远", "result": "pass" },
+      "history": { "status": "done", "start": "09:04", "end": "09:18", "operator": "陈思远", "result": "pass", "note": "无过敏史，近 1 个月未用外用药" },
+      "questionnaire_screen": { "status": "done", "start": "09:19", "end": "09:27", "operator": "受试者自助", "result": "pass" },
+      "cleanse": { "status": "done", "start": "09:28", "end": "09:32", "operator": "唐怡" },
+      "balance": { "status": "in_progress", "start": "09:33", "operator": "唐怡" }
+    },
+    "log": [
+      { "at": "08:26", "actor": "韩璐", "text": "扫码签到，人脸比对 98.7%，签到号 A06", "tone": "ok" },
+      { "at": "08:52", "actor": "周敏", "text": "知情同意完成（ICF V2.1）", "tone": "ok" },
+      { "at": "09:33", "actor": "唐怡", "text": "进入恒温平衡室，计时 30 分钟", "tone": "info" }
+    ]
+  },
+  {
+    "id": "v02", "subjectId": "s02", "projectId": "PRJ-2609", "visitPoint": "V2", "guideVersion": 2,
+    "slot": { "start": "08:30", "end": "10:30" },
+    "window": { "start": "2026-09-26", "target": "2026-09-28", "end": "2026-09-30" },
+    "status": "in_progress",
+    "checkin": { "no": "A08", "at": "08:35", "method": "desk", "verifiedBy": "韩璐" },
+    "runs": {
+      "diary_check": { "status": "done", "start": "08:37", "end": "08:41", "operator": "郭倩", "result": "pass", "note": "9/22 晚漏记 1 次，已补充说明" },
+      "product_return": { "status": "done", "start": "08:41", "end": "08:47", "operator": "郭倩", "values": { "weight": "18.6" } },
+      "cleanse": { "status": "done", "start": "08:50", "end": "08:54", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "08:55", "end": "09:25", "operator": "唐怡" },
+      "measure": { "status": "done", "start": "09:26", "end": "09:38", "operator": "徐鸣", "values": { "tewl": "13.2", "hydration": "52.1" } },
+      "imaging": { "status": "in_progress", "start": "09:39", "operator": "徐鸣" }
+    },
+    "log": [
+      { "at": "08:35", "actor": "韩璐", "text": "前台人工签到（手机没电），身份证核验通过", "tone": "info" },
+      { "at": "08:41", "actor": "郭倩", "text": "日记核查：漏记 1 次，已说明", "tone": "warn" }
+    ]
+  },
+  {
+    "id": "v03", "subjectId": "s03", "projectId": "PRJ-2611", "visitPoint": "V1", "guideVersion": 2,
+    "slot": { "start": "09:00", "end": "12:00" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "in_progress",
+    "checkin": { "no": "A09", "at": "08:58", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "consent": { "status": "done", "start": "09:00", "end": "09:21", "operator": "周敏", "result": "pass" },
+      "crc_review": { "status": "done", "start": "09:21", "end": "09:25", "operator": "周敏", "result": "pass" },
+      "basic_info": { "status": "done", "start": "09:25", "end": "09:30", "operator": "陈思远", "result": "pass" },
+      "history": { "status": "in_progress", "start": "09:31", "operator": "陈思远" }
+    },
+    "log": [ { "at": "08:58", "actor": "韩璐", "text": "扫码签到，签到号 A09", "tone": "ok" } ]
+  },
+  {
+    "id": "v04", "subjectId": "s04", "projectId": "PRJ-2609", "visitPoint": "V1", "guideVersion": 3,
+    "slot": { "start": "08:00", "end": "10:30" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "in_progress",
+    "checkin": { "no": "A04", "at": "07:58", "method": "kiosk", "verifiedBy": "自助机" },
+    "runs": {
+      "consent": { "status": "done", "start": "08:00", "end": "08:18", "operator": "周敏", "result": "pass" },
+      "crc_review": { "status": "done", "start": "08:18", "end": "08:22", "operator": "周敏", "result": "pass" },
+      "basic_info": { "status": "done", "start": "08:23", "end": "08:29", "operator": "陈思远", "result": "pass" },
+      "history": { "status": "done", "start": "08:29", "end": "08:43", "operator": "陈思远", "result": "pass" },
+      "questionnaire_screen": { "status": "done", "start": "08:44", "end": "08:53", "operator": "受试者自助", "result": "pass" },
+      "cleanse": { "status": "done", "start": "08:55", "end": "08:59", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "09:00", "end": "09:30", "operator": "唐怡" },
+      "lactate": { "status": "done", "start": "09:31", "end": "09:41", "operator": "唐怡", "result": "fail", "values": { "score": "2" }, "note": "2.5 分钟评 1 分，5 分钟评 2 分，局部轻度泛红" },
+      "measure_screen": { "status": "on_hold", "note": "乳酸评分 ≥2，挂起等待医学判断" }
+    },
+    "log": [
+      { "at": "07:58", "actor": "自助机", "text": "自助机签到，签到号 A04", "tone": "ok" },
+      { "at": "09:41", "actor": "唐怡", "text": "乳酸刺痛评分 2，已挂起后续测量并通知研究医生", "tone": "bad" }
+    ]
+  },
+  {
+    "id": "v05", "subjectId": "s05", "projectId": "PRJ-2609", "visitPoint": "V3", "guideVersion": 1,
+    "slot": { "start": "09:00", "end": "11:00" },
+    "window": { "start": "2026-09-27", "target": "2026-09-30", "end": "2026-10-03" },
+    "status": "in_progress",
+    "checkin": { "no": "A10", "at": "09:05", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "diary_check": { "status": "done", "start": "09:06", "end": "09:10", "operator": "郭倩", "result": "pass" },
+      "product_return": { "status": "done", "start": "09:10", "end": "09:15", "operator": "郭倩", "values": { "weight": "4.2" } },
+      "product_check": { "status": "done", "start": "09:15", "end": "09:18", "operator": "郭倩", "result": "pass" },
+      "cleanse": { "status": "done", "start": "09:18", "end": "09:22", "operator": "唐怡" },
+      "balance": { "status": "in_progress", "start": "09:22", "operator": "唐怡" }
+    },
+    "log": [ { "at": "09:05", "actor": "韩璐", "text": "扫码签到，签到号 A10", "tone": "ok" } ]
+  },
+  {
+    "id": "v06", "subjectId": "s06", "projectId": "PRJ-2611", "visitPoint": "V2", "guideVersion": 1,
+    "slot": { "start": "09:30", "end": "11:30" },
+    "window": { "start": "2026-09-25", "target": "2026-09-28", "end": "2026-10-01" },
+    "status": "in_progress",
+    "checkin": { "no": "A11", "at": "09:31", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "diary_check": { "status": "in_progress", "start": "09:36", "operator": "郭倩" }
+    },
+    "log": [ { "at": "09:31", "actor": "韩璐", "text": "扫码签到，签到号 A11", "tone": "ok" } ]
+  },
+  {
+    "id": "v07", "subjectId": "s07", "projectId": "PRJ-2609", "visitPoint": "V1", "guideVersion": 3,
+    "slot": { "start": "08:00", "end": "10:30" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "in_progress",
+    "checkin": { "no": "A02", "at": "07:55", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "consent": { "status": "done", "start": "08:00", "end": "08:20", "operator": "周敏", "result": "pass" },
+      "crc_review": { "status": "done", "start": "08:20", "end": "08:24", "operator": "周敏", "result": "pass" },
+      "basic_info": { "status": "done", "start": "08:24", "end": "08:30", "operator": "陈思远", "result": "pass" },
+      "history": { "status": "done", "start": "08:30", "end": "08:44", "operator": "陈思远", "result": "pass" },
+      "questionnaire_screen": { "status": "done", "start": "08:44", "end": "08:52", "operator": "受试者自助", "result": "pass" },
+      "cleanse": { "status": "done", "start": "08:53", "end": "08:57", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "08:58", "end": "09:28", "operator": "唐怡" },
+      "lactate": { "status": "done", "start": "09:28", "end": "09:36", "operator": "唐怡", "result": "pass", "values": { "score": "1" } },
+      "measure_screen": { "status": "done", "start": "09:36", "end": "09:41", "operator": "徐鸣", "result": "pass", "values": { "tewl": "17.8", "hydration": "38.4" } }
+    },
+    "log": [
+      { "at": "07:55", "actor": "韩璐", "text": "扫码签到，签到号 A02", "tone": "ok" },
+      { "at": "09:41", "actor": "徐鸣", "text": "筛选测量完成，证据已齐，提交 PI 判定", "tone": "info" }
+    ]
+  },
+  {
+    "id": "v08", "subjectId": "s08", "projectId": "PRJ-2611", "visitPoint": "V1", "guideVersion": 2,
+    "slot": { "start": "07:30", "end": "10:00" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "in_progress",
+    "checkin": { "no": "A01", "at": "07:32", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "consent": { "status": "done", "start": "07:35", "end": "07:52", "operator": "周敏", "result": "pass" },
+      "crc_review": { "status": "done", "start": "07:52", "end": "07:55", "operator": "周敏", "result": "pass" },
+      "basic_info": { "status": "done", "start": "07:55", "end": "08:01", "operator": "陈思远", "result": "pass" },
+      "history": { "status": "done", "start": "08:01", "end": "08:13", "operator": "陈思远", "result": "pass" },
+      "questionnaire_screen": { "status": "done", "start": "08:13", "end": "08:21", "operator": "受试者自助", "result": "pass" },
+      "cleanse": { "status": "done", "start": "08:22", "end": "08:26", "operator": "唐怡" },
+      "strip": { "status": "done", "start": "08:26", "end": "08:33", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "08:33", "end": "08:53", "operator": "唐怡" },
+      "infrared": { "status": "done", "start": "08:53", "end": "09:08", "operator": "徐鸣" },
+      "measure_screen": { "status": "done", "start": "09:08", "end": "09:18", "operator": "徐鸣", "result": "pass", "values": { "tewl": "12.1", "hydration": "44.0" } },
+      "gate": { "status": "done", "start": "09:20", "end": "09:24", "operator": "陈思远", "result": "pass", "values": { "rd": "B016" } },
+      "imaging": { "status": "done", "start": "09:25", "end": "09:32", "operator": "徐鸣" },
+      "product_dispense": { "status": "done", "start": "09:32", "end": "09:38", "operator": "郭倩", "result": "pass", "note": "产品编号 B016-01，发放前 56.3g" },
+      "diary_training": { "status": "done", "start": "09:38", "end": "09:41", "operator": "郭倩" }
+    },
+    "log": [
+      { "at": "07:32", "actor": "韩璐", "text": "扫码签到，签到号 A01", "tone": "ok" },
+      { "at": "09:24", "actor": "陈思远", "text": "入组判定：入组，随机号 B016（电子签名）", "tone": "ok" },
+      { "at": "09:41", "actor": "郭倩", "text": "日记培训完成，全部步骤完成，可签出", "tone": "ok" }
+    ]
+  },
+  {
+    "id": "v09", "subjectId": "s09", "projectId": "PRJ-2609", "visitPoint": "V2", "guideVersion": 2,
+    "slot": { "start": "08:00", "end": "10:00" },
+    "window": { "start": "2026-09-26", "target": "2026-09-28", "end": "2026-09-30" },
+    "status": "checked_out",
+    "checkin": { "no": "A05", "at": "08:02", "method": "app_qr", "verifiedBy": "韩璐" },
+    "checkout": { "at": "09:35", "by": "韩璐", "outcome": "complete", "nextAppointment": "2026-10-12 09:00" },
+    "runs": {
+      "diary_check": { "status": "done", "start": "08:03", "end": "08:07", "operator": "郭倩", "result": "pass" },
+      "product_return": { "status": "done", "start": "08:07", "end": "08:12", "operator": "郭倩", "values": { "weight": "16.9" } },
+      "cleanse": { "status": "done", "start": "08:13", "end": "08:17", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "08:17", "end": "08:47", "operator": "唐怡" },
+      "measure": { "status": "done", "start": "08:48", "end": "09:00", "operator": "徐鸣", "values": { "tewl": "11.4", "hydration": "56.8" } },
+      "imaging": { "status": "done", "start": "09:00", "end": "09:08", "operator": "徐鸣" },
+      "clinical_assessment": { "status": "done", "start": "09:09", "end": "09:17", "operator": "唐怡", "result": "pass" },
+      "ae": { "status": "done", "start": "09:17", "end": "09:22", "operator": "陈思远", "result": "pass", "note": "无不良事件" },
+      "product_dispense": { "status": "done", "start": "09:22", "end": "09:30", "operator": "郭倩", "result": "pass" }
+    },
+    "log": [
+      { "at": "08:02", "actor": "韩璐", "text": "扫码签到，签到号 A05", "tone": "ok" },
+      { "at": "09:35", "actor": "韩璐", "text": "签出，已预约 V3：10/12 09:00（窗口 10/09–10/15）", "tone": "ok" }
+    ]
+  },
+  {
+    "id": "v10", "subjectId": "s10", "projectId": "PRJ-2609", "visitPoint": "V1", "guideVersion": 3,
+    "slot": { "start": "09:30", "end": "12:00" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "scheduled", "runs": {},
+    "log": [ { "at": "09:15", "actor": "系统", "text": "已推送到访提醒（短信 + App）", "tone": "info" } ]
+  },
+  {
+    "id": "v11", "subjectId": "s11", "projectId": "PRJ-2611", "visitPoint": "V1", "guideVersion": 2,
+    "slot": { "start": "10:00", "end": "12:30" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "scheduled", "runs": {}, "log": []
+  },
+  {
+    "id": "v12", "subjectId": "s12", "projectId": "PRJ-2609", "visitPoint": "V2", "guideVersion": 2,
+    "slot": { "start": "10:00", "end": "12:00" },
+    "window": { "start": "2026-09-27", "target": "2026-09-29", "end": "2026-10-01" },
+    "status": "scheduled", "runs": {}, "log": []
+  },
+  {
+    "id": "v13", "subjectId": "s13", "projectId": "PRJ-2609", "visitPoint": "V1", "guideVersion": 3,
+    "slot": { "start": "08:00", "end": "10:30" },
+    "window": { "start": "2026-09-28", "target": "2026-09-28", "end": "2026-09-28" },
+    "status": "checked_out",
+    "checkin": { "no": "A03", "at": "07:58", "method": "app_qr", "verifiedBy": "韩璐" },
+    "checkout": { "at": "08:31", "by": "周敏", "outcome": "terminated", "reason": "知情拒绝，筛选终止" },
+    "runs": {
+      "consent": { "status": "failed", "start": "08:00", "end": "08:25", "operator": "周敏", "result": "fail", "note": "对「28 天内不得使用其他护肤品」有顾虑，拒绝签署" }
+    },
+    "log": [
+      { "at": "07:58", "actor": "韩璐", "text": "扫码签到，签到号 A03", "tone": "ok" },
+      { "at": "08:25", "actor": "周敏", "text": "受试者拒绝签署 ICF，未进行任何研究操作", "tone": "bad" },
+      { "at": "08:31", "actor": "周敏", "text": "终止签出（筛选失败：知情拒绝）", "tone": "bad" }
+    ]
+  },
+  {
+    "id": "v14", "subjectId": "s14", "projectId": "PRJ-2611", "visitPoint": "V3", "guideVersion": 1,
+    "slot": { "start": "10:30", "end": "12:30" },
+    "window": { "start": "2026-09-22", "target": "2026-09-25", "end": "2026-09-28" },
+    "status": "scheduled", "runs": {},
+    "log": [ { "at": "09:00", "actor": "周敏", "text": "电话确认 10:30 到访（窗口最后一天）", "tone": "warn" } ]
+  },
+  {
+    "id": "v15", "subjectId": "s15", "projectId": "PRJ-2609", "visitPoint": "V2", "guideVersion": 2,
+    "slot": { "start": "11:00", "end": "13:00" },
+    "window": { "start": "2026-09-28", "target": "2026-09-30", "end": "2026-10-02" },
+    "status": "scheduled", "runs": {}, "log": []
+  },
+  {
+    "id": "v16", "subjectId": "s16", "projectId": "PRJ-2611", "visitPoint": "V2", "guideVersion": 1,
+    "slot": { "start": "08:30", "end": "10:30" },
+    "window": { "start": "2026-09-26", "target": "2026-09-29", "end": "2026-10-02" },
+    "status": "no_show", "runs": {},
+    "log": [
+      { "at": "08:45", "actor": "韩璐", "text": "超时 15 分钟未到，电话 1 次未接通", "tone": "warn" },
+      { "at": "09:10", "actor": "韩璐", "text": "标记缺席；窗口至 10/02，待改约", "tone": "bad" }
+    ]
+  },
+  {
+    "id": "v17", "subjectId": "s17", "projectId": "PRJ-2611", "visitPoint": "V2", "guideVersion": 1,
+    "slot": { "start": "08:30", "end": "10:30" },
+    "window": { "start": "2026-09-27", "target": "2026-09-30", "end": "2026-10-03" },
+    "status": "paused",
+    "checkin": { "no": "A07", "at": "08:33", "method": "app_qr", "verifiedBy": "韩璐" },
+    "runs": {
+      "diary_check": { "status": "done", "start": "08:35", "end": "08:39", "operator": "郭倩", "result": "pass" },
+      "product_return": { "status": "done", "start": "08:39", "end": "08:44", "operator": "郭倩", "values": { "weight": "22.4" } },
+      "cleanse": { "status": "done", "start": "08:45", "end": "08:49", "operator": "唐怡" },
+      "balance": { "status": "done", "start": "08:49", "end": "09:09", "operator": "唐怡" },
+      "infrared": { "status": "done", "start": "09:09", "end": "09:24", "operator": "徐鸣" }
+    },
+    "log": [
+      { "at": "08:33", "actor": "韩璐", "text": "扫码签到，签到号 A07", "tone": "ok" },
+      { "at": "09:26", "actor": "徐鸣", "text": "受试者因家中急事中途离开，测量 / 影像 / 评估 / AE / 发放未完成", "tone": "bad" }
+    ]
+  }
+]

@@ -1,0 +1,59 @@
+[
+  {
+    "id": "ex01", "type": "lactate_abnormal", "visitId": "v04", "subjectId": "s04",
+    "raisedAt": "09:41", "raisedBy": "唐怡", "severity": "high", "status": "open", "slaMinutes": 15,
+    "title": "乳酸刺痛评分 2，后续测量已挂起",
+    "detail": "5 分钟评分 2（方案规定 ≥2 需研究医生判断是否继续）。局部轻度泛红，无破损。受试者目前在休息区等待。",
+    "options": ["医学判断：可继续测量", "医学判断：终止筛选（筛败）"]
+  },
+  {
+    "id": "ex02", "type": "balance_override", "visitId": "v05", "subjectId": "s05",
+    "raisedAt": "09:40", "raisedBy": "徐鸣", "severity": "medium", "status": "open", "slaMinutes": 10,
+    "title": "测量室申请提前开始 T0 测量",
+    "detail": "平衡剩余约 10 分钟。测量室 10:00 起排满，申请督导书面批准提前开始。批准后留痕，偏离报告自动生成。",
+    "options": ["批准提前（督导书面）", "驳回，按时平衡"]
+  },
+  {
+    "id": "ex03", "type": "mid_exit", "visitId": "v17", "subjectId": "s17",
+    "raisedAt": "09:26", "raisedBy": "徐鸣", "severity": "high", "status": "open", "slaMinutes": 30,
+    "title": "受试者中途离开，5 个步骤未完成",
+    "detail": "已完成日记、回收、洁面、平衡、照灯。未完成：测量、影像、临床评估、AE 问询、产品发放。窗口至 10/03，可安排补做。",
+    "options": ["安排窗口内补做（保留已完成数据）", "今日返回继续（需重新平衡）", "记录方案偏离，不补做"]
+  },
+  {
+    "id": "ex04", "type": "late", "visitId": "v10", "subjectId": "s10",
+    "raisedAt": "09:40", "raisedBy": "系统", "severity": "medium", "status": "open", "slaMinutes": 20,
+    "title": "预约 09:30 未到，已超时",
+    "detail": "首次到访（V1 筛选）。App 未读提醒，短信已送达。",
+    "options": ["已联系，稍后到达", "标记缺席并改约", "受试者放弃参加"]
+  },
+  {
+    "id": "ex05", "type": "no_show", "visitId": "v16", "subjectId": "s16",
+    "raisedAt": "09:10", "raisedBy": "韩璐", "severity": "medium", "status": "open", "slaMinutes": 120,
+    "title": "V2 缺席，窗口剩 4 天",
+    "detail": "窗口 9/26–10/02。电话 1 次未接通，已发送 App 改约链接。",
+    "options": ["已改约（窗口内）", "继续联系", "超窗风险上报 PI"]
+  },
+  {
+    "id": "ex06", "type": "window_edge", "visitId": "v14", "subjectId": "s14",
+    "raisedAt": "09:00", "raisedBy": "系统", "severity": "low", "status": "open", "slaMinutes": 90,
+    "title": "V3 今日为访视窗最后一天",
+    "detail": "窗口 9/22–9/28，预约 10:30。若今日未到将形成超窗偏离。",
+    "options": ["已电话确认到访", "上报超窗风险"]
+  },
+  {
+    "id": "ex07", "type": "rescreen", "subjectId": "s18",
+    "raisedAt": "08:50", "raisedBy": "周敏", "severity": "low", "status": "open", "slaMinutes": 1440,
+    "title": "再筛申请：上次因近期用药筛败",
+    "detail": "9/10 筛败原因：近 1 个月使用外用激素（E2）。现已停药 30 天，满足洗脱期。再筛需新筛选号并重签 ICF。",
+    "options": ["批准再筛，分配新筛选号", "驳回"]
+  },
+  {
+    "id": "ex08", "type": "icf_refused", "visitId": "v13", "subjectId": "s13",
+    "raisedAt": "08:25", "raisedBy": "周敏", "severity": "medium", "status": "resolved", "slaMinutes": 30,
+    "title": "知情拒绝，筛选终止",
+    "detail": "受试者对使用限制有顾虑，拒绝签署 ICF。未执行任何研究操作。",
+    "options": ["确认终止"],
+    "resolution": { "by": "周敏", "at": "08:31", "choice": "确认终止", "note": "已终止签出，无研究数据产生" }
+  }
+]

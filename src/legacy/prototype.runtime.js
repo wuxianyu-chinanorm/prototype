@@ -1435,7 +1435,31 @@
           pagePrep.hidden = true;
         }
       }
-      var phaseButtons = document.querySelectorAll(".phase-nav button");
+      var phaseButtons = document.querySelectorAll(
+        ".phase-nav > button[data-phase], .phase-nav .phase-visit-dd__trigger[data-phase]"
+      );
+      var visitDd = document.getElementById("phase-visit-dd");
+      var visitDdMenu = document.getElementById("phase-visit-menu");
+      var visitDdTrigger = visitDd
+        ? visitDd.querySelector(".phase-visit-dd__trigger")
+        : null;
+
+      function setVisitDdOpen(open) {
+        if (!visitDd || !visitDdMenu || !visitDdTrigger) return;
+        visitDd.classList.toggle("is-open", open);
+        visitDdMenu.hidden = !open;
+        visitDdTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+      }
+
+      function toggleVisitDd() {
+        if (!visitDd) return;
+        setVisitDdOpen(!visitDd.classList.contains("is-open"));
+      }
+
+      function closeVisitDd() {
+        setVisitDdOpen(false);
+      }
+
       var appSidebar = document.getElementById("app-sidebar");
       var sidebarNavSchedule = document.getElementById("sidebar-nav-schedule");
       var sidebarNavRecruit = document.getElementById("sidebar-nav-recruit");
@@ -1671,10 +1695,43 @@
       }
 
       phaseButtons.forEach(function (btn) {
-        btn.addEventListener("click", function () {
-          activatePhase(btn.getAttribute("data-phase"));
+        btn.addEventListener("click", function (e) {
+          var phase = btn.getAttribute("data-phase");
+          if (phase === "visit-collect") {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleVisitDd();
+            return;
+          }
+          closeVisitDd();
+          activatePhase(phase);
         });
       });
+
+      if (visitDd) {
+        visitDd.querySelectorAll("[data-visit-target]").forEach(function (item) {
+          item.addEventListener("click", function (e) {
+            var target = item.getAttribute("data-visit-target");
+            if (target === "kis") {
+              e.preventDefault();
+              closeVisitDd();
+              activatePhase("visit-collect");
+              return;
+            }
+            // staff / subject：整页跳转，保留各自样式入口
+            closeVisitDd();
+          });
+        });
+        document.addEventListener("click", function (e) {
+          if (!visitDd.classList.contains("is-open")) return;
+          if (visitDd.contains(e.target)) return;
+          if (visitDdMenu && visitDdMenu.contains(e.target)) return;
+          closeVisitDd();
+        });
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape") closeVisitDd();
+        });
+      }
 
       function stubNext(pageName) {
         toast("「" + pageName + "」将在后续原型中开发（请先确认 IA）");
@@ -3795,7 +3852,18 @@
 
       updateNotifyBadge();
 
-      if (!restoreNavState()) {
+      var urlPhase = null;
+      try {
+        urlPhase = new URLSearchParams(window.location.search).get("phase");
+      } catch (urlErr) {
+        urlPhase = null;
+      }
+      if (urlPhase === "visit-collect") {
+        activatePhase("visit-collect");
+        try {
+          window.history.replaceState(null, "", window.location.pathname || "/");
+        } catch (histErr) { /* ignore */ }
+      } else if (!restoreNavState()) {
         switchPhaseSidebar("prep");
         showPrepStudyChain();
       }

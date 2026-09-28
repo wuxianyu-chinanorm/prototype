@@ -1,0 +1,128 @@
+[
+  {
+    "projectId": "PRJ-2609", "visitPoint": "V1", "version": 3,
+    "publishedAt": "2026-09-20 17:40", "publishedBy": "李昕",
+    "history": [
+      { "version": 3, "publishedAt": "2026-09-20 17:40", "publishedBy": "李昕", "note": "乳酸刺痛前移到测量之前，异常即挂起测量" },
+      { "version": 2, "publishedAt": "2026-09-12 10:05", "publishedBy": "李昕", "note": "平衡时长 20 → 30 分钟（方案修订 1.1）" },
+      { "version": 1, "publishedAt": "2026-09-01 15:22", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "consent", "templateId": "consent" },
+      { "key": "crc_review", "templateId": "crc_review" },
+      { "key": "basic_info", "templateId": "basic_info" },
+      { "key": "history", "templateId": "history" },
+      { "key": "questionnaire_screen", "templateId": "questionnaire_screen" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "balance", "templateId": "balance", "minutes": 30 },
+      { "key": "lactate", "templateId": "lactate" },
+      { "key": "measure_screen", "templateId": "measure_screen" },
+      { "key": "gate", "templateId": "gate" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "product_dispense", "templateId": "product_dispense" },
+      { "key": "diary_training", "templateId": "diary_training" }
+    ]
+  },
+  {
+    "projectId": "PRJ-2609", "visitPoint": "V2", "version": 2,
+    "publishedAt": "2026-09-12 10:08", "publishedBy": "李昕",
+    "history": [
+      { "version": 2, "publishedAt": "2026-09-12 10:08", "publishedBy": "李昕", "note": "平衡时长 20 → 30 分钟" },
+      { "version": 1, "publishedAt": "2026-09-01 15:30", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "diary_check", "templateId": "diary_check" },
+      { "key": "product_return", "templateId": "product_return" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "balance", "templateId": "balance", "minutes": 30 },
+      { "key": "measure", "templateId": "measure" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "clinical_assessment", "templateId": "clinical_assessment" },
+      { "key": "ae", "templateId": "ae" },
+      { "key": "product_dispense", "templateId": "product_dispense" }
+    ]
+  },
+  {
+    "projectId": "PRJ-2609", "visitPoint": "V3", "version": 1,
+    "publishedAt": "2026-09-01 15:36", "publishedBy": "周敏",
+    "history": [
+      { "version": 1, "publishedAt": "2026-09-01 15:36", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "diary_check", "templateId": "diary_check" },
+      { "key": "product_return", "templateId": "product_return" },
+      { "key": "product_check", "templateId": "product_check" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "balance", "templateId": "balance", "minutes": 30 },
+      { "key": "measure", "templateId": "measure" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "questionnaire_self", "templateId": "questionnaire_self" },
+      { "key": "clinical_assessment", "templateId": "clinical_assessment" },
+      { "key": "ae", "templateId": "ae" },
+      { "key": "exit", "templateId": "exit" }
+    ]
+  },
+  {
+    "projectId": "PRJ-2611", "visitPoint": "V1", "version": 2,
+    "publishedAt": "2026-09-18 09:12", "publishedBy": "李昕",
+    "history": [
+      { "version": 2, "publishedAt": "2026-09-18 09:12", "publishedBy": "李昕", "note": "新增胶带撕皮 + 红外照灯" },
+      { "version": 1, "publishedAt": "2026-09-05 11:00", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "consent", "templateId": "consent" },
+      { "key": "crc_review", "templateId": "crc_review" },
+      { "key": "basic_info", "templateId": "basic_info" },
+      { "key": "history", "templateId": "history" },
+      { "key": "questionnaire_screen", "templateId": "questionnaire_screen" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "strip", "templateId": "strip" },
+      { "key": "balance", "templateId": "balance", "minutes": 20 },
+      { "key": "infrared", "templateId": "infrared" },
+      { "key": "measure_screen", "templateId": "measure_screen" },
+      { "key": "gate", "templateId": "gate" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "product_dispense", "templateId": "product_dispense" },
+      { "key": "diary_training", "templateId": "diary_training" }
+    ]
+  },
+  {
+    "projectId": "PRJ-2611", "visitPoint": "V2", "version": 1,
+    "publishedAt": "2026-09-05 11:10", "publishedBy": "周敏",
+    "history": [
+      { "version": 1, "publishedAt": "2026-09-05 11:10", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "diary_check", "templateId": "diary_check" },
+      { "key": "product_return", "templateId": "product_return" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "balance", "templateId": "balance", "minutes": 20 },
+      { "key": "infrared", "templateId": "infrared" },
+      { "key": "measure", "templateId": "measure" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "clinical_assessment", "templateId": "clinical_assessment" },
+      { "key": "ae", "templateId": "ae" },
+      { "key": "product_dispense", "templateId": "product_dispense" }
+    ]
+  },
+  {
+    "projectId": "PRJ-2611", "visitPoint": "V3", "version": 1,
+    "publishedAt": "2026-09-05 11:16", "publishedBy": "周敏",
+    "history": [
+      { "version": 1, "publishedAt": "2026-09-05 11:16", "publishedBy": "周敏", "note": "首次发布" }
+    ],
+    "steps": [
+      { "key": "diary_check", "templateId": "diary_check" },
+      { "key": "product_return", "templateId": "product_return" },
+      { "key": "product_check", "templateId": "product_check" },
+      { "key": "cleanse", "templateId": "cleanse" },
+      { "key": "balance", "templateId": "balance", "minutes": 20 },
+      { "key": "measure", "templateId": "measure" },
+      { "key": "imaging", "templateId": "imaging" },
+      { "key": "questionnaire_self", "templateId": "questionnaire_self" },
+      { "key": "clinical_assessment", "templateId": "clinical_assessment" },
+      { "key": "ae", "templateId": "ae" },
+      { "key": "exit", "templateId": "exit" }
+    ]
+  }
+]

@@ -1,0 +1,329 @@
+{
+  "version": 1,
+  "tours": [
+    {
+      "id": "welcome",
+      "title": "欢迎使用访视中枢",
+      "summary": "3 分钟认识现场控制塔：看全场、找异常、到工位",
+      "group": "入门",
+      "trigger": { "type": "firstVisit", "route": "/" },
+      "steps": [
+        {
+          "id": "hello",
+          "title": "这里是今天整个现场的控制塔",
+          "body": "受试者从 **签到** 进门、按 **导检** 走完每个工位、最后 **签出** 离开——这一天发生的一切都在这里汇总。\n接下来 7 步带你认识它，随时按 Esc 跳过。",
+          "placement": "center"
+        },
+        {
+          "id": "nav",
+          "target": "nav",
+          "title": "按一天的顺序组织的导航",
+          "body": "从上到下就是一天的工作顺序：**到访签到 → 工位执行 → 入排判定 → 签出**。\n「导检编排」是开工前的准备：每个项目每个访视点要先发布导检，现场才能按它走。",
+          "placement": "right"
+        },
+        {
+          "id": "clock",
+          "target": "demo-clock",
+          "title": "演示时钟",
+          "body": "原型里的时间是模拟的。点 **+5 分钟** 可以快进，看平衡倒计时走完、迟到变红、队列变化。",
+          "placement": "bottom"
+        },
+        {
+          "id": "kpis",
+          "target": "kpis",
+          "title": "六个数字回答「现在怎么样」",
+          "body": "预约多少、到了多少、场内多少、走了多少、缺了多少、有多少事等你处理。点任何一个都能跳到对应列表。",
+          "placement": "bottom"
+        },
+        {
+          "id": "board",
+          "target": "live-board",
+          "title": "实时动线：每个人走到哪一步",
+          "body": "每一行是一位场内受试者。圆点链就是他今天的导检：**实心**已完成、**光环**正在做、**空心**未开始，竖线 ▲ 是入组判定锚点。\n点一行打开他的访视详情。",
+          "placement": "right"
+        },
+        {
+          "id": "alerts",
+          "target": "alerts",
+          "title": "需要你处理的事，按紧急程度排好了",
+          "body": "乳酸异常、中途离开、迟到、提前开 T0 申请……每条都带 **处理时限**，超时会变红。",
+          "placement": "left"
+        },
+        {
+          "id": "load",
+          "target": "station-load",
+          "title": "工位负载",
+          "body": "每个房间的容量、正在做、排队人数。洁面室和测量室最容易堵，提前看这里调度。",
+          "placement": "left"
+        },
+        {
+          "id": "help",
+          "target": "help-menu",
+          "title": "随时重看导览",
+          "body": "每个页面第一次打开时都会有一段简短导览。想重看或者看完整流程演示，点这里。",
+          "placement": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "arrivals",
+      "title": "到访签到",
+      "summary": "对上预约才能签到；三层时间分开看",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/arrivals" },
+      "steps": [
+        {
+          "id": "tabs",
+          "target": "arrivals-tabs",
+          "title": "先按状态分组",
+          "body": "待到、迟到、已到场、已签出、缺席分开放。迟到是 **预约开始 10 分钟后仍未签到**，系统自动判定。",
+          "placement": "bottom"
+        },
+        {
+          "id": "layers",
+          "target": "time-layers",
+          "title": "三层时间，千万别混",
+          "body": "**访视窗**：方案规定的相对时间（例如 D14 ±2）。\n**预约**：约好的具体时段。\n**实际到达**：签到那一刻。\n窗外签到会被拦下，窗口最后一天会标黄。",
+          "placement": "bottom"
+        },
+        {
+          "id": "checkin",
+          "target": "arrivals-table",
+          "title": "签到 = 核验身份 + 确认这次预约",
+          "body": "点「签到」打开核验面板：人脸、证件尾号、手机尾号、访前确认都过了才放行。签到成功后，受试者手机会立刻收到第一站去哪里。",
+          "placement": "top"
+        }
+      ]
+    },
+    {
+      "id": "stations",
+      "title": "工位执行",
+      "summary": "完成态只在工位写；门禁不过不能开始",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/stations" },
+      "steps": [
+        {
+          "id": "picker",
+          "target": "station-picker",
+          "title": "先选你所在的房间",
+          "body": "每张卡片是一个物理房间，圆环是容量占用，右上角是排队人数。",
+          "placement": "bottom"
+        },
+        {
+          "id": "queue",
+          "target": "station-queue",
+          "title": "排队的人和他们为什么在等",
+          "body": "**可开始**的排在前面；灰色的会写清楚在等什么：平衡还剩几分钟、上一步没完成、乳酸异常挂起……",
+          "placement": "right"
+        },
+        {
+          "id": "exec",
+          "target": "station-exec",
+          "title": "执行面板",
+          "body": "门禁检查全绿才能「开始」。完成时按步骤类型录结果：通过/不通过、评分、测量值。\n**只有这里能写完成态**，看板只读。",
+          "placement": "left",
+          "hint": "测量类步骤：平衡未满不能开 T0；督导书面批准可提前，自动留痕。"
+        }
+      ]
+    },
+    {
+      "id": "visit",
+      "title": "访视详情",
+      "summary": "一个人一次访视的全部：动线、门禁、留痕、签出",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/visits/*" },
+      "steps": [
+        {
+          "id": "header",
+          "target": "visit-header",
+          "title": "这次访视是谁、哪个项目、哪个访视点",
+          "body": "同一个人同一天可能有多次访视，所以用 **签到号** 区分每一次，而不是用人。",
+          "placement": "bottom"
+        },
+        {
+          "id": "timeline",
+          "target": "visit-timeline",
+          "title": "按已发布的导检版本逐步走",
+          "body": "顺序来自导检编排里 **发布的版本**，当天不能临时改顺序。每一步写着在哪个房间、谁做的、用了多久。",
+          "placement": "right"
+        },
+        {
+          "id": "dims",
+          "target": "gate-dims",
+          "title": "入组门禁维度",
+          "body": "只有筛选访视有。锚点之前的步骤按维度归类：知情、基础、病史、问卷、测量、乳酸。**任一步失败 → 该维度失败**。",
+          "placement": "left"
+        },
+        {
+          "id": "checkout",
+          "target": "checkout-btn",
+          "title": "签出是最后一道关",
+          "body": "步骤没做完也能签出，但必须写原因，系统会自动生成补做计划和偏离记录，并约好窗口内的下一次访视。",
+          "placement": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "eligibility",
+      "title": "入排判定",
+      "summary": "入选全是、排除全否，PI 单独签名",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/eligibility" },
+      "steps": [
+        {
+          "id": "list",
+          "target": "elig-list",
+          "title": "今天所有筛选中的人",
+          "body": "证据未齐的排在后面；**待判定** 表示锚点前的步骤都做完了，等 PI 签。",
+          "placement": "right"
+        },
+        {
+          "id": "criteria",
+          "target": "elig-criteria",
+          "title": "逐条对照证据",
+          "body": "每条标准旁边是来自现场步骤的证据。**入选标准要全是，排除标准要全否**，否则无法判定入组。",
+          "placement": "left"
+        },
+        {
+          "id": "decision",
+          "target": "elig-decision",
+          "title": "签名即判定",
+          "body": "判定入组会分配随机号，之后才能发放产品；判定筛败必须选原因，受试者端会看到温和的结果说明。",
+          "placement": "top"
+        }
+      ]
+    },
+    {
+      "id": "guides",
+      "title": "导检编排",
+      "summary": "为每个项目每个访视点发布导检版本",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/guides" },
+      "steps": [
+        {
+          "id": "scope",
+          "target": "guide-scope",
+          "title": "先选项目和访视点",
+          "body": "V1 通常有知情和入排，V2/V3 没有，但会有产品回收、日记核查。",
+          "placement": "bottom"
+        },
+        {
+          "id": "canvas",
+          "target": "guide-canvas",
+          "title": "拖动调整顺序，从左边步骤库添加",
+          "body": "改动只存在草稿里，**现场看不到**。",
+          "placement": "right"
+        },
+        {
+          "id": "rules",
+          "target": "guide-rules",
+          "title": "规则校验",
+          "body": "知情必须最先、测量前必须平衡、产品发放必须在入组判定之后……违反规则不能发布。",
+          "placement": "left"
+        },
+        {
+          "id": "publish",
+          "target": "guide-publish",
+          "title": "发布 = 生成新版本",
+          "body": "发布后，**新签到** 的受试者按新版本走；已经在场的人继续用签到时的版本，不会中途被改。",
+          "placement": "bottom"
+        }
+      ]
+    },
+    {
+      "id": "exceptions",
+      "title": "异常中心",
+      "summary": "所有偏离都在这里闭环",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/exceptions" },
+      "steps": [
+        {
+          "id": "filters",
+          "target": "ex-filters",
+          "title": "按状态和类型筛选",
+          "body": "缺席、迟到、中途离开、乳酸异常、提前 T0、再筛申请、未完成签出……",
+          "placement": "bottom"
+        },
+        {
+          "id": "list",
+          "target": "ex-list",
+          "title": "每条异常必须选一个处置",
+          "body": "处置会回写到访视：例如「可继续测量」会解除挂起，「终止筛选」会直接判定筛败。",
+          "placement": "top"
+        }
+      ]
+    },
+    {
+      "id": "subjects",
+      "title": "项目与受试者",
+      "summary": "跨访视看每个人的进度与窗口",
+      "group": "页面导览",
+      "trigger": { "type": "firstVisit", "route": "/subjects" },
+      "steps": [
+        {
+          "id": "funnel",
+          "target": "subj-funnel",
+          "title": "项目漏斗",
+          "body": "目标例数、已筛选、已入组，一眼看清招募进度。",
+          "placement": "bottom"
+        },
+        {
+          "id": "table",
+          "target": "subj-table",
+          "title": "每个人的 V1…Vn",
+          "body": "每个节点是一次访视，下面写着访视窗。黄色是窗口最后几天，红色是缺席或超窗。",
+          "placement": "top"
+        }
+      ]
+    },
+    {
+      "id": "journey",
+      "title": "完整流程演示：一位受试者的一天",
+      "summary": "跨页面走一遍：签到 → 工位 → 判定 → 签出",
+      "group": "流程演示",
+      "trigger": { "type": "manual" },
+      "steps": [
+        {
+          "id": "j1",
+          "route": "/arrivals",
+          "target": "arrivals-table",
+          "title": "① 进门：到访签到",
+          "body": "受试者到前台或扫自己的二维码，对上 **今天这次预约** 才签到。签到号是这次访视的身份证。",
+          "placement": "top"
+        },
+        {
+          "id": "j2",
+          "route": "/stations",
+          "target": "station-queue",
+          "title": "② 按导检走工位",
+          "body": "签到后受试者手机上会显示「下一站去哪」。每个工位只处理轮到自己的人，门禁不过就排着。",
+          "placement": "right"
+        },
+        {
+          "id": "j3",
+          "route": "/eligibility",
+          "target": "elig-criteria",
+          "title": "③ 筛选访视：入排判定",
+          "body": "锚点之前的证据齐了，PI 在这里逐条确认并签名，决定入组还是筛败。",
+          "placement": "left"
+        },
+        {
+          "id": "j4",
+          "route": "/visits/v08",
+          "target": "visit-timeline",
+          "title": "④ 入组后：产品与日记",
+          "body": "判定入组后才能发放产品、培训日记。吴思琪今天已经全部完成。",
+          "placement": "right"
+        },
+        {
+          "id": "j5",
+          "route": "/visits/v08",
+          "target": "checkout-btn",
+          "title": "⑤ 出门：签出并约下一次",
+          "body": "签出时系统按访视窗算出下一次可约的日期范围，约好才放行。演示结束，自己点点看吧。",
+          "placement": "bottom"
+        }
+      ]
+    }
+  ]
+}

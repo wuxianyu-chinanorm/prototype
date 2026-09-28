@@ -1,0 +1,149 @@
+[
+  {
+    "id": "consent", "name": "知情同意", "short": "知情", "category": "consent", "stationId": "st-icf",
+    "performer": "both", "standardMinutes": 20, "gateDim": "consent", "resultKind": "passfail", "icon": "file-signature",
+    "subjectCopy": "在知情室阅读并签署知情同意书，有任何疑问都可以当面问研究人员",
+    "checklist": ["受试者本人阅读 ICF 当前版本", "逐条解释风险与权益", "理解测验通过", "受试者签名 + 日期"]
+  },
+  {
+    "id": "crc_review", "name": "CRC 知情核对", "short": "核对", "category": "review", "stationId": "st-icf",
+    "performer": "staff", "standardMinutes": 5, "gateDim": "consent", "resultKind": "passfail", "icon": "badge-check",
+    "subjectCopy": "研究协调员核对签字页，请稍候",
+    "checklist": ["ICF 版本号与伦理批件一致", "签名页无漏签", "副本已交受试者"]
+  },
+  {
+    "id": "basic_info", "name": "基础信息", "short": "基础", "category": "interview", "stationId": "st-interview",
+    "performer": "staff", "standardMinutes": 8, "gateDim": "basic", "resultKind": "passfail", "icon": "id-card",
+    "subjectCopy": "登记身高体重、联系方式等基础信息",
+    "checklist": ["身份证件复核", "年龄在方案范围内", "紧急联系人"]
+  },
+  {
+    "id": "history", "name": "病史问询", "short": "病史", "category": "interview", "stationId": "st-interview",
+    "performer": "staff", "standardMinutes": 15, "gateDim": "history", "resultKind": "passfail", "icon": "stethoscope",
+    "subjectCopy": "医生会询问既往病史、过敏史与近期用药",
+    "checklist": ["过敏史", "近 1 个月外用药 / 口服药", "妊娠哺乳", "近 3 个月其他试验"]
+  },
+  {
+    "id": "questionnaire_screen", "name": "筛选问卷", "short": "问卷", "category": "questionnaire", "stationId": "st-survey",
+    "performer": "subject", "standardMinutes": 10, "gateDim": "assessment", "resultKind": "passfail", "icon": "clipboard-list",
+    "subjectCopy": "在手机上完成皮肤自评问卷，约 10 分钟",
+    "checklist": ["问卷已提交", "关键题无遗漏"]
+  },
+  {
+    "id": "cleanse", "name": "标准洁面", "short": "洁面", "category": "skin_prep", "stationId": "st-cleanse",
+    "performer": "staff", "standardMinutes": 5, "resultKind": "none", "icon": "droplets",
+    "subjectCopy": "使用中心统一洁面产品清洁面部，之后请勿触碰面部",
+    "checklist": ["统一洁面产品批号", "温水冲洗", "纸巾轻拭，不摩擦"]
+  },
+  {
+    "id": "strip", "name": "胶带撕皮", "short": "撕皮", "category": "provocation", "stationId": "st-cleanse",
+    "performer": "staff", "standardMinutes": 8, "resultKind": "none", "icon": "layers",
+    "subjectCopy": "在前臂内侧做轻度胶带剥离，会有轻微牵拉感",
+    "checklist": ["部位：左前臂内侧 3×3cm", "剥离次数按方案", "局部无破损"]
+  },
+  {
+    "id": "balance", "name": "恒温平衡", "short": "平衡", "category": "wait", "stationId": "st-balance",
+    "performer": "subject", "standardMinutes": 30, "isBalance": true, "resultKind": "none", "icon": "thermometer",
+    "subjectCopy": "在恒温室静坐，让皮肤适应环境。计时结束前请勿离开或触碰面部",
+    "checklist": ["室温 20–22℃ · 湿度 40–60%", "静坐，不喝热饮", "面部不接触"]
+  },
+  {
+    "id": "lactate", "name": "乳酸刺痛测试", "short": "乳酸", "category": "provocation", "stationId": "st-lactate",
+    "performer": "staff", "standardMinutes": 10, "gateDim": "lactate", "resultKind": "score", "icon": "flask-conical",
+    "subjectCopy": "在鼻唇沟涂抹乳酸溶液，按感受给刺痛打分",
+    "checklist": ["10% 乳酸 50μL", "2.5 / 5 分钟分别评分", "评分 ≥2 触发医学判断"]
+  },
+  {
+    "id": "infrared", "name": "红外照灯", "short": "照灯", "category": "device", "stationId": "st-infrared",
+    "performer": "staff", "standardMinutes": 15, "requiresBalance": true, "resultKind": "none", "icon": "lamp",
+    "subjectCopy": "佩戴护目镜，在红外灯下照射 15 分钟",
+    "checklist": ["护目镜佩戴", "距离 30cm", "照射时长 15 分钟"]
+  },
+  {
+    "id": "measure_screen", "name": "仪器测量（筛选）", "short": "测量", "category": "device", "stationId": "st-measure",
+    "performer": "staff", "standardMinutes": 12, "gateDim": "measurement", "requiresBalance": true, "resultKind": "measure",
+    "icon": "gauge", "subjectCopy": "仪器测量皮肤水分与屏障功能，全程无痛",
+    "measures": [
+      { "key": "tewl", "label": "TEWL", "unit": "g/m²·h" },
+      { "key": "hydration", "label": "角质层水分", "unit": "C.U." }
+    ],
+    "checklist": ["平衡时间已满", "探头校准", "左右面颊各测 3 次"]
+  },
+  {
+    "id": "gate", "name": "入组判定", "short": "判定", "category": "gate", "stationId": "st-gate",
+    "performer": "staff", "standardMinutes": 5, "isGateAnchor": true, "resultKind": "passfail", "icon": "scale",
+    "subjectCopy": "研究者正在汇总你的筛选结果，请在休息区稍候",
+    "checklist": ["入选标准全部为「是」", "排除标准全部为「否」", "PI 电子签名"]
+  },
+  {
+    "id": "imaging", "name": "VISIA 影像", "short": "影像", "category": "imaging", "stationId": "st-imaging",
+    "performer": "staff", "standardMinutes": 8, "requiresBalance": true, "resultKind": "none", "icon": "camera",
+    "subjectCopy": "拍摄正面与左右侧面标准影像，请摘下眼镜和发饰",
+    "checklist": ["固定头托", "正 / 左 45° / 右 45°", "光源模式：标准 + 交叉偏振"]
+  },
+  {
+    "id": "measure", "name": "仪器测量", "short": "测量", "category": "device", "stationId": "st-measure",
+    "performer": "staff", "standardMinutes": 12, "requiresBalance": true, "resultKind": "measure", "icon": "gauge",
+    "subjectCopy": "仪器测量皮肤水分与屏障功能，全程无痛",
+    "measures": [
+      { "key": "tewl", "label": "TEWL", "unit": "g/m²·h" },
+      { "key": "hydration", "label": "角质层水分", "unit": "C.U." }
+    ],
+    "checklist": ["平衡时间已满", "探头校准", "左右面颊各测 3 次"]
+  },
+  {
+    "id": "clinical_assessment", "name": "临床评估", "short": "评估", "category": "assessment", "stationId": "st-assess",
+    "performer": "staff", "standardMinutes": 8, "resultKind": "passfail", "icon": "scan-face",
+    "subjectCopy": "评估员目测评估泛红、干燥等皮肤表现",
+    "checklist": ["标准光源下", "双人独立评分", "照片编号对应"]
+  },
+  {
+    "id": "questionnaire_self", "name": "自评问卷", "short": "自评", "category": "questionnaire", "stationId": "st-survey",
+    "performer": "subject", "standardMinutes": 8, "resultKind": "passfail", "icon": "smile",
+    "subjectCopy": "在手机上填写使用感受问卷",
+    "checklist": ["问卷已提交"]
+  },
+  {
+    "id": "ae", "name": "不良事件问询", "short": "AE", "category": "safety", "stationId": "st-assess",
+    "performer": "staff", "standardMinutes": 5, "resultKind": "passfail", "icon": "shield-alert",
+    "subjectCopy": "医生会问你使用期间有无不适",
+    "checklist": ["有无新发不适", "合并用药变化", "如有 AE 立即记录"]
+  },
+  {
+    "id": "diary_check", "name": "日记核查", "short": "日记", "category": "diary", "stationId": "st-product",
+    "performer": "staff", "standardMinutes": 5, "resultKind": "passfail", "icon": "notebook-pen",
+    "subjectCopy": "核对你的使用日记是否完整",
+    "checklist": ["每日早晚打卡完整", "漏用天数说明", "不良感受记录"]
+  },
+  {
+    "id": "product_return", "name": "产品回收称重", "short": "回收", "category": "product", "stationId": "st-product",
+    "performer": "staff", "standardMinutes": 6, "resultKind": "measure", "icon": "package-open",
+    "subjectCopy": "请交回上次领取的试用产品，我们会称重记录用量",
+    "measures": [{ "key": "weight", "label": "回收净重", "unit": "g" }],
+    "checklist": ["编号与发放记录一致", "电子秤归零", "用量在合理区间"]
+  },
+  {
+    "id": "product_check", "name": "产品检查", "short": "检查", "category": "product", "stationId": "st-product",
+    "performer": "staff", "standardMinutes": 4, "resultKind": "passfail", "icon": "search-check",
+    "subjectCopy": "检查产品包装完好",
+    "checklist": ["包装完好", "无混用他人产品"]
+  },
+  {
+    "id": "product_dispense", "name": "产品发放", "short": "发放", "category": "product", "stationId": "st-product",
+    "performer": "staff", "standardMinutes": 6, "requiresEnrollment": true, "resultKind": "passfail", "icon": "package",
+    "subjectCopy": "领取试用产品，工作人员会讲解用法用量",
+    "checklist": ["随机号对应产品编号", "发放前称重", "受试者签收"]
+  },
+  {
+    "id": "diary_training", "name": "日记培训", "short": "培训", "category": "diary", "stationId": "st-product",
+    "performer": "staff", "standardMinutes": 5, "requiresEnrollment": true, "resultKind": "none", "icon": "graduation-cap",
+    "subjectCopy": "学习在 App 里每天早晚打卡记录使用情况",
+    "checklist": ["App 打卡演示", "提醒时间设定", "不适如何上报"]
+  },
+  {
+    "id": "exit", "name": "出组确认", "short": "出组", "category": "closeout", "stationId": "st-assess",
+    "performer": "staff", "standardMinutes": 5, "resultKind": "passfail", "icon": "flag",
+    "subjectCopy": "确认本研究全部完成，领取补偿",
+    "checklist": ["全部访视完成", "补偿发放登记", "随访联系方式"]
+  }
+]

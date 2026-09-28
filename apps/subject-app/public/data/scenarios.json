@@ -1,0 +1,83 @@
+[
+  {
+    "id": "fresh", "group": "到访前", "label": "第一次打开 App",
+    "description": "收到招募短信，第一次打开 App 登录",
+    "today": "2026-09-27", "clock": "20:10:00", "loggedIn": false, "visitPoint": "V1",
+    "done": [], "consent": "todo", "questionnaire": "todo", "enrollment": "pending", "route": "/welcome"
+  },
+  {
+    "id": "eve", "group": "到访前", "label": "V1 前一晚",
+    "description": "明早 08:30 首次到访，看准备事项",
+    "today": "2026-09-27", "clock": "20:15:00", "loggedIn": true, "visitPoint": "V1",
+    "done": [], "consent": "todo", "questionnaire": "todo", "enrollment": "pending", "route": "/home"
+  },
+  {
+    "id": "arrive", "group": "V1 筛选当天", "label": "到达中心门口",
+    "description": "出示个人二维码给前台扫码签到",
+    "today": "2026-09-28", "clock": "08:24:00", "loggedIn": true, "visitPoint": "V1",
+    "done": [], "consent": "todo", "questionnaire": "todo", "enrollment": "pending", "route": "/pass"
+  },
+  {
+    "id": "consent", "group": "V1 筛选当天", "label": "已签到 · 去知情室",
+    "description": "签到成功，第一站是知情同意",
+    "today": "2026-09-28", "clock": "08:27:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": [], "consent": "todo", "questionnaire": "todo", "enrollment": "pending", "route": "/today", "queueAhead": 0
+  },
+  {
+    "id": "balance", "group": "V1 筛选当天", "label": "恒温室静坐中",
+    "description": "洁面后静坐 30 分钟，倒计时进行中",
+    "today": "2026-09-28", "clock": "09:42:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": ["consent", "crc_review", "basic_info", "history", "questionnaire_screen", "cleanse"],
+    "active": { "key": "balance", "start": "09:33" },
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "pending", "route": "/today"
+  },
+  {
+    "id": "gate", "group": "V1 筛选当天", "label": "等待入组判定",
+    "description": "检查都做完了，研究者正在判断",
+    "today": "2026-09-28", "clock": "10:26:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": ["consent", "crc_review", "basic_info", "history", "questionnaire_screen", "cleanse", "balance", "lactate", "measure_screen"],
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "pending", "route": "/today"
+  },
+  {
+    "id": "enrolled", "group": "V1 筛选当天", "label": "入组成功",
+    "description": "收到入组通知，接下来拍照、领产品",
+    "today": "2026-09-28", "clock": "10:34:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": ["consent", "crc_review", "basic_info", "history", "questionnaire_screen", "cleanse", "balance", "lactate", "measure_screen", "gate"],
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "enrolled", "route": "/result"
+  },
+  {
+    "id": "failed", "group": "V1 筛选当天", "label": "未能入组",
+    "description": "这次不符合条件，温和告知 + 补偿",
+    "today": "2026-09-28", "clock": "10:34:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": ["consent", "crc_review", "basic_info", "history", "questionnaire_screen", "cleanse", "balance", "lactate", "measure_screen", "gate"],
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "failed", "route": "/result"
+  },
+  {
+    "id": "checkout", "group": "V1 筛选当天", "label": "全部完成 · 签出",
+    "description": "今天的项目都做完了，确认下次预约",
+    "today": "2026-09-28", "clock": "11:02:00", "loggedIn": true, "visitPoint": "V1",
+    "checkin": { "no": "A06", "at": "08:26" },
+    "done": ["consent", "crc_review", "basic_info", "history", "questionnaire_screen", "cleanse", "balance", "lactate", "measure_screen", "gate", "imaging", "product_dispense", "diary_training"],
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "enrolled", "route": "/checkout"
+  },
+  {
+    "id": "diary", "group": "居家使用", "label": "居家第 9 天 · 打卡",
+    "description": "每天早晚打卡，出现不适随时上报",
+    "today": "2026-10-06", "clock": "21:30:00", "loggedIn": true, "visitPoint": "V2",
+    "done": [], "consent": "reviewed", "questionnaire": "done", "enrollment": "enrolled", "v1Done": true, "route": "/diary"
+  },
+  {
+    "id": "v2day", "group": "复访", "label": "V2 复访当天",
+    "description": "复访没有知情和入排，直接进测量",
+    "today": "2026-10-12", "clock": "09:41:00", "loggedIn": true, "visitPoint": "V2",
+    "checkin": { "no": "A03", "at": "08:58" },
+    "done": ["diary_check", "product_return", "cleanse"],
+    "active": { "key": "balance", "start": "09:18" },
+    "consent": "reviewed", "questionnaire": "done", "enrollment": "enrolled", "v1Done": true, "route": "/today"
+  }
+]

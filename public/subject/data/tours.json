@@ -1,0 +1,49 @@
+{
+  "version": 1,
+  "tours": [
+    {
+      "id": "home",
+      "title": "认识你的试验伙伴",
+      "summary": "首页、二维码、日记在哪里",
+      "trigger": { "type": "firstVisit", "route": "/home" },
+      "steps": [
+        { "id": "hi", "title": "欢迎，晓雨", "body": "这个 App 会陪你走完整个研究：**什么时候来、来了去哪、回家怎么用**，都在这里。", "placement": "center" },
+        { "id": "next", "target": "next-visit", "title": "下一次到访", "body": "日期、时间、地点和倒计时。可以一键导航到中心。", "placement": "bottom" },
+        { "id": "prep", "target": "prep-list", "title": "到访前要准备的事", "body": "逐项打勾。比如**当天不化妆**——护肤品会让测量不准。", "placement": "top" },
+        { "id": "qr", "target": "tab-pass", "title": "你的个人二维码", "body": "到了中心，在前台出示它就能签到。**一人一码**，每次来都用同一个。", "placement": "top" }
+      ]
+    },
+    {
+      "id": "today",
+      "title": "今天在中心怎么走",
+      "summary": "只看一张卡，就知道下一步去哪",
+      "trigger": { "type": "firstVisit", "route": "/today" },
+      "steps": [
+        { "id": "hero", "target": "now-card", "title": "只看这一张卡", "body": "它告诉你**现在该去哪个房间、做什么**。上一步做完，它会自动变成下一步。", "placement": "bottom" },
+        { "id": "list", "target": "journey-list", "title": "今天的全部安排", "body": "打勾的是做完了的。红线之后的项目要**入组后**才做。", "placement": "top" },
+        { "id": "help", "target": "help-bar", "title": "需要帮助随时点", "body": "找不到房间、身体不舒服、临时要离开，都从这里告诉工作人员。", "placement": "top" }
+      ]
+    },
+    {
+      "id": "consent",
+      "title": "知情同意怎么签",
+      "summary": "读完每一节，答 3 道小题，再签名",
+      "trigger": { "type": "firstVisit", "route": "/consent" },
+      "steps": [
+        { "id": "sections", "target": "icf-sections", "title": "一节一节读", "body": "每节先看**一句话总结**，展开看全文。读过的会打勾。", "placement": "bottom" },
+        { "id": "ask", "target": "icf-ask", "title": "有疑问先别签", "body": "点这里标记疑问，研究人员会当面给你解释。**签不签完全由你决定**。", "placement": "top" }
+      ]
+    },
+    {
+      "id": "diary",
+      "title": "每天 10 秒打卡",
+      "summary": "早晚各一次，出现不适随时上报",
+      "trigger": { "type": "firstVisit", "route": "/diary" },
+      "steps": [
+        { "id": "today", "target": "diary-today", "title": "今天的打卡", "body": "用完产品点一下就好。忘了也没关系，**如实记录**比全勤更重要。", "placement": "bottom" },
+        { "id": "cal", "target": "diary-calendar", "title": "28 天日历", "body": "绿色是早晚都打了，半绿是只打了一次。", "placement": "top" },
+        { "id": "ae", "target": "diary-report", "title": "感觉不舒服？", "body": "马上在这里上报，研究医生会第一时间联系你。", "placement": "top" }
+      ]
+    }
+  ]
+}

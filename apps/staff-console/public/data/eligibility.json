@@ -1,0 +1,69 @@
+{
+  "criteria": {
+    "PRJ-2609": [
+      { "id": "I1", "kind": "inclusion", "text": "年龄 18–55 周岁", "source": "basic" },
+      { "id": "I2", "kind": "inclusion", "text": "自评面部敏感（问卷 Q3 ≥ 中度）", "source": "assessment" },
+      { "id": "I3", "kind": "inclusion", "text": "面颊 TEWL ≥ 15 g/m²·h", "source": "measurement" },
+      { "id": "I4", "kind": "inclusion", "text": "乳酸刺痛评分 ≥ 1（敏感肌判定）", "source": "lactate" },
+      { "id": "I5", "kind": "inclusion", "text": "已签署知情同意并理解试验期间使用限制", "source": "consent" },
+      { "id": "E1", "kind": "exclusion", "text": "妊娠、哺乳或计划 3 个月内妊娠", "source": "history" },
+      { "id": "E2", "kind": "exclusion", "text": "近 1 个月使用外用激素 / 维 A 酸类药物", "source": "history" },
+      { "id": "E3", "kind": "exclusion", "text": "面部有活动性皮肤病或破损", "source": "history" },
+      { "id": "E4", "kind": "exclusion", "text": "近 3 个月参加过其他同类试验", "source": "history" },
+      { "id": "E5", "kind": "exclusion", "text": "乳酸刺痛评分 ≥ 3（耐受差）", "source": "lactate" }
+    ],
+    "PRJ-2611": [
+      { "id": "I1", "kind": "inclusion", "text": "年龄 20–50 周岁", "source": "basic" },
+      { "id": "I2", "kind": "inclusion", "text": "面部可见色斑 ≥ 2 处（问卷 + 评估）", "source": "assessment" },
+      { "id": "I3", "kind": "inclusion", "text": "角质层水分 ≥ 30 C.U.", "source": "measurement" },
+      { "id": "I4", "kind": "inclusion", "text": "已签署知情同意", "source": "consent" },
+      { "id": "E1", "kind": "exclusion", "text": "妊娠或哺乳", "source": "history" },
+      { "id": "E2", "kind": "exclusion", "text": "近 3 个月做过光电 / 刷酸项目", "source": "history" },
+      { "id": "E3", "kind": "exclusion", "text": "光敏性疾病史", "source": "history" },
+      { "id": "E4", "kind": "exclusion", "text": "近 3 个月参加过其他试验", "source": "history" }
+    ]
+  },
+  "cases": [
+    {
+      "visitId": "v07",
+      "answers": { "I1": "yes", "I2": "yes", "I3": "yes", "I4": "yes", "I5": "yes", "E1": "no", "E2": "no", "E3": "no", "E4": "no", "E5": "no" },
+      "evidence": {
+        "I1": "42 岁（身份证核验）", "I2": "问卷 Q3：中度敏感", "I3": "TEWL 17.8", "I4": "乳酸评分 1", "I5": "ICF V2.1 已签，理解测验 5/5",
+        "E1": "男性", "E2": "病史：无", "E3": "病史：无", "E4": "受试者库查重：无", "E5": "乳酸评分 1"
+      }
+    },
+    {
+      "visitId": "v04",
+      "answers": { "I1": "yes", "I2": "yes", "I3": null, "I4": "yes", "I5": "yes", "E1": "no", "E2": "no", "E3": "no", "E4": "no", "E5": "no" },
+      "evidence": {
+        "I1": "31 岁", "I2": "问卷 Q3：重度敏感", "I3": "测量已挂起", "I4": "乳酸评分 2", "I5": "ICF V2.1 已签",
+        "E1": "男性", "E2": "病史：无", "E3": "病史：无", "E4": "查重：无", "E5": "乳酸评分 2（<3）"
+      }
+    },
+    {
+      "visitId": "v01",
+      "answers": { "I1": "yes", "I2": "yes", "I3": null, "I4": null, "I5": "yes", "E1": "no", "E2": "no", "E3": "no", "E4": "no", "E5": null },
+      "evidence": {
+        "I1": "29 岁", "I2": "问卷 Q3：中度敏感", "I3": "待测量", "I4": "待乳酸测试", "I5": "ICF V2.1 已签",
+        "E1": "病史：否", "E2": "病史：无", "E3": "病史：无", "E4": "查重：无", "E5": "待乳酸测试"
+      }
+    },
+    {
+      "visitId": "v03",
+      "answers": { "I1": "yes", "I2": null, "I3": null, "I4": "yes", "E1": null, "E2": null, "E3": null, "E4": "no" },
+      "evidence": {
+        "I1": "26 岁", "I2": "待问卷", "I3": "待测量", "I4": "ICF 已签",
+        "E1": "病史问询中", "E2": "病史问询中", "E3": "病史问询中", "E4": "查重：无"
+      }
+    },
+    {
+      "visitId": "v08",
+      "answers": { "I1": "yes", "I2": "yes", "I3": "yes", "I4": "yes", "E1": "no", "E2": "no", "E3": "no", "E4": "no" },
+      "evidence": {
+        "I1": "24 岁", "I2": "色斑 4 处", "I3": "水分 44.0", "I4": "ICF 已签",
+        "E1": "否", "E2": "否", "E3": "否", "E4": "查重：无"
+      },
+      "decision": { "outcome": "enrolled", "by": "陈思远", "at": "09:24", "rd": "B016" }
+    }
+  ]
+}
