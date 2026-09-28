@@ -1449,6 +1449,7 @@
         visitDd.classList.toggle("is-open", open);
         visitDdMenu.hidden = !open;
         visitDdTrigger.setAttribute("aria-expanded", open ? "true" : "false");
+        if (open) closeRefMenu();
       }
 
       function toggleVisitDd() {
@@ -1543,6 +1544,7 @@
           if (b.getAttribute("data-phase") === phase) targetBtn = b;
         });
         if (!targetBtn) return;
+        closeCompareFrame();
 
         phaseButtons.forEach(function (b) {
           b.classList.toggle("is-active", b === targetBtn);
@@ -1732,6 +1734,81 @@
           if (e.key === "Escape") closeVisitDd();
         });
       }
+
+      var refDd = document.getElementById("phase-ref-dd");
+      var refMenu = document.getElementById("phase-ref-menu");
+      var compareBtn = document.getElementById("btn-compare");
+      var compareFrame = document.getElementById("compare-frame");
+      var compareView = document.getElementById("compare-frame-view");
+
+      function closeRefMenu() {
+        if (!refDd || !refMenu || !compareBtn) return;
+        refDd.classList.remove("is-open");
+        refMenu.hidden = true;
+        compareBtn.setAttribute("aria-expanded", "false");
+      }
+
+      function openRefMenu() {
+        if (!refDd || !refMenu || !compareBtn) return;
+        closeVisitDd();
+        refDd.classList.add("is-open");
+        refMenu.hidden = false;
+        compareBtn.setAttribute("aria-expanded", "true");
+      }
+
+      function closeCompareFrame() {
+        if (!compareFrame || !compareBtn) return;
+        compareFrame.hidden = true;
+        compareBtn.classList.remove("is-active");
+        closeRefMenu();
+      }
+
+      function openCompareDoc(src, title) {
+        if (!compareFrame || !compareBtn || !compareView || !src) return;
+        if (compareView.getAttribute("src") !== src) compareView.src = src;
+        if (title) compareView.title = title;
+        closeVisitDd();
+        closeRefMenu();
+        compareFrame.hidden = false;
+        compareBtn.classList.add("is-active");
+        if (refMenu) {
+          refMenu.querySelectorAll("[data-compare-src]").forEach(function (item) {
+            var on = item.getAttribute("data-compare-src") === src;
+            item.classList.toggle("is-current", on);
+          });
+        }
+      }
+
+      if (compareBtn) {
+        compareBtn.addEventListener("click", function (e) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (refDd && refDd.classList.contains("is-open")) closeRefMenu();
+          else openRefMenu();
+        });
+      }
+      if (refMenu) {
+        refMenu.querySelectorAll("[data-compare-src]").forEach(function (item) {
+          item.addEventListener("click", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            openCompareDoc(
+              item.getAttribute("data-compare-src"),
+              item.getAttribute("data-compare-title")
+            );
+          });
+        });
+      }
+      document.addEventListener("click", function (e) {
+        if (!refDd || !refDd.classList.contains("is-open")) return;
+        if (refDd.contains(e.target)) return;
+        closeRefMenu();
+      });
+      document.addEventListener("keydown", function (e) {
+        if (e.key !== "Escape") return;
+        if (refDd && refDd.classList.contains("is-open")) closeRefMenu();
+        else closeCompareFrame();
+      });
 
       function stubNext(pageName) {
         toast("「" + pageName + "」将在后续原型中开发（请先确认 IA）");

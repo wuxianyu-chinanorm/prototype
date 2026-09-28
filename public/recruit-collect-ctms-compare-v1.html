@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>招募系统、采集系统、CTMS 系统选型对比 V1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#f3f5f9; --surface:#fff; --muted-bg:#f8fafc; --ink:#0f172a; --ink2:#334155; --muted:#64748b;
+  --accent:#4f46e5; --accent2:#0ea5e9; --accent-soft:rgba(79,70,229,.07);
+  --ok:#059669; --ok-soft:#ecfdf5; --ok-bd:#6ee7b7;
+  --warn:#b45309; --warn-soft:#fffbeb; --warn-bd:#fcd34d;
+  --bad:#be123c; --bad-soft:#fff1f2; --bad-bd:#fda4af;
+  --info:#1d4ed8; --info-soft:#eff6ff; --info-bd:#93c5fd;
+  --border:#e2e8f0; --radius:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 10px 28px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans SC",system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.8;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.1rem 4rem}
+
+/* ============ 顶部导航 ============ */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.topbar .inner{max-width:1180px;margin:0 auto;padding:.5rem 1.1rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.topbar .brand{font-weight:700;font-size:.88rem;letter-spacing:.02em;color:var(--accent);white-space:nowrap}
+.topbar nav{display:flex;gap:.15rem;flex-wrap:wrap}
+.topbar a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.25rem .5rem;border-radius:7px;white-space:nowrap}
+.topbar a:hover{background:var(--accent-soft);color:var(--accent)}
+.topbar a.active{background:var(--accent);color:#fff}
+
+/* ============ 封面 ============ */
+.cover{margin:1.1rem 0;padding:2.4rem 2rem;border-radius:20px;color:#fff;box-shadow:var(--shadow);
+  background:linear-gradient(135deg,#312e81 0%,#4f46e5 45%,#0ea5e9 100%);position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08)}
+.cover::before{content:"";position:absolute;right:60px;bottom:-130px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cover .kicker{font-size:.76rem;letter-spacing:.22em;opacity:.85;margin:0 0 .6rem;font-weight:600}
+.cover h1{margin:0 0 .5rem;font-size:2rem;line-height:1.35;font-weight:900;letter-spacing:.01em}
+.cover h1 small{display:block;font-size:1rem;font-weight:500;opacity:.9;margin-top:.4rem;letter-spacing:.02em}
+.cover .meta{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.4rem;font-size:.82rem;opacity:.95;position:relative;z-index:2}
+.cover .meta div span{display:block;opacity:.72;font-size:.7rem;letter-spacing:.08em;margin-bottom:.1rem}
+.cover .meta div b{font-weight:600}
+
+/* ============ 通用区块 ============ */
+section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem 1.75rem;margin-bottom:1.15rem;box-shadow:var(--shadow);scroll-margin-top:60px}
+h2{margin:0 0 1rem;font-size:1.24rem;font-weight:700;display:flex;align-items:center;gap:.6rem}
+h2 .num{flex:none;width:1.75rem;height:1.75rem;border-radius:9px;background:var(--accent);color:#fff;font-size:.86rem;display:grid;place-items:center;font-weight:700}
+h3{margin:1.5rem 0 .6rem;font-size:1.02rem;font-weight:700;border-left:4px solid var(--accent);padding-left:.6rem}
+h4{margin:1.1rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink2)}
+p{margin:.45rem 0}
+ul,ol{margin:.35rem 0 .7rem;padding-left:1.25rem}
+li{margin:.25rem 0}
+.lead{color:var(--ink2);font-size:.95rem}
+.muted{color:var(--muted)}
+small{font-size:.8rem}
+code{background:#f1f5f9;border:1px solid var(--border);border-radius:5px;padding:.05rem .3rem;font-size:.82em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ============ 表格 ============ */
+.tblwrap{overflow-x:auto;margin:.7rem 0 1rem;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:600px}
+th,td{border-bottom:1px solid var(--border);border-right:1px solid var(--border);padding:.55rem .65rem;vertical-align:top;text-align:left}
+th:last-child,td:last-child{border-right:none}
+tbody tr:last-child td{border-bottom:none}
+thead th{background:#f1f5f9;font-weight:700;position:sticky;top:0;z-index:2;font-size:.82rem;white-space:nowrap}
+tbody tr:hover td{background:#fafbfe}
+td.c,th.c{text-align:center}
+.rowhead{background:var(--muted-bg);font-weight:600;white-space:nowrap}
+.g{background:var(--ok-soft) !important;color:#065f46;font-weight:600}
+.y{background:var(--warn-soft) !important;color:#92400e;font-weight:600}
+.r{background:var(--bad-soft) !important;color:#9f1239;font-weight:600}
+
+/* ============ 徽标 / 标签 ============ */
+.badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.12rem .48rem;border-radius:999px;margin:0 .22rem .22rem 0;letter-spacing:.02em;border:1px solid transparent;white-space:nowrap}
+.b-oss{background:#ecfdf5;color:#047857;border-color:var(--ok-bd)}
+.b-com{background:#eef2ff;color:#4338ca;border-color:#c7d2fe}
+.b-free{background:#f0fdfa;color:#0f766e;border-color:#99f6e4}
+.b-self{background:#fff7ed;color:#c2410c;border-color:#fed7aa}
+.b-saas{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}
+.b-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn-bd)}
+.b-bad{background:var(--bad-soft);color:var(--bad);border-color:var(--bad-bd)}
+.b-info{background:var(--info-soft);color:var(--info);border-color:var(--info-bd)}
+
+/* ============ 提示框 ============ */
+.box{border-radius:10px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;border:1px solid}
+.box b.t{display:block;font-size:.78rem;letter-spacing:.06em;margin-bottom:.3rem;font-weight:800}
+.box.ok{background:var(--ok-soft);border-color:var(--ok-bd)} .box.ok b.t{color:var(--ok)}
+.box.warn{background:var(--warn-soft);border-color:var(--warn-bd)} .box.warn b.t{color:var(--warn)}
+.box.bad{background:var(--bad-soft);border-color:var(--bad-bd)} .box.bad b.t{color:var(--bad)}
+.box.info{background:var(--info-soft);border-color:var(--info-bd)} .box.info b.t{color:var(--info)}
+
+/* ============ 结论先行 ============ */
+.tldr{background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);border:2px solid var(--accent);border-radius:var(--radius);padding:1.5rem 1.7rem;margin-bottom:1.15rem;box-shadow:var(--shadow)}
+.tldr h2{margin-bottom:.8rem}
+.tldr .big{font-size:1.02rem;font-weight:600;color:var(--ink);line-height:1.85;margin:.3rem 0 1rem}
+.tldr .big em{font-style:normal;background:linear-gradient(transparent 62%,rgba(79,70,229,.22) 62%);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:.7rem;margin-top:1rem}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:11px;padding:.8rem .9rem}
+.kpi .v{font-size:1.45rem;font-weight:900;color:var(--accent);line-height:1.2}
+.kpi .l{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+/* ============ 系统卡片总览 ============ */
+.sysgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem;margin:.9rem 0}
+.syscard{border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;background:var(--muted-bg);transition:.15s;text-decoration:none;color:inherit;display:block}
+.syscard:hover{border-color:var(--accent);background:#fff;transform:translateY(-2px);box-shadow:var(--shadow)}
+.syscard .nm{font-weight:700;font-size.95rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem}
+.mono{flex:none;width:1.7rem;height:1.7rem;border-radius:8px;display:grid;place-items:center;font-size:.78rem;font-weight:800;color:#fff;background:var(--accent)}
+.syscard .dsc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ============ 系统档案 ============ */
+.profile{border:1px solid var(--border);border-radius:var(--radius);margin:1.1rem 0;overflow:hidden;background:#fff}
+.profile>header{padding:1rem 1.2rem;background:linear-gradient(135deg,#f8fafc,#eef2ff);border-bottom:1px solid var(--border)}
+.profile>header .row1{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.profile>header h3{margin:0;border:none;padding:0;font-size:1.12rem;font-weight:800}
+.profile>header .sub{font-size:.82rem;color:var(--muted);margin-top:.3rem}
+.profile>header .tags{margin-top:.55rem}
+.profile .body{padding:1.1rem 1.2rem 1.3rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.65rem;margin:.2rem 0 1rem}
+.fact{border:1px solid var(--border);border-radius:10px;padding:.6rem .75rem;background:var(--muted-bg)}
+.fact .k{font-size:.7rem;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:.15rem}
+.fact .v{font-size:.85rem;font-weight:600;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0 .8rem}
+.chip{font-size:.75rem;background:#fff;border:1px solid var(--border);border-radius:7px;padding:.18rem .5rem;font-family:ui-monospace,Menlo,monospace;color:var(--ink2)}
+.chip.k{background:#eef2ff;border-color:#c7d2fe;color:#3730a3;font-weight:600}
+
+/* ============ 工作流时间线 ============ */
+.flow{list-style:none;padding:0;margin:.6rem 0 .9rem;counter-reset:fl}
+.flow li{counter-increment:fl;position:relative;padding:.1rem 0 .75rem 2.1rem;border-left:2px solid #e2e8f0;margin-left:.65rem}
+.flow li:last-child{border-left-color:transparent;padding-bottom:0}
+.flow li::before{content:counter(fl);position:absolute;left:-.72rem;top:.1rem;width:1.35rem;height:1.35rem;border-radius:50%;background:#fff;border:2px solid var(--accent);color:var(--accent);font-size:.7rem;font-weight:800;display:grid;place-items:center}
+.flow li b{display:block;font-size:.88rem}
+.flow li span{font-size:.83rem;color:var(--ink2)}
+
+/* ============ 评分条 ============ */
+.scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.5rem .95rem;margin:.5rem 0 .3rem}
+.sc{font-size:.8rem}
+.sc .lab{display:flex;justify-content:space-between;margin-bottom:.15rem}
+.sc .lab b{font-weight:700}
+.bar{height:7px;border-radius:99px;background:#e9edf5;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.bar.gl i{background:linear-gradient(90deg,#059669,#34d399)}
+.bar.yl i{background:linear-gradient(90deg,#d97706,#fbbf24)}
+.bar.rl i{background:linear-gradient(90deg,#be123c,#fb7185)}
+
+.verdict{border-radius:10px;padding:.8rem 1rem;margin-top:.9rem;font-size:.88rem;border-left:4px solid var(--accent);background:var(--accent-soft)}
+.verdict b.t{display:block;font-size:.76rem;letter-spacing:.08em;color:var(--accent);font-weight:800;margin-bottom:.25rem}
+
+/* ============ 两列 ============ */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+@media(max-width:860px){.cols2,.cols3{grid-template-columns:1fr}}
+
+/* ============ 路线卡 ============ */
+.route{border:1px solid var(--border);border-radius:13px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.route>header{padding:.85rem 1rem;border-bottom:1px solid var(--border)}
+.route.rec{border:2px solid var(--ok);box-shadow:0 8px 24px rgba(5,150,105,.12)}
+.route.rec>header{background:var(--ok-soft)}
+.route>header .rn{font-size:.72rem;letter-spacing:.14em;font-weight:800;color:var(--muted)}
+.route>header h4{margin:.15rem 0 0;font-size:1rem;font-weight:800}
+.route .body{padding:.85rem 1rem;font-size:.85rem;flex:1}
+.route .cost{padding:.65rem 1rem;background:var(--muted-bg);border-top:1px solid var(--border);font-size:.82rem}
+.route .cost b{color:var(--ink)}
+.plus li{color:#065f46} .minus li{color:#9f1239}
+
+/* ============ 概念地图 ============ */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin:.8rem 0}
+.mapcell{border:1px solid var(--border);border-radius:11px;padding:.7rem .8rem;background:var(--muted-bg)}
+.mapcell .ab{font-weight:800;font-size:.86rem;color:var(--accent);letter-spacing:.02em}
+.mapcell .cn{font-size:.8rem;font-weight:600;margin:.1rem 0 .25rem}
+.mapcell .dd{font-size:.76rem;color:var(--muted);line-height:1.55}
+.mapcell.own{background:#eef2ff;border-color:#c7d2fe}
+.mapcell.own .ab{color:#3730a3}
+
+/* ============ checklist ============ */
+.check{list-style:none;padding:0;margin:.6rem 0}
+.check li{padding:.4rem 0 .4rem 1.9rem;position:relative;border-bottom:1px dashed var(--border);font-size:.87rem}
+.check li:last-child{border-bottom:none}
+.check li::before{content:"";position:absolute;left:.15rem;top:.72rem;width:1rem;height:1rem;border:2px solid #cbd5e1;border-radius:4px}
+.check li b{font-weight:700}
+
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin:.5rem 0 0}
+.legend span b{color:var(--ink)}
+
+footer.end{text-align:center;color:var(--muted);font-size:.8rem;padding:2rem 0 0}
+.toTop{position:fixed;right:1.1rem;bottom:1.1rem;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.toTop.on{opacity:1;pointer-events:auto}
+
+@media print{
+  .topbar,.toTop{display:none}
+  body{background:#fff;font-size:11pt}
+  section,.tldr{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+  .cover{background:#312e81 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .profile{break-inside:avoid}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="inner">
+  <div class="brand">招募 · 采集 · CTMS V1.0</div>
+  <nav>
+    <a href="#tldr">结论</a>
+    <a href="#dl">下载核对</a>
+    <a href="#map">1 三层</a>
+    <a href="#recruit-oss">2 开源招募</a>
+    <a href="#recruit-paid">3 付费招募</a>
+    <a href="#site">4 现场</a>
+    <a href="#ctms">5 CTMS</a>
+    <a href="#matrix">6 对照表</a>
+    <a href="#routes">7 建议</a>
+    <a href="#poc">8 验证</a>
+    <a href="#appx">9 来源</a>
+  </nav>
+</div></div>
+
+<div class="wrap">
+<div class="cover">
+  <p class="kicker">内部技术选型报告 · 面向管理层汇报</p>
+  <h1>受试者招募、现场一线采集与 CTMS 选型对比
+    <small>三套系统分开买、分开评 · 每套的操作设计思路 · 开源与付费 · 对照 KIS 已有的招募预约与访视操作台</small>
+  </h1>
+  <div class="meta">
+    <div><span>报告版本</span><b>V1.0</b></div>
+    <div><span>编制日期</span><b>2026-09-24</b></div>
+    <div><span>覆盖</span><b>招募 6 · 现场 6 · CTMS 4</b></div>
+    <div><span>结论</span><b>招募可外购漏斗；现场与 CTMS 以 KIS 为主</b></div>
+  </div>
+</div>
+
+<div class="tldr" id="tldr">
+  <h2><span class="num">0</span>结论先行</h2>
+  <p class="big">
+    ① 招募、现场采集、CTMS 是三件不同的事。招募管的是<b>还没入组的人</b>（线索、预筛、预约、爽约）；现场采集管的是<b>人已经到了</b>（知情、检查、问卷、仪器）；CTMS 管的是<b>项目和中心怎么运转</b>（里程碑、监查、人员、预算）。用一个软件名把三件事买齐，一定会有两件用不上。<br>
+    ② 我方是营利性化妆品功效评价机构，数据在中国。<b>REDCap 仍然不能自建</b>（范德堡许可排除营利机构）。美国站点产品（Ripple、SiteCentric、Florence）的 HIPAA 短信和广告投放，不能直接当成国内短信和微信可用。<b>合规主线是《个人信息保护法》、伦理批件和化妆品功效评价规范</b>，HIPAA / 21 CFR Part 11 只在国际客户审计时作为对照。<br>
+    ③ 建议：<b>受试者库和预筛漏斗可以外购或用开源营销工具改造</b>；签到、导检、知情、称重、仪器继续放在 KIS。CTMS 不单买国际大系统，把「项目—中心—访视—人员—里程碑」补进 KIS。先做四周对照，再决定招募这一段买不买。
+  </p>
+  <div class="kpis">
+    <div class="kpi"><div class="v">3 层</div><div class="l">招募漏斗 / 现场执行 / 项目运营，不要合成一个采购包</div></div>
+    <div class="kpi"><div class="v">1 个排除</div><div class="l">REDCap：学术免费，我方无许可资格</div></div>
+    <div class="kpi"><div class="v">KIS 已有</div><div class="l">招募预约、知情、预检签到、导检、访视任务、测试品</div></div>
+    <div class="kpi"><div class="v">外购只看</div><div class="l">预筛问卷、线索时效、短信/邮件留痕、渠道成本</div></div>
+  </div>
+  <div class="box bad">
+    <b class="t">材料里两处不能直接写进汇报的说法</b>
+    「REDCap 天然符合 HIPAA 且对我方免费」不成立：许可对象是非营利机构，且 HIPAA 不是中国法。「Castor / Antidote 能把转化率提升 30%–50%」是营销区间，本报告不采用。下文只写官方公开的产品边界。
+  </div>
+</div>
+
+
+<section id="dl">
+  <h2><span class="num">·</span>代码下载核对与一句话操作逻辑</h2>
+  <p class="lead">2026-09-24 已打开下列公开页面。商业系统没有源码。开源只包括 Mautic、SuiteCRM，以及上一份报告里的 LibreClinica / OpenClinica 社区版。</p>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>系统</th><th>本次核对</th><th>下载位置</th><th>操作逻辑</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Mautic</td>
+        <td class="g">源码和压缩包都在</td>
+        <td>仓库：<a href="https://github.com/mautic/mautic">github.com/mautic/mautic</a><br>已看到 7.2.1（2026-09-23）安装包：<a href="https://github.com/mautic/mautic/releases/download/7.2.1/7.2.1.zip">7.2.1.zip</a></td>
+        <td>一条广告对应一个活动：落地页提交后生成联系人，超时未联系就提醒。临床是否入组回写到 KIS。</td>
+      </tr>
+      <tr>
+        <td>SuiteCRM</td>
+        <td class="g">源码和压缩包都在</td>
+        <td>仓库：<a href="https://github.com/salesagility/SuiteCRM">github.com/salesagility/SuiteCRM</a><br>已看到 7.15.2（2026-07-31）：<a href="https://github.com/salesagility/SuiteCRM/releases/download/v7.15.2/SuiteCRM-7.15.2.zip">SuiteCRM-7.15.2.zip</a></td>
+        <td>每个「人 × 项目」是一条机会，阶段只沿新线索、预筛、预约、到访、筛败、入组移动，失败要选原因。</td>
+      </tr>
+      <tr>
+        <td>LibreClinica</td>
+        <td class="g">见 EDC 报告</td>
+        <td><a href="https://github.com/reliatec-gmbh/LibreClinica">源码</a>；WAR：<a href="https://github.com/reliatec-gmbh/LibreClinica/releases/download/v1.4.0rc1/LibreClinica-web-1.4.0rc1.war">1.4.0rc1</a>；稳定版页：<a href="https://www.libreclinica.org/download.html">libreclinica.org/download</a></td>
+        <td>打开本次访视，CRC 在网页填表，规则不过就不能当完成。没有现成的平板自助锁屏。</td>
+      </tr>
+      <tr>
+        <td>OpenClinica 3 社区版</td>
+        <td class="g">源码可打开</td>
+        <td><a href="https://github.com/OpenClinica/OpenClinica">源码</a>；安装包需社区账号：<a href="https://community.openclinica.com/project/openclinica">community.openclinica.com</a></td>
+        <td>与 LibreClinica 相同，官方安装包不在 GitHub 匿名附件里直接给 3.17.3。</td>
+      </tr>
+      <tr>
+        <td>REDCap</td>
+        <td class="r">无公开下载</td>
+        <td>无。许可机构才能拿源码，营利公司不在范围内。</td>
+        <td>问卷分支做初筛，合格记录进后台，协调员记回访。只可看 Demo。</td>
+      </tr>
+      <tr>
+        <td>Pinnacle 21</td>
+        <td class="y">安装页在，源码旧</td>
+        <td>安装包：<a href="https://help.pinnacle21.certara.net/en/articles/9736610-download-pinnacle-21-community">4.2.0 下载说明</a><br>旧源码：<a href="https://bitbucket.org/p21-community/">bitbucket.org/p21-community</a>（10 个仓库，更新停在 2022 及以前）</td>
+        <td>校验数据集，不参与招募和现场。</td>
+      </tr>
+      <tr><td>Ripple / EnrollNow</td><td class="r">无源码</td><td>只可申请 Demo：<a href="https://www.ripplescience.com/">ripplescience.com</a></td><td>线索进线后几秒内变成待办，短信和状态在同一条旅程上，入组后继续提醒复诊。</td></tr>
+      <tr><td>OpenClinica Recruit</td><td class="r">无源码</td><td>报价页：<a href="https://www.openclinica.com/solution-recruit/">openclinica.com/solution-recruit</a></td><td>先投放和落地页，合格者再交给人打电话或送进 EDC。它不管现场叫号。</td></tr>
+      <tr><td>SiteCentric</td><td class="r">无源码</td><td>产品说明：<a href="https://sitecentric.com/platform/modules/patient-recruitment">招募模块</a>、<a href="https://sitecentric.com/platform/modules/clinical-trial-management-system-ctms">CTMS</a></td><td>早上打开今天的访视；老库筛出名单再发短信；招募海报没有伦理版本就不能发。</td></tr>
+      <tr><td>Antidote</td><td class="r">无源码</td><td>患者匹配网站，不是可部署代码。</td><td>人在外面填条件，系统把感兴趣的人交给研究方。站内电话看板不在这里。</td></tr>
+      <tr><td>Castor</td><td class="r">无源码</td><td>注册账号试用表单，不是开源包。</td><td>用顺滑问卷做预筛或 ePRO。广告账户和入组成本不在这个产品里。</td></tr>
+      <tr><td>Viedoc</td><td class="r">无源码</td><td>测试环境需向厂商开通：<a href="https://www.viedoc.com/">viedoc.com</a></td><td>工作人员和受试者分两个界面。现场填 Clinic，受试者填 Me。</td></tr>
+      <tr><td>Medrio</td><td class="r">无源码</td><td>无公开仓库。说明：<a href="https://medrio.com/solutions/ctms/">Medrio CTMS</a></td><td>检查时直接录入源数据，访视完成状态从这条记录来，不再抄第二遍。</td></tr>
+      <tr><td>Medidata Rave</td><td class="r">无源码</td><td>销售 Demo，无下载。</td><td>未知情不能随机，未随机不能发药。我方只需要「未知情不能开始访视」。</td></tr>
+      <tr><td>Florence eBinders</td><td class="r">无源码</td><td>无下载。</td><td>按监管文件夹收文件，每份有版本和签名。它不是采集界面。</td></tr>
+      <tr><td>Veeva CTMS</td><td class="r">无源码</td><td>无下载。</td><td>里程碑没完成，中心不能进入下一阶段。受试者明细不在这里填。</td></tr>
+      <tr><td>太美</td><td class="r">无源码</td><td>无下载，需商务。</td><td>项目编号贯通管理和采集。买之前用我方清单让对方逐项回答有没有。</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box warn"><b class="t">核对边界</b>Mautic 7.2.1.zip、SuiteCRM-7.15.2.zip、LibreClinica-web-1.4.0rc1.war 均在对应 Release 页面看到文件名和体积。没有把压缩包下载到本机解压编译。Pinnacle 21 的 Bitbucket 仓库能列出，但更新停在 2022 年以前，不能代替 4.2.0 安装包。OpenClinica 3.17.3 的 WAR 在社区站登录后下载，GitHub 上确认的是源码和更早的 3.17.2 标签。</div>
+</section>
+
+<section id="map">
+  <h2><span class="num">1</span>先分清三层，再谈采购</h2>
+  <div class="map">
+    <div class="mapcell"><div class="ab">招募</div><div class="cn">人还没来</div><div class="dd">广告、落地页、预筛问卷、电话、短信、预约、爽约、老受试者再次入组。</div></div>
+    <div class="mapcell own"><div class="ab">现场</div><div class="cn">人已经到了</div><div class="dd">签到、知情、问卷、医生评估、仪器、样品、发药/测试品。KIS 访视操作台已覆盖大半。</div></div>
+    <div class="mapcell own"><div class="ab">CTMS</div><div class="cn">项目怎么管</div><div class="dd">方案里程碑、中心、人员职责、监查、入组进度、预算。不是受试者填的那张表。</div></div>
+    <div class="mapcell"><div class="ab">EDC</div><div class="cn">数据怎么锁</div><div class="dd">上一份报告的范围。招募系统不替代 EDC，现场采集最终要能交进可审计的数据集。</div></div>
+  </div>
+  <div class="box info">
+    <b class="t">操作设计上的分界</b>
+    招募系统的主对象是<b>线索（Lead）</b>，状态是「新线索 → 预筛 → 预约 → 到访 → 知情 → 入组 / 失败」，允许大量不合格。现场系统的主对象是<b>已到访的受试者</b>，状态是「本次访视的任务清单」，不合格要留下筛败原因。CTMS 的主对象是<b>研究项目</b>，受试者只是进度数字。三套状态机不要并成一张表。
+  </div>
+  <h3>和我方已有模块的关系</h3>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>我方已有</th><th>对应行业系统</th><th>还缺什么</th></tr></thead>
+    <tbody>
+      <tr><td>招募预约、电话登记</td><td>站点招募 CRM 的后半段</td><td>预筛问卷自动判定、多渠道线索进线、24 小时内回访、渠道成本</td></tr>
+      <tr><td>知情管理</td><td>eConsent</td><td>平板签署、版本与伦理批件绑定、签完才能进访视</td></tr>
+      <tr><td>预检签到、签出、导检、访视任务</td><td>站点排程 + 现场执行</td><td>国际产品几乎没有「导检叫号」；这是我方差异，不外购</td></tr>
+      <tr><td>测试品发放 / 回收 / 称重</td><td>简化版 RTSM / 物资</td><td>药品随机发药系统过重；继续用 KIS</td></tr>
+      <tr><td>日记卡、自评、仪器原始数据</td><td>ePRO + eSource</td><td>受试者手机填报、仪器文件不要手抄第二遍</td></tr>
+      <tr><td>项目归档 01–19、监查报告</td><td>CTMS + eTMF</td><td>里程碑和缺件清单还在文件夹里，没变成系统状态</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="recruit-oss">
+  <h2><span class="num">2</span>招募：开源与「不能当开源用」的学术方案</h2>
+  <p class="lead">行业里没有一套拿来即用、又完全开源的受试者招募 CRM。开源路线是借通用工具的漏斗，自己补上临床状态和合规。</p>
+
+  <div class="profile" id="p-redcap">
+    <header>
+      <div class="row1"><span class="mono" style="background:#b91c1c">RC</span><h3>REDCap 预筛问卷</h3>
+        <span class="badge b-bad">营利机构不可部署</span><span class="badge b-info">只可观摩</span></div>
+      <div class="sub">范德堡大学的学术采集平台。非营利机构可免费自托管。我方作为营利性检测机构，不在许可范围内。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">大学医院做研究者发起项目时，最常用的预筛问卷工具。不是药企招募广告平台。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">高校、教学医院、非营利研究机构。许可条款排除营利公司自建。</div></div>
+        <div class="fact"><div class="k">为什么仍要看</div><div class="v">它把「对外问卷」和「对内名单」做成同一个项目：分支逻辑即入排标准，合格记录直接出现在后台，协调员在同一条记录上写回访结果。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>一张问卷，不是一个客户</b>。对外只暴露调查链接；对内每个人是一条记录，字段分三段：受试者自填、系统判定（合格/不合格/待人工）、协调员补记（电话、预约、失败原因）。生产环境改卷要走草稿审批，避免广告还在投、题目已经变了。</p>
+      <ol class="flow">
+        <li><b>问卷即入排</b><span>年龄、肤质、在用产品、排除疾病、能否按周到访。分支逻辑把明显不合格的人停在中途，并给出礼貌结束语。</span></li>
+        <li><b>自动入池</b><span>提交后进入项目后台，状态默认「新线索」。不合格的也留存，用于统计筛败原因，不删除。</span></li>
+        <li><b>人工回访</b><span>协调员改状态：已联系、已预约、爽约、筛败、知情、入组。每次改动进日志。</span></li>
+        <li><b>提醒外接</b><span>学术机构常用 API 接短信。我方即便观摩，也不应接 Twilio：国内短信走持牌通道，内容要能对应到具体项目和同意记录。</span></li>
+      </ol>
+      <div class="verdict"><b class="t">结论</b>不采购、不部署。KIS 的预筛表要抄它的三段字段和「不合格也留痕」。可用官网 Demo 看交互，不提交许可申请。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-mautic">
+    <header>
+      <div class="row1"><span class="mono" style="background:#0f766e">MA</span><h3>Mautic</h3>
+        <span class="badge b-oss">开源</span><span class="badge b-self">可私有化</span><span class="badge b-warn">不是临床系统</span></div>
+      <div class="sub">开源营销自动化。强项是落地页、表单、邮件旅程和线索来源。GPL 许可，企业可自己部署。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">营销自动化里的开源选项，常被拿来对标商业营销云。临床招募不是它的行业，它的行业是获客漏斗。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">有开发能力、希望广告到表单到回访都留在自己服务器上的团队。</div></div>
+        <div class="fact"><div class="k">为什么推荐</div><div class="v">专业医疗招募软件弱在「这条线索从哪条广告来、多久没人联系」。Mautic 这条链路是现成的，而且数据可以放在国内机房。</div></div>
+      </div>
+      <h4>技术栈</h4>
+      <div class="chips"><span class="chip k">PHP</span><span class="chip k">MySQL / MariaDB</span><span class="chip">落地页与表单</span><span class="chip">营销活动 / 线索评分</span><span class="chip">邮件</span><span class="chip">Webhook / API</span><span class="chip">Docker 可部署</span></div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>营销活动（Campaign）</b>。人在旅程里被节点推动：打开页面、提交表单、等待、发邮件、改标签。临床团队要额外加一层：标签只能表示营销状态，「可预约 / 筛败 / 已入组」必须回写到 KIS，不能只活在营销系统里。短信不要用海外网关，用国内通道的 Webhook。</p>
+      <ol class="flow">
+        <li><b>一条广告一个活动</b><span>落地页带渠道参数。提交即创建联系人，来源写入字段。</span></li>
+        <li><b>表单做粗筛</b><span>只问到访意愿和硬性排除。细的入排仍到 KIS 或电话脚本，避免营销系统变成病历。</span></li>
+        <li><b>速度规则</b><span>新线索 15 分钟内生成待办；超过 24 小时未联系，看板变红。这是招募转化的操作核心，不依赖某个品牌。</span></li>
+        <li><b>交接</b><span>合格联系人经 API 进入 KIS 招募预约，此后电话、知情、到访以 KIS 为准。</span></li>
+      </ol>
+      <div class="box warn"><b class="t">缺陷</b>没有伦理批件版本、没有 GCP 角色、没有与 EDC 的受试者编号。隐私政策、加密、操作日志、删除权要自己补，不能把「开源」写成「已经合规」。</div>
+      <div class="verdict"><b class="t">结论</b>开源招募的首选骨架：只做获客和催办，临床状态放 KIS。适合有 PHP 或愿意外包部署的团队。若无人维护，不要上。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-suite">
+    <header>
+      <div class="row1"><span class="mono" style="background:#1d4ed8">SC</span><h3>SuiteCRM</h3>
+        <span class="badge b-oss">开源 AGPL</span><span class="badge b-self">可私有化</span><span class="badge b-warn">电话 CRM，不是预筛引擎</span></div>
+      <div class="sub">SugarCRM 的社区分支。适合协调员每天打电话、记结果、看漏斗，不适合做患者端问卷。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">通用开源 CRM，临床站点用它是改造，不是原厂场景。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">销售和客服团队。改造成招募台后，服务对象是 CRC 和招募专员。</div></div>
+        <div class="fact"><div class="k">为什么推荐</div><div class="v">漏斗、负责人、下一次联系时间、通话记录，比多数 EDC 的「受试者列表」更像招募现场。AGPL，可放在自己的服务器。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>销售机会（Opportunity）</b>。每个「人 × 项目」是一条机会，阶段固定为：新线索、预筛通过、已预约、已到访、筛败、知情、入组、退出。人可以同时对两个化妆品项目各有一条机会，不能把人只放进一个项目。阶段只允许向前或标失败，失败必须选原因（时间、排除标准、撤回同意、联系不上）。</p>
+      <div class="verdict"><b class="t">结论</b>和 Mautic 搭配：Mautic 收表，SuiteCRM 给协调员打电话。若 KIS 招募预约已经有负责人和状态，就不要再引入第三套 CRM，把这套阶段机做进 KIS。</div>
+    </div>
+  </div>
+</section>
+
+<section id="recruit-paid">
+  <h2><span class="num">3</span>招募：付费方案</h2>
+  <p class="lead">付费系统买的是「线索进来后几分钟内有人跟、每次联系都留痕、渠道能不能算出成本」。它们不替我方做导检和仪器。</p>
+
+  <div class="profile" id="p-ripple">
+    <header>
+      <div class="row1"><span class="mono" style="background:#e11d48">RP</span><h3>Ripple Science（产品名 EnrollNow）</h3>
+        <span class="badge b-com">商业 SaaS</span><span class="badge b-warn">美国站点向，价格不公开</span><span class="badge b-info">需 Demo</span></div>
+      <div class="sub">美国 Ann Arbor。官网口径：面向站点、CRO 和申办方的招募与留存。2026 年仍在 ACRP 年会作为患者招募厂商参展。另一页面写 260+ 机构、5,200 项研究、200 万参与者，此为厂商自述。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">站点级招募 CRM 里经常被单独点名的产品。它不跟 Medidata 抢 EDC，只抢 Excel 和分散的短信工具。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">临床中心、学术机构和中小 CRO 的招募与协调员。药物试验是主场景，化妆品中心要用必须问清是否接非药物方案。</div></div>
+        <div class="fact"><div class="k">为什么推荐拿来对标</div><div class="v">它把 Speed to Lead（线索进线后立刻进入待办）、预筛、预约、双向短信、入组后的复诊提醒放在一条受试者时间线上。这是招募系统该有的操作闭环，而不是「一个报名表」。</div></div>
+        <div class="fact"><div class="k">合规与边界</div><div class="v">厂商强调 HIPAA 与 SOC 2。这是美国合规，不能代替个人信息境内存储。短信若走美国通道，国内手机号和内容合规都要单独立项。价格目录站点口径不一，以书面报价为准。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>参与者在某一个研究中的旅程</b>。同一个人可以进多个研究，但沟通记录按研究分开。状态建议固定为：New Lead → Pre-screened → Scheduled → Visited → Consent → Enrolled / Screen Fail / Lost。系统自动做的只有两件事：新线索分配给在班协调员，以及到点发提醒。人做的是打电话和改状态。入组之后旅程不结束，复诊和失访仍算招募系统的留存，直到锁库或退出。</p>
+      <ol class="flow">
+        <li><b>所有入口进同一个队列</b><span>广告、官网、老库、申办方名单。几秒内变成待办，带来源。</span></li>
+        <li><b>预筛脚本</b><span>电话和问卷共用同一套入排，答案写在线索上，而不是写在个人聊天记录里。</span></li>
+        <li><b>预约与提醒</b><span>短信/邮件双向，回复进同一条时间线。未回复进入下一次任务，而不是消失。</span></li>
+        <li><b>交给现场</b><span>状态变为已到访后，临床数据不再写在招募 CRM。对接的是站点 CTMS 或我方 KIS。</span></li>
+        <li><b>留存</b><span>入组后按访视窗自动提醒。失访是状态，不是把人删掉。</span></li>
+      </ol>
+      <div class="verdict"><b class="t">结论</b>付费招募的对标第一名，但是美国云。采购前必须确认：服务器位置、中文、国内短信、能否只买招募不买其现场模块、能否把「已预约」推给 KIS。通不过这四条，就只学状态机，不买产品。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-ocr">
+    <header>
+      <div class="row1"><span class="mono" style="background:#0284c7">OR</span><h3>OpenClinica Recruit（原 BuildClinical）</h3>
+        <span class="badge b-com">商业，可单独买</span><span class="badge b-info">2024-12-10 收购</span></div>
+      <div class="sub">OpenClinica 于 2024 年 12 月 10 日收购 BuildClinical，产品改称 OpenClinica Recruit。官方写明可单独使用，也可接到 OpenClinica EDC。收购新闻称 BuildClinical 自 2020 年起累计入组超过 5 万名参与者，此为当时新闻口径。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">它原来是学术研究者的数字广告招募服务，不是站点里的电话 CRM。并入 OpenClinica 后，卖点变成「从投放到进库」一条线。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">需要网上找人、又希望合格者进入 EDC 的研究团队。化妆品若主要靠会员库和异业，广告投放只是其中一条渠道。</div></div>
+        <div class="fact"><div class="k">为什么推荐了解</div><div class="v">操作上把三件事绑在一起：按人群投放、落地页预筛、合格线索交进数据库。若我方将来 EDC 用 OpenClinica，对接成本最低。EDC 不选它，这套投放仍可单独报价。</div></div>
+      </div>
+      <h4>公开能力</h4>
+      <div class="chips"><span class="chip k">定向数字广告</span><span class="chip">落地页 / 微站</span><span class="chip">实时漏斗</span><span class="chip">线索交进 EDC 或现有系统</span><span class="chip">隐私与审计（厂商写 HIPAA/GDPR）</span></div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>一次招募战役</b>，不是协调员的日程。系统先回答「今天广告带来多少合格者」，再把合格者交给人去打电话。机器学习用于找人，不用于替伦理委员会改文案。文案、问卷和受众变更都要能对应一次审批记录。它不负责受试者到现场后的导检。</p>
+      <div class="verdict"><b class="t">结论</b>适合「缺的是广告获客」的项目，不适合「缺的是电话看板」的项目。和 Ripple 不要二选一混谈：一个偏投放，一个偏站内跟进。国内投放渠道（微信、小红书、抖音）是否支持，询价时单列，不要假设 Facebook 那套能用。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-sitec">
+    <header>
+      <div class="row1"><span class="mono" style="background:#7c3aed">ST</span><h3>SiteCentric 招募模块</h3>
+        <span class="badge b-com">站点 CTMS 的一个模块</span><span class="badge b-warn">美国研究中心</span></div>
+      <div class="sub">Clinical Neuroscience Solutions, Inc.（d/b/a SiteCentric）的站点操作系统。招募不是独立 App，而是 CTMS 里的患者库、短信、广告日历和伦理材料版本。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">面向研究中心（Site）的 CTMS，不是申办方总部用的 Veeva。招募、排程、eSource、电子研究者文件夹放在一起。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">同时跑多个药物试验、手里已有历史患者库的临床中心。</div></div>
+        <div class="fact"><div class="k">为什么推荐对标</div><div class="v">三件我方招募材料里真正缺的设计：按入排从老库拉名单（Working List）、每版招募海报的伦理状态、每个渠道花了多少钱招到一个人。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>中心里的人库</b>。新人从广告进来只是增量；主路径是从做过既往项目的人里筛。一次筛选生成一份工作名单，名单上批量发短信，回复和状态回到同一个人。广告日历按研究排期，避免两个项目抢同一批人。招募材料没有「当前伦理版本」状态，就不能发出去。</p>
+      <div class="verdict"><b class="t">结论</b>不建议整包替换 KIS。把「老受试者可再次联系的条件、招募物料版本、渠道成本」三张表做进 KIS 招募模块。若只为买这三张表去上美国站点 CTMS，现场导检和测试品对不上。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-match">
+    <header>
+      <div class="row1"><span class="mono" style="background:#f59e0b">AM</span><h3>Antidote 与 Castor：不要并成一个产品</h3>
+        <span class="badge b-com">商业</span><span class="badge b-warn">都不是站内招募 CRM</span></div>
+      <div class="sub">材料里把 Castor Recruit 和 Antidote Match 写在一起。二者不是同一类系统，本报告拆开，避免选型时买错对象。</div>
+    </header>
+    <div class="body">
+      <div class="cols2">
+        <div>
+          <h4>Antidote</h4>
+          <p>患者找试验的匹配网络。设计思路是<b>对外的搜索和匹配</b>：人填条件，系统列出可能适合的研究，再把感兴趣的人交给研究方。站点买的是曝光和候选人，不是协调员的日程、短信留痕和爽约看板。</p>
+          <p>化妆品功效评价、中文人群、国内伦理，是否在其网络里，必须问。没有公开证据表明它能把转化率稳定提高某个百分比。</p>
+        </div>
+        <div>
+          <h4>Castor</h4>
+          <p>主产品仍是 EDC / ePRO / eConsent。预筛可以做成一张很顺的问卷，移动端完成率通常好于纸质，但「好多少」要自己 A/B，不能写进预算假设。</p>
+          <p>设计思路是<b>表单体验</b>：患者愿意填完。它不管理广告账户，也不算单个入组成本。若已为 EDC 评估 Castor，预筛问卷可顺带试用；不要为了招募单独再签一套 Castor。</p>
+        </div>
+      </div>
+      <div class="verdict"><b class="t">结论</b>Antidote 仅在国际项目需要「患者主动来匹配」时询价。Castor 留在 EDC/ePRO 评估，不列入招募采购短名单。</div>
+    </div>
+  </div>
+</section>
+
+<section id="site">
+  <h2><span class="num">4</span>一线采集：人到了现场之后</h2>
+  <p class="lead">现场不是 CRM。主路径是：知情签署 → 本次访视任务 → 谁在采集时就把数记进系统 → 需要随机或发测试品时再触发。纸质记完再腾抄，是这层系统要消灭的动作。</p>
+  <div class="map">
+    <div class="mapcell"><div class="ab">eConsent</div><div class="cn">电子知情</div><div class="dd">平板阅读、手写签名、版本与伦理批件一致，未签完不能做后续操作。</div></div>
+    <div class="mapcell own"><div class="ab">eSource</div><div class="cn">源数据直接采集</div><div class="dd">医生或 CRC 边检查边录入。逻辑检查在保存时发生，不在晚上腾抄时发生。</div></div>
+    <div class="mapcell"><div class="ab">ePRO</div><div class="cn">受试者自填</div><div class="dd">现场用自助模式，填完锁定，看不到别人的记录。日记卡是同一类。</div></div>
+    <div class="mapcell"><div class="ab">RTSM</div><div class="cn">随机与发药</div><div class="dd">药物试验的药房指令。我方测试品按编号发放和称重，用轻量流程，不买全套 IWRS。</div></div>
+    <div class="mapcell own"><div class="ab">排程</div><div class="cn">当天协调</div><div class="dd">签到、队列、房间、仪器档期。国际 EDC 几乎不管叫号。KIS 导检留在原地。</div></div>
+  </div>
+
+  <div class="profile" id="p-viedoc-site">
+    <header>
+      <div class="row1"><span class="mono" style="background:#e11d48">VD</span><h3>Viedoc Clinic + Viedoc Me</h3>
+        <span class="badge b-com">商业 SaaS</span><span class="badge b-oss">可先在测试环境搭</span></div>
+      <div class="sub">上一份 EDC 报告里的同一家瑞典产品。现场侧分成两个人用的界面：工作人员用 Clinic，受试者用 Me。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">为什么放在现场章</div><div class="v">Clinic 可以当 eSource：访视打开就是该填的表，规则实时拦错。Me 是受试者填问卷和日记，不必再发纸质日记卡。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">多中心药物和器械试验的研究者与受试者。化妆品中心要确认图像、仪器附件和中文界面。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>一个人一套界面，不共用登录。工作人员看到质疑和缺项；受试者只看到「今天要填的题」，提交后不能翻别人的数据。表单版本在研究运行中发布，已经填过的访视仍指向填表时的版本。现场平板断网不是它的主打，默认是浏览器在线。</p>
+      <div class="verdict"><b class="t">结论</b>若采购商业现场采集，优先用它做 POC：一张临床评估表 + 一张受试者问卷。导检、称重、仪器文件不要迁进去。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-medrio">
+    <header>
+      <div class="row1"><span class="mono" style="background:#0ea5e9">MR</span><h3>Medrio eSource / 直接数据采集</h3>
+        <span class="badge b-com">商业</span><span class="badge b-info">同时有 EDC、eTMF、CTMS</span></div>
+      <div class="sub">Medrio 对外强调现场直接录入，减少「先写纸、再抄进 EDC」。其 CTMS 品牌为 Engility，可与 EDC、eTMF 连成一条操作记录。价格不公开。</div>
+    </header>
+    <div class="body">
+      <div class="facts">
+        <div class="fact"><div class="k">行业地位</div><div class="v">中小型试验里，常被当作比 Rave 轻、又比纯 EDC 更强调现场无纸的选择。</div></div>
+        <div class="fact"><div class="k">服务谁</div><div class="v">申办方、CRO 和希望中心少抄一遍的研究团队。</div></div>
+        <div class="fact"><div class="k">为什么推荐看</div><div class="v">操作原则清楚：源数据只产生一次。血压输成 300 应在现场弹窗，而不是等监查员下周发质疑。这对我方仪器手抄同样适用。</div></div>
+      </div>
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>一次访视的源记录</b>。记录谁采集、何时采集、改过什么。CTMS 里的「访视已完成」应引用这条源记录，而不是协调员再打一个勾。eTMF 自动收到需要归档的版本，避免文件夹和系统各记一遍。</p>
+      <div class="verdict"><b class="t">结论</b>和 Viedoc 放在同一轮现场 POC 里比较手感。不要为了 CTMS 品牌 Engility 单独替换 KIS 的项目管理。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-rave-site">
+    <header>
+      <div class="row1"><span class="mono" style="background:#1e293b">MD</span><h3>Medidata Rave 的现场模块</h3>
+        <span class="badge b-com">顶级商业</span><span class="badge b-bad">不自助试用</span></div>
+      <div class="sub">eConsent、eCOA、RTSM 是大试验的标准组合：签完同意，再随机，再按系统指示取药。适合被申办方指定平台的项目，不是化妆品中心的默认现场台。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>现场动作被收成一条不可跳步的链：未签署知情，就不能随机；未随机，药房看不到发药指令。每一步都有身份、时间和含义。我方测试品若没有双盲发药，只需要「知情完成」这一个门闩，去挡住后续检查任务，不必买随机化引擎。</p>
+      <div class="verdict"><b class="t">结论</b>国际药物客户指定时再用。设计上只抄「未知情不能开访视」这一条门闩。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-florence">
+    <header>
+      <div class="row1"><span class="mono" style="background:#be123c">FL</span><h3>Florence eBinders</h3>
+        <span class="badge b-com">站点电子文件夹</span><span class="badge b-info">不是采集前端</span></div>
+      <div class="sub">Florence Healthcare 的电子研究者文件夹（eISF）。管的是现场监管文件：知情扫描件、化验单、授权、培训，不是医生边问诊边打的那张表。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>设计单位是<b>文件夹里的一份文件</b>。结构对齐监管档案，而不是对齐网盘目录。每份文件有版本、签名、过期和「该研究、该受试者」。监查员远程看的是文件夹权限，不是把 PDF 发到邮箱。它不招募，也不替代仪器数据。</p>
+      <div class="verdict"><b class="t">结论</b>对照我方归档 01–19：缺的是「缺件亮红和权限」，不是再买一个美国 eISF。仅当申办方指定 Florence 交换监查文件时接入。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-oss-site">
+    <header>
+      <div class="row1"><span class="mono" style="background:#16a34a">OS</span><h3>开源现场：LibreClinica，而不是 REDCap</h3>
+        <span class="badge b-oss">LGPL</span><span class="badge b-self">自己部署</span></div>
+      <div class="sub">REDCap 的 iPad 签名、离线 App、自助终端模式，只对有许可的非营利机构成立。我方若要开源现场录入，对象是 LibreClinica 的网页 eCRF。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>浏览器打开本次访视，CRC 录入，规则写在研究配置里。没有专门的「患者拿着平板填完就锁死」的自助模式，eConsent 手写签名也不是开箱能力。能满足「数据进得了可审计的库」，不能满足「接待室两台平板完成知情和问卷」的完整体验。离线采集要自己做，社区版不把断网当主路径。</p>
+      <div class="verdict"><b class="t">结论</b>与上一份报告一致：可在 253 做对照，不作为现场体验的首选。知情平板和受试者自填，优先做在 KIS，或放进商业 eConsent / ePRO 模块。</div>
+    </div>
+  </div>
+</section>
+
+<section id="ctms">
+  <h2><span class="num">5</span>CTMS：管项目，不管这一针怎么打</h2>
+  <p class="lead">市面上有两种 CTMS。申办方 CTMS 管全球中心、监查和国家里程碑。站点 CTMS 管今天谁来、哪个房间、哪次访视做完没有。我方更接近站点，而且已经有访视操作台。再买一套申办方 CTMS，会对不上导检和测试品。</p>
+
+  <div class="profile" id="p-ctms-vee">
+    <header>
+      <div class="row1"><span class="mono" style="background:#dc2626">VV</span><h3>Veeva Vault CTMS</h3>
+        <span class="badge b-com">申办方级</span><span class="badge b-bad">不替代现场台</span></div>
+      <div class="sub">与 Vault eTMF、EDC 同一套研究主数据。买的是药企临床运营部的系统，不是接待台。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>先有研究、国家、中心、里程碑，再挂监查计划和问题。受试者入组数是从 EDC 汇过来的进度，不是在 CTMS 里逐项填 CRF。文件和里程碑互相指向：启动访视没完成，就不能把中心标成可入组。</p>
+      <div class="verdict"><b class="t">结论</b>只学「里程碑没完成，下一状态不能开」。不列入我方采购短名单。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-ctms-medrio">
+    <header>
+      <div class="row1"><span class="mono" style="background:#0ea5e9">EG</span><h3>Medrio CTMS（Engility）</h3>
+        <span class="badge b-com">与自家 EDC 绑定</span><span class="badge b-info">厂商称数周上线</span></div>
+      <div class="sub">定位是研究计划、中心和监查的单一操作记录，并自动连到 Medrio 的 EDC 与 eTMF。公开材料强调：中心在源头记一次，CTMS 不再对账第二遍。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>CTMS 不复制受试者数据。访视完成、入组、方案偏离从采集系统流进来，监查员在 CTMS 里处理的是「要不要去中心、问题关了没有」。若我方 EDC 不是 Medrio，这条自动流不存在，买来会退回手工对账。</p>
+      <div class="verdict"><b class="t">结论</b>仅当现场采集已经选 Medrio 时，CTMS 作为加购评估。单独买 CTMS 不推荐。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-ctms-site">
+    <header>
+      <div class="row1"><span class="mono" style="background:#7c3aed">ST</span><h3>SiteCentric CTMS+</h3>
+        <span class="badge b-com">站点级</span><span class="badge b-warn">美国中心流程</span></div>
+      <div class="sub">把排程、招募名单、访视勾选、eSource、账单和 eISF 放在一个中心工作台。官网写 21 CFR Part 11：账号、审计、电子签名、文档版本。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>协调员早上打开的是<b>今天的访视</b>，不是研究主计划。点开一个人，看到预约、该做的步骤、源记录和沟通。步骤做完，账单和监查视图一起更新。招募工作名单和广告审批也在同一登录里，避免招募用一个表、现场用另一个表。</p>
+      <p>这套思路和 KIS 访视操作台最像。差别是它按美国站点的账单和 IRB 设计，没有化妆品测试品称重、仪器档期和导检队列。</p>
+      <div class="verdict"><b class="t">结论</b>作为站点 CTMS 的交互参考，申请一次 Demo 看「今日访视」即可。不作为替换 KIS 的系统。</div>
+    </div>
+  </div>
+
+  <div class="profile" id="p-ctms-taimei">
+    <header>
+      <div class="row1"><span class="mono" style="background:#0f766e">TM</span><h3>太美 eCooperate 等国产 CTMS</h3>
+        <span class="badge b-com">国内药企向</span><span class="badge b-warn">需询价是否覆盖化妆品中心</span></div>
+      <div class="sub">太美的项目管理（eCooperate）、文档（eArchives）、采集（eCollect）是分模块的药物临床试验套件。中文、境内交付是相对美国 CTMS 的实际优势。</div>
+    </header>
+    <div class="body">
+      <h4>操作设计思路</h4>
+      <p>与 Veeva 类似：项目、中心、文档、采集可以分开买，但应共用项目编号。化妆品机构询价时要问清模块最小组合，避免为了里程碑买进医院 HIS、药物随机和安全报告。</p>
+      <div class="verdict"><b class="t">结论</b>若领导坚持「CTMS 必须外购且数据留在国内」，太美是询价对象，不是默认替换。询价附件用我方目录 01–19 和访视操作台清单，让对方逐项答「有 / 没有 / 要定制」。</div>
+    </div>
+  </div>
+</section>
+
+<section id="matrix">
+  <h2><span class="num">6</span>一张表：买的是哪一层</h2>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>系统</th><th>层</th><th>开源或付费</th><th>设计单位</th><th>我方怎么用</th></tr></thead>
+    <tbody>
+      <tr><td>REDCap 预筛</td><td>招募</td><td class="r">学术免费，我方不可部署</td><td>一张问卷一条记录</td><td>只学字段分段</td></tr>
+      <tr><td>Mautic</td><td>招募获客</td><td class="g">开源，可放国内</td><td>一次营销活动</td><td>有人维护才部署；临床状态回 KIS</td></tr>
+      <tr><td>SuiteCRM</td><td>招募电话</td><td class="g">开源</td><td>人 × 项目的一条机会</td><td>KIS 已有预约则不要第三套 CRM</td></tr>
+      <tr><td>Ripple / EnrollNow</td><td>招募与留存</td><td class="y">付费，美国云</td><td>参与者在研究中的旅程</td><td>对标状态机；境内和短信不过关则不买</td></tr>
+      <tr><td>OpenClinica Recruit</td><td>广告获客</td><td class="y">付费，可单独</td><td>一次投放战役</td><td>只在缺广告获客时询价</td></tr>
+      <tr><td>SiteCentric 招募</td><td>老库 + 物料 + 成本</td><td class="y">付费模块</td><td>中心的人库</td><td>三张表做进 KIS，不整包买</td></tr>
+      <tr><td>Antidote</td><td>患者匹配网络</td><td class="y">付费曝光</td><td>对外搜索</td><td>不进短名单，除非国际项目需要</td></tr>
+      <tr><td>Castor 问卷</td><td>预筛体验</td><td class="y">付费 EDC 的附带</td><td>一张好填的表</td><td>随 EDC 评估，不单买招募</td></tr>
+      <tr><td>Viedoc Clinic / Me</td><td>现场 eSource + ePRO</td><td class="y">付费</td><td>工作人员与受试者分界面</td><td>现场 POC 首选</td></tr>
+      <tr><td>Medrio eSource</td><td>现场一次录入</td><td class="y">付费</td><td>一次访视的源记录</td><td>与 Viedoc 比手感</td></tr>
+      <tr><td>Rave eConsent / RTSM</td><td>知情门闩 + 发药</td><td class="r">顶级付费</td><td>不可跳步的链</td><td>只抄「未知情不开访视」</td></tr>
+      <tr><td>Florence eBinders</td><td>现场文件夹</td><td class="y">付费</td><td>一份监管文件</td><td>归档缺件做进 KIS</td></tr>
+      <tr><td>LibreClinica</td><td>网页 eCRF</td><td class="g">开源</td><td>访视表单</td><td>253 对照，不当平板体验</td></tr>
+      <tr><td>Veeva / 太美 CTMS</td><td>项目里程碑</td><td class="y">付费</td><td>研究与中心</td><td>国内若外购只问太美；默认补 KIS</td></tr>
+      <tr><td>SiteCentric CTMS+</td><td>今日访视</td><td class="y">付费</td><td>协调员的一天</td><td>看 Demo，不替换导检和称重</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="routes">
+  <h2><span class="num">7</span>采购建议：三层各走一条</h2>
+  <div class="cols3">
+    <div class="route rec">
+      <header><div class="rn">招募 · 建议先做</div><h4>KIS 补漏斗，Mautic 可选</h4></header>
+      <div class="body">
+        <p>在现有招募预约上增加：渠道来源、预筛结果、下一次联系时间、24 小时未联系告警、筛败原因、招募物料的伦理版本、老受试者能否再联系。</p>
+        <p>若广告落地页必须在两周内上线、KIS 排期跟不上，再用 Mautic 只做页面和邮件，合格线索写入 KIS。</p>
+        <ul class="plus"><li>数据留在国内</li><li>不碰 REDCap 许可</li><li>电话看板不用买两套</li></ul>
+        <ul class="minus"><li>短信模板、同意撤回要法务看过再发</li><li>Mautic 没有人维护就不要上</li></ul>
+      </div>
+      <div class="cost"><b>授权：</b>开源为 0。Ripple / OpenClinica Recruit 只在「KIS 漏斗做完仍不够」时拿同一份问题单询价。</div>
+    </div>
+    <div class="route rec">
+      <header><div class="rn">现场 · 建议</div><h4>KIS 继续执行，商业系统只试采集</h4></header>
+      <div class="body">
+        <p>签到、导检、称重、仪器档期不外购。知情增加「未签署不能开始访视」。</p>
+        <p>并行用 Viedoc 测试环境或 Medrio Demo，各搭一张评估表和一张受试者问卷，让 CRC 和一位医生各填 10 分钟，只比较手感。</p>
+      </div>
+      <div class="cost"><b>这一阶段软件费可以为 0。</b>随机发药系统不买。</div>
+    </div>
+    <div class="route">
+      <header><div class="rn">CTMS · 建议</div><h4>不单独立项采购</h4></header>
+      <div class="body">
+        <p>把项目里程碑、中心状态、监查问题和入组人数做进现有项目管理。入组人数从招募和访视汇总，不手工再填。</p>
+        <p>SiteCentric 只申请「今日访视」演示。太美仅在领导明确要求国内成品 CTMS 时询价。</p>
+      </div>
+      <div class="cost"><b>默认新增授权费为 0。</b>避免申办方 CTMS 和站点操作台各买一套。</div>
+    </div>
+  </div>
+</section>
+
+<section id="poc">
+  <h2><span class="num">8</span>四周内怎么验证，以及询价只问这些</h2>
+  <ol class="flow">
+    <li><b>第 1 周</b><span>用一个在招项目，把过去 30 天线索按「来源、首次联系耗时、筛败原因、是否到访」补进一张表。这张表就是以后系统的验收数据。</span></li>
+    <li><b>第 2 周</b><span>KIS 招募预约补上状态：新线索、预筛通过、已预约、已到访、筛败、知情、入组。超过 24 小时未联系要能筛出来。</span></li>
+    <li><b>第 3 周</b><span>若需要落地页，在测试环境装 Mautic，表单只做粗筛，提交进 KIS。同时预约 Viedoc 或 Medrio 的现场填表，各 10 分钟。</span></li>
+    <li><b>第 4 周</b><span>领导看三件事：24 小时联系率有没有数、知情是否挡住了未签署的访视、CTMS 是否还需要单买。没有这三张结果，不签招募 SaaS。</span></li>
+  </ol>
+  <h3>发给 Ripple、OpenClinica Recruit、太美的同一份问题</h3>
+  <ol>
+    <li>服务器是否在中国境内？手机号、姓名、问卷答案是否出境？</li>
+    <li>国内短信是否走持牌通道？退订和同意记录存在哪里？</li>
+    <li>微信、小红书、抖音线索能否带渠道参数进来？还是只支持 Facebook / Google？</li>
+    <li>能否只买招募，把「已预约 / 已到访」推给自有系统？接口谁开发、是否另收费？</li>
+    <li>伦理批件过期或招募文案未批准时，系统能否禁止发出？</li>
+    <li>同一个人参加两个项目，线索和同意是否分开？</li>
+    <li>合同结束后导出什么？是否含沟通记录和状态历史？</li>
+    <li>价格按机构包年、按研究，还是按线索条数？</li>
+  </ol>
+  <div class="box ok"><b class="t">决策规则</b>八问里前三条有任何一条是否定的，美国 SaaS 不进入合同。开源 Mautic 只有在指定维护人之后才部署。</div>
+</section>
+
+<section id="appx">
+  <h2><span class="num">9</span>来源与不写进汇报的话</h2>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>说法</th><th>依据</th></tr></thead>
+    <tbody>
+      <tr><td>REDCap 不对营利机构发放自建许可</td><td>projectredcap.org FAQ，2026-09-24 已在上一份报告核对</td></tr>
+      <tr><td>Ripple / EnrollNow 面向站点与 CRO 的招募留存；HIPAA、SOC 2 为厂商声称；260+ 机构等为官网自述</td><td>ripplescience.com；ACRP 2026 参展页</td></tr>
+      <tr><td>OpenClinica 于 2024-12-10 收购 BuildClinical，Recruit 可单独使用或对接其 EDC</td><td>OpenClinica / Business Wire 新闻；openclinica.com/solution-recruit</td></tr>
+      <tr><td>SiteCentric 含工作名单、短信、广告日历、材料的 IRB 状态、eSource 与 CTMS</td><td>sitecentric.com 招募、CTMS、eSource 页面</td></tr>
+      <tr><td>Medrio CTMS（Engility）与 EDC、eTMF 连用，强调源头记一次</td><td>medrio.com/solutions/ctms</td></tr>
+      <tr><td>转化率提升 30%–50%、REDCap 对我方免费且天然满足中国合规</td><td>本报告不采用</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="muted">未登录各厂商生产环境。国内短信、个人信息出境和伦理批件的法律结论，以法务书面意见为准。本报告只决定要不要把招募、现场、CTMS 分成三次采购。</p>
+</section>
+
+<footer class="end"><p>受试者招募、现场一线采集与 CTMS 选型对比 V1.0 · 2026-09-24 · 内部资料</p></footer>
+</div>
+<a href="#" class="toTop" id="toTop" aria-label="回到顶部">↑</a>
+<script>
+(function(){
+  var links=[].slice.call(document.querySelectorAll('.topbar nav a'));
+  var secs=links.map(function(a){return document.querySelector(a.getAttribute('href'))}).filter(Boolean);
+  var top=document.getElementById('toTop');
+  function onScroll(){
+    var y=window.scrollY+120,cur=null;
+    secs.forEach(function(s){ if(s.offsetTop<=y) cur=s; });
+    links.forEach(function(a){ a.classList.toggle('active', cur && a.getAttribute('href')==='#'+cur.id); });
+    top.classList.toggle('on', window.scrollY>600);
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+</body>
+</html>

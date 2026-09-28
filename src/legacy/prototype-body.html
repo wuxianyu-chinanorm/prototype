@@ -59,6 +59,51 @@
         <button type="button" data-phase="quality">质量审核</button>
         <button type="button" data-phase="deliver">交付归档</button>
         <button type="button" data-phase="settings">系统设置</button>
+        <div class="phase-visit-dd phase-ref-dd" id="phase-ref-dd">
+          <button
+            type="button"
+            class="phase-visit-dd__trigger"
+            id="btn-compare"
+            aria-haspopup="menu"
+            aria-expanded="false"
+            aria-controls="phase-ref-menu"
+          >
+            <span>开源参考</span>
+            <svg class="phase-visit-dd__chevron" viewBox="0 0 12 12" aria-hidden="true">
+              <path d="M2.5 4.5 6 8l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="phase-visit-dd__menu" id="phase-ref-menu" role="menu" hidden>
+            <div class="phase-visit-dd__head">开源参考</div>
+            <button type="button" class="phase-visit-dd__item" role="menuitem" data-compare-src="site-clinic-compare-v1.html" data-compare-title="现场与诊所开源系统体验对照 V1.0">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--subject" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 6h16M4 12h16M4 18h10"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">现场与诊所</span>
+                <span class="phase-visit-dd__desc">开源系统体验对照</span>
+              </span>
+            </button>
+            <button type="button" class="phase-visit-dd__item" role="menuitem" data-compare-src="recruit-collect-ctms-compare-v1.html" data-compare-title="招募系统、采集系统、CTMS 系统选型对比 V1.0">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--kis" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="4" width="7" height="7" rx="1.5"/><rect x="14" y="4" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">招募 · 采集 · CTMS</span>
+                <span class="phase-visit-dd__desc">系统选型对比</span>
+              </span>
+            </button>
+            <button type="button" class="phase-visit-dd__item" role="menuitem" data-compare-src="edc-compare-v1.html" data-compare-title="EDC 系统选型调研与对比 V1.0">
+              <span class="phase-visit-dd__icon phase-visit-dd__icon--staff" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V5M4 19h16"/><path d="M8 15V9M12 15V7M16 15v-3"/></svg>
+              </span>
+              <span class="phase-visit-dd__copy">
+                <span class="phase-visit-dd__title">EDC</span>
+                <span class="phase-visit-dd__desc">选型调研与对比</span>
+              </span>
+            </button>
+          </div>
+        </div>
       </nav>
     </div>
     <div class="app-bar__actions">
@@ -109,6 +154,10 @@
       </div>
     </div>
   </header>
+
+  <div class="compare-frame" id="compare-frame" hidden>
+    <iframe id="compare-frame-view" title="现场与诊所开源系统体验对照 V1.0"></iframe>
+  </div>
 
   <div class="shell-body">
     <aside class="sidebar is-phase-prep" id="app-sidebar" aria-label="工作台侧栏">

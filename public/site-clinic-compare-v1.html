@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>现场与诊所开源系统体验对照 V1.0</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet" />
+<style>
+
+:root{
+  --bg:#f3f5f9; --surface:#fff; --muted-bg:#f8fafc; --ink:#0f172a; --ink2:#334155; --muted:#64748b;
+  --accent:#4f46e5; --accent2:#0ea5e9; --accent-soft:rgba(79,70,229,.07);
+  --ok:#059669; --ok-soft:#ecfdf5; --ok-bd:#6ee7b7;
+  --warn:#b45309; --warn-soft:#fffbeb; --warn-bd:#fcd34d;
+  --bad:#be123c; --bad-soft:#fff1f2; --bad-bd:#fda4af;
+  --info:#1d4ed8; --info-soft:#eff6ff; --info-bd:#93c5fd;
+  --border:#e2e8f0; --radius:14px;
+  --shadow:0 1px 2px rgba(15,23,42,.04),0 10px 28px rgba(15,23,42,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:"Noto Sans SC",system-ui,-apple-system,sans-serif;font-size:15px;line-height:1.8;color:var(--ink);background:var(--bg);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding:0 1.1rem 4rem}
+
+/* ============ 顶部导航 ============ */
+.topbar{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+.topbar .inner{max-width:1180px;margin:0 auto;padding:.5rem 1.1rem;display:flex;align-items:center;gap:.9rem;flex-wrap:wrap}
+.topbar .brand{font-weight:700;font-size:.88rem;letter-spacing:.02em;color:var(--accent);white-space:nowrap}
+.topbar nav{display:flex;gap:.15rem;flex-wrap:wrap}
+.topbar a{font-size:.8rem;color:var(--muted);text-decoration:none;padding:.25rem .5rem;border-radius:7px;white-space:nowrap}
+.topbar a:hover{background:var(--accent-soft);color:var(--accent)}
+.topbar a.active{background:var(--accent);color:#fff}
+
+/* ============ 封面 ============ */
+.cover{margin:1.1rem 0;padding:2.4rem 2rem;border-radius:20px;color:#fff;box-shadow:var(--shadow);
+  background:linear-gradient(135deg,#312e81 0%,#4f46e5 45%,#0ea5e9 100%);position:relative;overflow:hidden}
+.cover::after{content:"";position:absolute;right:-90px;top:-90px;width:320px;height:320px;border-radius:50%;background:rgba(255,255,255,.08)}
+.cover::before{content:"";position:absolute;right:60px;bottom:-130px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.06)}
+.cover .kicker{font-size:.76rem;letter-spacing:.22em;opacity:.85;margin:0 0 .6rem;font-weight:600}
+.cover h1{margin:0 0 .5rem;font-size:2rem;line-height:1.35;font-weight:900;letter-spacing:.01em}
+.cover h1 small{display:block;font-size:1rem;font-weight:500;opacity:.9;margin-top:.4rem;letter-spacing:.02em}
+.cover .meta{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:1.4rem;font-size:.82rem;opacity:.95;position:relative;z-index:2}
+.cover .meta div span{display:block;opacity:.72;font-size:.7rem;letter-spacing:.08em;margin-bottom:.1rem}
+.cover .meta div b{font-weight:600}
+
+/* ============ 通用区块 ============ */
+section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:1.6rem 1.75rem;margin-bottom:1.15rem;box-shadow:var(--shadow);scroll-margin-top:60px}
+h2{margin:0 0 1rem;font-size:1.24rem;font-weight:700;display:flex;align-items:center;gap:.6rem}
+h2 .num{flex:none;width:1.75rem;height:1.75rem;border-radius:9px;background:var(--accent);color:#fff;font-size:.86rem;display:grid;place-items:center;font-weight:700}
+h3{margin:1.5rem 0 .6rem;font-size:1.02rem;font-weight:700;border-left:4px solid var(--accent);padding-left:.6rem}
+h4{margin:1.1rem 0 .4rem;font-size:.9rem;font-weight:700;color:var(--ink2)}
+p{margin:.45rem 0}
+ul,ol{margin:.35rem 0 .7rem;padding-left:1.25rem}
+li{margin:.25rem 0}
+.lead{color:var(--ink2);font-size:.95rem}
+.muted{color:var(--muted)}
+small{font-size:.8rem}
+code{background:#f1f5f9;border:1px solid var(--border);border-radius:5px;padding:.05rem .3rem;font-size:.82em;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+
+/* ============ 表格 ============ */
+.tblwrap{overflow-x:auto;margin:.7rem 0 1rem;border:1px solid var(--border);border-radius:10px}
+table{width:100%;border-collapse:collapse;font-size:.85rem;min-width:600px}
+th,td{border-bottom:1px solid var(--border);border-right:1px solid var(--border);padding:.55rem .65rem;vertical-align:top;text-align:left}
+th:last-child,td:last-child{border-right:none}
+tbody tr:last-child td{border-bottom:none}
+thead th{background:#f1f5f9;font-weight:700;position:sticky;top:0;z-index:2;font-size:.82rem;white-space:nowrap}
+tbody tr:hover td{background:#fafbfe}
+td.c,th.c{text-align:center}
+.rowhead{background:var(--muted-bg);font-weight:600;white-space:nowrap}
+.g{background:var(--ok-soft) !important;color:#065f46;font-weight:600}
+.y{background:var(--warn-soft) !important;color:#92400e;font-weight:600}
+.r{background:var(--bad-soft) !important;color:#9f1239;font-weight:600}
+
+/* ============ 徽标 / 标签 ============ */
+.badge{display:inline-block;font-size:.7rem;font-weight:700;padding:.12rem .48rem;border-radius:999px;margin:0 .22rem .22rem 0;letter-spacing:.02em;border:1px solid transparent;white-space:nowrap}
+.b-oss{background:#ecfdf5;color:#047857;border-color:var(--ok-bd)}
+.b-com{background:#eef2ff;color:#4338ca;border-color:#c7d2fe}
+.b-free{background:#f0fdfa;color:#0f766e;border-color:#99f6e4}
+.b-self{background:#fff7ed;color:#c2410c;border-color:#fed7aa}
+.b-saas{background:#f5f3ff;color:#6d28d9;border-color:#ddd6fe}
+.b-warn{background:var(--warn-soft);color:var(--warn);border-color:var(--warn-bd)}
+.b-bad{background:var(--bad-soft);color:var(--bad);border-color:var(--bad-bd)}
+.b-info{background:var(--info-soft);color:var(--info);border-color:var(--info-bd)}
+
+/* ============ 提示框 ============ */
+.box{border-radius:10px;padding:.85rem 1rem;margin:.8rem 0;font-size:.88rem;border:1px solid}
+.box b.t{display:block;font-size:.78rem;letter-spacing:.06em;margin-bottom:.3rem;font-weight:800}
+.box.ok{background:var(--ok-soft);border-color:var(--ok-bd)} .box.ok b.t{color:var(--ok)}
+.box.warn{background:var(--warn-soft);border-color:var(--warn-bd)} .box.warn b.t{color:var(--warn)}
+.box.bad{background:var(--bad-soft);border-color:var(--bad-bd)} .box.bad b.t{color:var(--bad)}
+.box.info{background:var(--info-soft);border-color:var(--info-bd)} .box.info b.t{color:var(--info)}
+
+/* ============ 结论先行 ============ */
+.tldr{background:linear-gradient(180deg,#fff 0%,#f8fafc 100%);border:2px solid var(--accent);border-radius:var(--radius);padding:1.5rem 1.7rem;margin-bottom:1.15rem;box-shadow:var(--shadow)}
+.tldr h2{margin-bottom:.8rem}
+.tldr .big{font-size:1.02rem;font-weight:600;color:var(--ink);line-height:1.85;margin:.3rem 0 1rem}
+.tldr .big em{font-style:normal;background:linear-gradient(transparent 62%,rgba(79,70,229,.22) 62%);font-weight:700}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:.7rem;margin-top:1rem}
+.kpi{background:#fff;border:1px solid var(--border);border-radius:11px;padding:.8rem .9rem}
+.kpi .v{font-size:1.45rem;font-weight:900;color:var(--accent);line-height:1.2}
+.kpi .l{font-size:.75rem;color:var(--muted);margin-top:.15rem}
+
+/* ============ 系统卡片总览 ============ */
+.sysgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:.8rem;margin:.9rem 0}
+.syscard{border:1px solid var(--border);border-radius:12px;padding:.9rem 1rem;background:var(--muted-bg);transition:.15s;text-decoration:none;color:inherit;display:block}
+.syscard:hover{border-color:var(--accent);background:#fff;transform:translateY(-2px);box-shadow:var(--shadow)}
+
+.access{background:#0f172a;color:#fff;border-radius:12px;padding:1.05rem 1.2rem;margin:.75rem 0 1.05rem;position:relative}
+.access .lab{font-size:.7rem;letter-spacing:.16em;font-weight:800;opacity:.7;margin-bottom:.35rem}
+.access a{color:#7dd3fc;font-weight:800;font-size:1.02rem;word-break:break-all;text-decoration:none}
+.access a:hover{text-decoration:underline}
+.access .cred{margin-top:.65rem;background:#1e293b;border-radius:9px;padding:.55rem .75rem;font-family:ui-monospace,Menlo,monospace;font-size:.86rem;line-height:1.65}
+.access .st{display:inline-block;margin-top:.55rem;font-size:.72rem;font-weight:800;background:#064e3b;color:#6ee7b7;border-radius:999px;padding:.12rem .55rem}
+.access .st.warn{background:#78350f;color:#fcd34d}
+.syscard .nm{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:.5rem;margin-bottom:.25rem}
+
+.mono{flex:none;width:1.7rem;height:1.7rem;border-radius:8px;display:grid;place-items:center;font-size:.78rem;font-weight:800;color:#fff;background:var(--accent)}
+.syscard .dsc{font-size:.8rem;color:var(--muted);line-height:1.6}
+
+/* ============ 系统档案 ============ */
+.profile{border:1px solid var(--border);border-radius:var(--radius);margin:1.1rem 0;overflow:hidden;background:#fff}
+.profile>header{padding:1rem 1.2rem;background:linear-gradient(135deg,#f8fafc,#eef2ff);border-bottom:1px solid var(--border)}
+.profile>header .row1{display:flex;align-items:center;gap:.65rem;flex-wrap:wrap}
+.profile>header h3{margin:0;border:none;padding:0;font-size:1.12rem;font-weight:800}
+.profile>header .sub{font-size:.82rem;color:var(--muted);margin-top:.3rem}
+.profile>header .tags{margin-top:.55rem}
+.profile .body{padding:1.1rem 1.2rem 1.3rem}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.65rem;margin:.2rem 0 1rem}
+.fact{border:1px solid var(--border);border-radius:10px;padding:.6rem .75rem;background:var(--muted-bg)}
+.fact .k{font-size:.7rem;letter-spacing:.08em;color:var(--muted);font-weight:700;margin-bottom:.15rem}
+.fact .v{font-size:.85rem;font-weight:600;line-height:1.6}
+.chips{display:flex;flex-wrap:wrap;gap:.3rem;margin:.4rem 0 .8rem}
+.chip{font-size:.75rem;background:#fff;border:1px solid var(--border);border-radius:7px;padding:.18rem .5rem;font-family:ui-monospace,Menlo,monospace;color:var(--ink2)}
+.chip.k{background:#eef2ff;border-color:#c7d2fe;color:#3730a3;font-weight:600}
+
+/* ============ 工作流时间线 ============ */
+.flow{list-style:none;padding:0;margin:.6rem 0 .9rem;counter-reset:fl}
+.flow li{counter-increment:fl;position:relative;padding:.1rem 0 .75rem 2.1rem;border-left:2px solid #e2e8f0;margin-left:.65rem}
+.flow li:last-child{border-left-color:transparent;padding-bottom:0}
+.flow li::before{content:counter(fl);position:absolute;left:-.72rem;top:.1rem;width:1.35rem;height:1.35rem;border-radius:50%;background:#fff;border:2px solid var(--accent);color:var(--accent);font-size:.7rem;font-weight:800;display:grid;place-items:center}
+.flow li b{display:block;font-size:.88rem}
+.flow li span{font-size:.83rem;color:var(--ink2)}
+
+/* ============ 评分条 ============ */
+.scores{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:.5rem .95rem;margin:.5rem 0 .3rem}
+.sc{font-size:.8rem}
+.sc .lab{display:flex;justify-content:space-between;margin-bottom:.15rem}
+.sc .lab b{font-weight:700}
+.bar{height:7px;border-radius:99px;background:#e9edf5;overflow:hidden}
+.bar i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+.bar.gl i{background:linear-gradient(90deg,#059669,#34d399)}
+.bar.yl i{background:linear-gradient(90deg,#d97706,#fbbf24)}
+.bar.rl i{background:linear-gradient(90deg,#be123c,#fb7185)}
+
+.verdict{border-radius:10px;padding:.8rem 1rem;margin-top:.9rem;font-size:.88rem;border-left:4px solid var(--accent);background:var(--accent-soft)}
+.verdict b.t{display:block;font-size:.76rem;letter-spacing:.08em;color:var(--accent);font-weight:800;margin-bottom:.25rem}
+
+/* ============ 两列 ============ */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:.85rem}
+@media(max-width:860px){.cols2,.cols3{grid-template-columns:1fr}}
+
+/* ============ 路线卡 ============ */
+.route{border:1px solid var(--border);border-radius:13px;overflow:hidden;background:#fff;display:flex;flex-direction:column}
+.route>header{padding:.85rem 1rem;border-bottom:1px solid var(--border)}
+.route.rec{border:2px solid var(--ok);box-shadow:0 8px 24px rgba(5,150,105,.12)}
+.route.rec>header{background:var(--ok-soft)}
+.route>header .rn{font-size:.72rem;letter-spacing:.14em;font-weight:800;color:var(--muted)}
+.route>header h4{margin:.15rem 0 0;font-size:1rem;font-weight:800}
+.route .body{padding:.85rem 1rem;font-size:.85rem;flex:1}
+.route .cost{padding:.65rem 1rem;background:var(--muted-bg);border-top:1px solid var(--border);font-size:.82rem}
+.route .cost b{color:var(--ink)}
+.plus li{color:#065f46} .minus li{color:#9f1239}
+
+/* ============ 概念地图 ============ */
+.map{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.6rem;margin:.8rem 0}
+.mapcell{border:1px solid var(--border);border-radius:11px;padding:.7rem .8rem;background:var(--muted-bg)}
+.mapcell .ab{font-weight:800;font-size:.86rem;color:var(--accent);letter-spacing:.02em}
+.mapcell .cn{font-size:.8rem;font-weight:600;margin:.1rem 0 .25rem}
+.mapcell .dd{font-size:.76rem;color:var(--muted);line-height:1.55}
+.mapcell.own{background:#eef2ff;border-color:#c7d2fe}
+.mapcell.own .ab{color:#3730a3}
+
+/* ============ checklist ============ */
+.check{list-style:none;padding:0;margin:.6rem 0}
+.check li{padding:.4rem 0 .4rem 1.9rem;position:relative;border-bottom:1px dashed var(--border);font-size:.87rem}
+.check li:last-child{border-bottom:none}
+.check li::before{content:"";position:absolute;left:.15rem;top:.72rem;width:1rem;height:1rem;border:2px solid #cbd5e1;border-radius:4px}
+.check li b{font-weight:700}
+
+.legend{display:flex;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted);margin:.5rem 0 0}
+.legend span b{color:var(--ink)}
+
+footer.end{text-align:center;color:var(--muted);font-size:.8rem;padding:2rem 0 0}
+.toTop{position:fixed;right:1.1rem;bottom:1.1rem;width:2.5rem;height:2.5rem;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;text-decoration:none;box-shadow:var(--shadow);opacity:0;pointer-events:none;transition:.2s;z-index:60}
+.toTop.on{opacity:1;pointer-events:auto}
+
+@media print{
+  .topbar,.toTop{display:none}
+  body{background:#fff;font-size:11pt}
+  section,.tldr{box-shadow:none;break-inside:avoid;page-break-inside:avoid}
+  .cover{background:#312e81 !important;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .profile{break-inside:avoid}
+}
+
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="inner">
+    <div class="brand">现场 / 诊所 / 招募开源对照 V1.0</div>
+    <nav>
+      <a href="#tldr">结论先行</a>
+      <a href="#access">访问总表</a>
+      <a href="#map">1 它们各管哪一段</a>
+      <a href="#libre">2 LibreClinica</a>
+      <a href="#mautic">3 Mautic</a>
+      <a href="#medtrack">4 Med Track</a>
+      <a href="#medplum">5 Medplum</a>
+      <a href="#openmrs">6 OpenMRS 队列</a>
+      <a href="#marley">7 Marley</a>
+      <a href="#openeyes">8 OpenEyes</a>
+      <a href="#matrix">9 横向对比</a>
+      <a href="#borrow">10 给 KIS 的参考</a>
+    </nav>
+  </div>
+</div>
+
+<div class="wrap">
+
+<div class="cover">
+  <p class="kicker">内部体验对照 · 已部署实例 + 官方 Demo</p>
+  <h1>现场运营相关开源系统：解决什么、怎么进、怎么点、能抄什么
+    <small>LibreClinica · Mautic · Med Track · Medplum · OpenMRS 队列 · Marley · OpenEyes —— 对照 KIS 功效评价现场（访视操作台 / 招募 / 测试品 / 日记）</small>
+  </h1>
+  <div class="meta">
+    <div><span>报告版本</span><b>V1.0</b></div>
+    <div><span>探活时间</span><b>2026-09-28 13:08 +08</b></div>
+    <div><span>探活结果</span><b>7/7 HTTP 200，均可打开</b></div>
+    <div><span>对照对象</span><b>KIS 3.0 现场主干（非替换方案）</b></div>
+  </div>
+</div>
+
+<div class="tldr" id="tldr">
+  <h2><span class="num">0</span>结论先行</h2>
+  <p class="big">
+    ① 这 7 套<strong>现在都能打开</strong>。火山云上 5 套是自部署；Medplum 和 OpenMRS 是官方云 / 官方 Demo，不在我们机器上。<br>
+    ② <em>没有一套能替代 KIS 现场</em>：没有导检路线、没有测试品发放/回收/称重、没有功效仪器落盘、没有日记齐套。它们分别覆盖「eCRF 合规采集」「广告线索漏斗」「诊所排队挂号」「FHIR 病历 API」「医院分诊队列」「HIS 挂号叫号」「眼科电子病历」。<br>
+    ③ 对我们有用的是<strong>机制参考</strong>，不是整系统搬家：LibreClinica 的质疑/审计/测试规范；Mautic 的线索来源与无人跟进；OpenMRS / Marley / Med Track 的叫号与诊室状态机；Medplum 的 FHIR 资源模型；OpenEyes 的专科检查单与影像挂接。
+  </p>
+  <div class="kpis">
+    <div class="kpi"><div class="v">7/7</div><div class="l">页面可访问（未登录会跳登录页）</div></div>
+    <div class="kpi"><div class="v">5</div><div class="l">已在 118 自部署</div></div>
+    <div class="kpi"><div class="v">0</div><div class="l">可直接当功效评价现场系统</div></div>
+    <div class="kpi"><div class="v">6 类</div><div class="l">建议抄的机制（见第 10 节）</div></div>
+  </div>
+  <div class="box warn" style="margin-top:1rem">
+    <b class="t">路径前缀坑</b>
+    这些应用的资源都挂在站点根路径（<code>/assets</code>、<code>/LibreClinica</code>）。不要用 <code>kis.china-norm.com/openeye/</code> 这种子路径反代。要域名就单独主机名，整站转到对应端口。
+  </div>
+</div>
+
+<section id="access">
+  <h2><span class="num">·</span>访问总表（先看这里）</h2>
+  <p class="lead">2026-09-28 本机探测：全部返回 HTTP 200。带登录墙的地址会 302 到登录页，这是正常工作状态，不是挂了。</p>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>系统</th><th>打开这个</th><th>账号</th><th>部署位置</th><th>本次状态</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>LibreClinica</td>
+        <td><a href="http://118.196.64.48:18080/LibreClinica/MainMenu">http://118.196.64.48:18080/LibreClinica/MainMenu</a></td>
+        <td><code>root</code> / <code>12345678</code></td>
+        <td>火山云自部署</td>
+        <td class="g">200，未登录跳 login</td>
+      </tr>
+      <tr>
+        <td>Mautic</td>
+        <td><a href="http://118.196.64.48:18082/s/dashboard">http://118.196.64.48:18082/s/dashboard</a></td>
+        <td><code>wuxianyu@china-norm.com</code> / <code>123qweQWE!@#</code></td>
+        <td>火山云自部署</td>
+        <td class="g">200，未登录跳 /s/login</td>
+      </tr>
+      <tr>
+        <td>Med Track</td>
+        <td><a href="http://118.196.64.48:18083/">http://118.196.64.48:18083/</a></td>
+        <td>本报告未拿到默认账号，首页可开</td>
+        <td>火山云自部署</td>
+        <td class="g">200，标题为 Med Track 诊所管理</td>
+      </tr>
+      <tr>
+        <td>Medplum</td>
+        <td><a href="https://app.medplum.com">https://app.medplum.com</a></td>
+        <td>官方云账号（自行注册）</td>
+        <td>厂商 SaaS，非 118</td>
+        <td class="g">200</td>
+      </tr>
+      <tr>
+        <td>OpenMRS 队列</td>
+        <td><a href="https://dev3.openmrs.org/openmrs/spa/home/service-queues">https://dev3.openmrs.org/openmrs/spa/home/service-queues</a></td>
+        <td><code>admin</code> / <code>Admin123</code>（A 大写），并选 Location</td>
+        <td>官方 Demo，非 118</td>
+        <td class="g">200；控制台报错是官方站点问题</td>
+      </tr>
+      <tr>
+        <td>Marley</td>
+        <td><a href="http://118.196.64.48:18090/login">http://118.196.64.48:18090/login</a></td>
+        <td>首次向导：<code>wuxianyu</code> / <code>wuxianyu@china-norm.com</code> / <code>6h3rQkUux9G5hzjZzzpj</code><br>系统管理员也可：<code>Administrator</code> / <code>admin</code></td>
+        <td>火山云自部署</td>
+        <td class="y">200；若仍停在 setup-wizard，把向导走完即可进 Desk</td>
+      </tr>
+      <tr>
+        <td>OpenEyes</td>
+        <td><a href="http://118.196.64.48:7780/site/login">http://118.196.64.48:7780/site/login</a></td>
+        <td>常见默认 <code>admin</code> / <code>admin</code>（以实例为准）</td>
+        <td>火山云自部署</td>
+        <td class="g">200，登录页已可渲染（已补 mustache 前端包）</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="map">
+  <h2><span class="num">1</span>它们各管哪一段（对照 KIS）</h2>
+  <p class="lead">蓝色格子是 KIS 已经在做或必须自己做的现场段。下面 7 套几乎都不进蓝色格子，只在相邻格子上提供「可看的成品」。</p>
+  <div class="map">
+    <div class="mapcell own"><div class="ab">现场运营</div><div class="cn">KIS 主干</div><div class="dd">预检签到、导检、访视任务、测试品发放/回收/称重、仪器影像、日记齐套、签出。</div></div>
+    <div class="mapcell own"><div class="ab">招募预约</div><div class="cn">KIS 招募台</div><div class="dd">计划、预约、筛选。弱在广告归因与线索老化。</div></div>
+    <div class="mapcell"><div class="ab">EDC</div><div class="cn">LibreClinica</div><div class="dd">研究→访视→eCRF→质疑→签名锁定。</div></div>
+    <div class="mapcell"><div class="ab">漏斗</div><div class="cn">Mautic</div><div class="dd">广告→落地页→线索→培育→无人跟进告警。</div></div>
+    <div class="mapcell"><div class="ab">诊所 HIS</div><div class="cn">Med Track / Marley</div><div class="dd">挂号、候诊、诊室、病历。面向门诊，不是试验现场。</div></div>
+    <div class="mapcell"><div class="ab">队列</div><div class="cn">OpenMRS Queues</div><div class="dd">服务台叫号、分诊、等候状态机。</div></div>
+    <div class="mapcell"><div class="ab">FHIR</div><div class="cn">Medplum</div><div class="dd">Patient / Encounter / Questionnaire 标准 API。</div></div>
+    <div class="mapcell"><div class="ab">专科 EMR</div><div class="cn">OpenEyes</div><div class="dd">眼科检查事件、影像、手术记录。</div></div>
+  </div>
+</section>
+
+
+<div class="profile" id="libre">
+  <header>
+    <div class="row1"><span class="mono">1</span><h3>LibreClinica</h3></div>
+    <div class="sub">开源 EDC。完整继承 OpenClinica 3 的合规架构；社区公开测试规范，降低 GCP / 21 CFR Part 11 自验证成本。</div>
+    <div class="tags"><span class="badge b-oss">开源</span><span class="badge b-self">自部署</span><span class="badge b-info">eCRF / Query / Audit</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="http://118.196.64.48:18080/LibreClinica/MainMenu">http://118.196.64.48:18080/LibreClinica/MainMenu</a>
+      <div class="cred">用户 root　　密码 12345678</div>
+      <span class="st">探活 200 · 未登录会跳到 pages/login/login</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>解决的是<strong>临床试验电子数据采集与核查</strong>：按方案建库，现场只填当前访视表单，监查发质疑，改数必须写原因，签完锁定再导出。不解决导检、称重、仪器。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">形态</div><div class="v">Java WAR · 浏览器</div></div>
+      <div class="fact"><div class="k">谱系</div><div class="v">OpenClinica 3.x 社区分叉</div></div>
+      <div class="fact"><div class="k">数据</div><div class="v">研究 / 受试者 / 事件 / CRF 条目 + 审计追踪</div></div>
+      <div class="fact"><div class="k">验证资产</div><div class="v">公开 Test Specifications + 社区测试结果</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录</b><span>用 root 进主菜单。首次可能要选中心 / 角色。</span></li>
+      <li><b>建研究</b><span>Study → 访视事件 → CRF 表单（或导入 ODM）。</span></li>
+      <li><b>入组受试者</b><span>Subject → 分配到当前研究。</span></li>
+      <li><b>按访视录入</b><span>只打开当天事件的 CRF；逻辑核查自动拦错或发 Query。</span></li>
+      <li><b>质疑闭环</b><span>监查发问 → 现场回复 → 关闭。改值必填原因。</span></li>
+      <li><b>签名与锁库</b><span>研究者电子签 → 数据管理冻结/锁定 → 导出。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>不能当现场系统。应照抄：审计追踪、Query 生命周期、改数原因、电子签名、冻结锁定、以及「公开测试规范」这种可审计的自验证包。eCRF 可做附属采集层，不要替换访视操作台。</div>
+  </div>
+</div>
+
+<div class="profile" id="mautic">
+  <header>
+    <div class="row1"><span class="mono">2</span><h3>Mautic</h3></div>
+    <div class="sub">开源营销自动化，对标商业营销云。行业是获客漏斗，不是临床招募软件；但「线索从哪条广告来、多久没人联系」这条链路是现成的。</div>
+    <div class="tags"><span class="badge b-oss">开源</span><span class="badge b-self">自部署</span><span class="badge b-info">广告归因 / 培育</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="http://118.196.64.48:18082/s/dashboard">http://118.196.64.48:18082/s/dashboard</a>
+      <div class="cred">用户 wuxianyu@china-norm.com　　密码 123qweQWE!@#</div>
+      <span class="st">探活 200 · 未登录跳 /s/login</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>把<strong>广告 → 表单 → 线索 → 培育 → 回访</strong>留在自己服务器上。专业医疗招募软件通常不管 UTM 和线索老化；Mautic 管的就是这个。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">形态</div><div class="v">PHP · Symfony · MySQL</div></div>
+      <div class="fact"><div class="k">核心对象</div><div class="v">Contact / Campaign / Form / Email / Segment</div></div>
+      <div class="fact"><div class="k">追踪</div><div class="v">落地页像素、UTM、渠道、打开与点击</div></div>
+      <div class="fact"><div class="k">自动化</div><div class="v">画布：条件分支、等待、发信、改阶段</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录看板</b><span>看新增线索、活动、待办。</span></li>
+      <li><b>建渠道与表单</b><span>Channels / Forms：落地页或嵌入表，带 UTM。</span></li>
+      <li><b>线索入库</b><span>提交后成为 Contact，记下源广告与首次触达时间。</span></li>
+      <li><b>分段</b><span>Segments：按来源、城市、是否已预约切群。</span></li>
+      <li><b>画 Campaign</b><span>例如 24 小时未联系 → 提醒销售；3 天未预约 → 补一封。</span></li>
+      <li><b>回访闭环</b><span>人工改阶段（已约 / 已筛 / 失败），后续动作停掉。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>不要用它管入组后的访视。建议参考或旁路接入：线索来源字段、无人跟进计时、培育画布。招募台补「来源 + 上次联系时间」，比自研整套营销云便宜。</div>
+  </div>
+</div>
+
+<div class="profile" id="medtrack">
+  <header>
+    <div class="row1"><span class="mono">3</span><h3>Med Track</h3></div>
+    <div class="sub">面向印度独立医生的小型诊所管理系统：现场 walk-in、候诊、患者档案、WhatsApp 提醒。不是临床试验 EDC，也不是功效评价现场。</div>
+    <div class="tags"><span class="badge b-self">自部署在 18083</span><span class="badge b-info">诊所 HIS 轻量版</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="http://118.196.64.48:18083/">http://118.196.64.48:18083/</a>
+      <div class="cred">首页可开。本报告未记录登录账号，进入后台后按页面提示注册或使用部署时写入的账号。</div>
+      <span class="st">探活 200 · 页面标题 Clinic Management for Indian Doctors</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>让小诊所把<strong>当天来的人、叫到哪、病历在哪、复诊提醒</strong>数字化。场景是门诊，不是按方案执行的访视日。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">形态</div><div class="v">Web 应用（火山云容器 :18083）</div></div>
+      <div class="fact"><div class="k">对象</div><div class="v">患者档案、当日 walk-in、提醒</div></div>
+      <div class="fact"><div class="k">通知</div><div class="v">产品定位含 WhatsApp 告警</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>打开首页</b><span>先看当日队列/工作台入口。</span></li>
+      <li><b>登记 walk-in</b><span>无预约上门：建档或检索老患者。</span></li>
+      <li><b>候诊与叫号</b><span>按到达顺序或诊室叫下一位。</span></li>
+      <li><b>看诊写病历</b><span>进入患者 vault 记主诉/处方（以实际菜单为准）。</span></li>
+      <li><b>提醒</b><span>复诊或取药通过 WhatsApp 类通道发出。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>交互上可看「当日队列有多轻」。不要抄印度诊所的病历模型。可参考：walk-in 与预约混排、一屏看完今天的人。导检和测试品仍要自研。</div>
+  </div>
+</div>
+
+<div class="profile" id="medplum">
+  <header>
+    <div class="row1"><span class="mono">4</span><h3>Medplum</h3></div>
+    <div class="sub">FHIR 原生的医疗开发平台：不是成品「功效评价工作台」，而是 Patient / Encounter / Questionnaire 的标准后端 + 管理控制台。</div>
+    <div class="tags"><span class="badge b-saas">官方云</span><span class="badge b-oss">可自托管</span><span class="badge b-info">FHIR R4 API</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="https://app.medplum.com">https://app.medplum.com</a>
+      <div class="cred">非 118。用官方账号登录或注册。自托管需另内部署，本实例未做。</div>
+      <span class="st">探活 200</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>给研发一条<strong>合规向的医疗数据 API</strong>：身份、就诊、问卷、文件都按 FHIR 资源存，而不是自创表结构。适合做互操作和审计模型，不适合直接给现场老师点「称重」。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">标准</div><div class="v">HL7 FHIR R4</div></div>
+      <div class="fact"><div class="k">后端</div><div class="v">FHIR 服务器 + Bot/订阅</div></div>
+      <div class="fact"><div class="k">前端</div><div class="v">React 管理端，可嵌问卷</div></div>
+      <div class="fact"><div class="k">扩展</div><div class="v">Subscriptions、AccessPolicy</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录项目</b><span>进入 Project 控制台。</span></li>
+      <li><b>建 Patient</b><span>标准资源，不要一上来自定义大表。</span></li>
+      <li><b>Encounter</b><span>一次到访对应一次 Encounter。</span></li>
+      <li><b>Questionnaire / Response</b><span>用问卷资源采集，而不是随意 JSON。</span></li>
+      <li><b>看 Audit / Access</b><span>谁读过谁写过，按策略收紧。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>不要把现场流程迁到 Medplum。可参考：到访=Encounter、量表=Questionnaire、附件=DocumentReference。互操作或对外 API 时再认真评估 FHIR，不作为 2026 现场主干。</div>
+  </div>
+</div>
+
+<div class="profile" id="openmrs">
+  <header>
+    <div class="row1"><span class="mono">5</span><h3>OpenMRS 3 · Service Queues</h3></div>
+    <div class="sub">医院级开源 EMR 里的「服务队列」：分诊、等候、叫号。官方 Demo 功能全，控制台报错是共享脏库和 CSP，不是你的浏览器坏了。</div>
+    <div class="tags"><span class="badge b-saas">官方 Demo</span><span class="badge b-oss">可自部署（多镜像 compose）</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="https://dev3.openmrs.org/openmrs/spa/home/service-queues">https://dev3.openmrs.org/openmrs/spa/home/service-queues</a>
+      <div class="cred">用户 admin　　密码 Admin123（A 大写）　　必须选择 Location</div>
+      <span class="st">探活 200 · 非 118</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>门诊<strong>人在哪一站、下一个该谁</strong>。和功效评价的导检相似的是「空间+队列」，不同的是它按医院服务台，不按方案访视块。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">发行版</div><div class="v">O3 Reference Application：gateway + frontend + backend + MariaDB</div></div>
+      <div class="fact"><div class="k">队列模块</div><div class="v">Service Queues SPA</div></div>
+      <div class="fact"><div class="k">自部署</div><div class="v">不是单镜像；offline 需 load 4 张镜像</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录</b><span>admin / Admin123，选 Location，否则进不去业务页。</span></li>
+      <li><b>打开 Service Queues</b><span>看各队列等候人数。</span></li>
+      <li><b>入队</b><span>患者挂到某个服务队列（分诊/抽血/诊室）。</span></li>
+      <li><b>叫号 / 改状态</b><span>waiting → called → served，或转队列。</span></li>
+      <li><b>结束</b><span>完成或失约，队列长度变化。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>导检状态机最值得看：站点、队列、叫号、转诊。不要引入 OpenMRS 的整套概念（Visit Type、Location 树）。KIS 对应的是访视日路线上的工位，不是医院科室。</div>
+  </div>
+</div>
+
+<div class="profile" id="marley">
+  <header>
+    <div class="row1"><span class="mono">6</span><h3>Marley（Frappe Healthcare + marley_frontend）</h3></div>
+    <div class="sub">ERPNext 上的 HIS：挂号、科室、医生排班、排队叫号、病历。空库必须先配主数据。不是化妆品试验现场系统。</div>
+    <div class="tags"><span class="badge b-oss">开源</span><span class="badge b-self">自部署 :18090</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="http://118.196.64.48:18090/login">http://118.196.64.48:18090/login</a>
+      <div class="cred">向导账号 wuxianyu　　邮箱 wuxianyu@china-norm.com　　密码 6h3rQkUux9G5hzjZzzpj<br>系统管理员 Administrator　　密码 admin<br>Healthcare：登录后打开 /desk/healthcare</div>
+      <span class="st warn">探活 200 · 若 URL 停在 /desk/setup-wizard/1 把 4 步向导点完</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>医院/诊所的<strong>挂号—候诊—接诊—收费</strong>。排队和诊室是现成的，但科室、医生、服务单元、排班都要先手工配，否则全是 0。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">底座</div><div class="v">Frappe + ERPNext v16</div></div>
+      <div class="fact"><div class="k">HIS 应用</div><div class="v">earthians/marley（app 名 healthcare）</div></div>
+      <div class="fact"><div class="k">前端</div><div class="v">marley_frontend（Vue 诊室/排队 UI）</div></div>
+      <div class="fact"><div class="k">本实例</div><div class="v">镜像 marley-frontend:amd64 + MariaDB + Redis，compose 项目名 marley</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录并完成向导</b><span>语言/国家、管理员、公司名（可勾 ERPNext 演示数据）。</span></li>
+      <li><b>进 Healthcare</b><span>Desk 红心图标，或 /desk/healthcare。</span></li>
+      <li><b>配主数据</b><span>Medical Department → Healthcare Practitioner → Practitioner Schedule → Service Unit。</span></li>
+      <li><b>建患者</b><span>Patient。</span></li>
+      <li><b>预约 / 排队</b><span>Patient Appointment；有排班才会出现可约时段。再看 waitlist / kiosk / TokenDisplay。</span></li>
+      <li><b>接诊</b><span>Patient Encounter 写病程；与试验「按方案任务勾选」不是同一套。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>看排队大屏、诊室占用、预约时段。不要把 ERPNext 库存/会计当测试品账。测试品发放回收称重必须留在 KIS。</div>
+  </div>
+</div>
+
+<div class="profile" id="openeyes">
+  <header>
+    <div class="row1"><span class="mono">7</span><h3>OpenEyes</h3></div>
+    <div class="sub">开源眼科电子病历：按「事件」记检查、手术、影像。可看专科表单与影像挂接；不是多中心功效评价操作系统。</div>
+    <div class="tags"><span class="badge b-oss">开源</span><span class="badge b-self">自部署 :7780</span></div>
+  </header>
+  <div class="body">
+    <div class="access">
+      <div class="lab">访问方式</div>
+      <a href="http://118.196.64.48:7780/site/login">http://118.196.64.48:7780/site/login</a>
+      <div class="cred">登录页已可打开。常见默认 admin / admin（以库内用户为准）。</div>
+      <span class="st">探活 200 · 已补 node_modules/mustache，不再 CException</span>
+    </div>
+    <h4>解决什么问题</h4>
+    <p>眼科门诊/病房把<strong>一次检查当成一个 Event</strong>：视力、眼前节、影像、手术记录挂在同一患者时间线上。</p>
+    <h4>技术架构</h4>
+    <div class="facts">
+      <div class="fact"><div class="k">形态</div><div class="v">PHP 8.1 · Yii 1.1 · Apache</div></div>
+      <div class="fact"><div class="k">数据</div><div class="v">MariaDB；本实例含 sample 库 + 本地 migrate</div></div>
+      <div class="fact"><div class="k">前端资源</div><div class="v">Yii AssetManager 发布 node_modules（mustache 等）</div></div>
+    </div>
+    <h4>操作流程</h4>
+    <ol class="flow">
+      <li><b>登录</b><span>/site/login。</span></li>
+      <li><b>找患者</b><span>搜索或从当日列表进入。</span></li>
+      <li><b>新建 Event</b><span>选事件类型（检查/手术等）。</span></li>
+      <li><b>填专科表</b><span>按部位/检查项填写，保存即进病历时间线。</span></li>
+      <li><b>挂影像</b><span>摄影/OCT 等作为附件或专用事件。</span></li>
+    </ol>
+    <div class="verdict"><b class="t">对 KIS</b>参考「一次到访多个检查事件」的信息架构，以及影像与检查单绑定。不要用眼科字典替换功效评价任务清单。路径前缀反代会打坏 /assets。</div>
+  </div>
+</div>
+
+
+<section id="matrix">
+  <h2><span class="num">9</span>横向对比：能不能当现场系统 / 能抄什么</h2>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>系统</th><th>对我方现场覆盖</th><th>建议用法</th><th>明确不要做的</th></tr></thead>
+    <tbody>
+      <tr><td>LibreClinica</td><td class="y">只覆盖 eCRF 段</td><td>抄 Query / 审计 / 签名 / 锁库 / 测试规范</td><td>替换访视操作台</td></tr>
+      <tr><td>Mautic</td><td class="y">只覆盖招募漏斗前段</td><td>抄来源、无人跟进、培育</td><td>用营销云管入组后访视</td></tr>
+      <tr><td>Med Track</td><td class="r">门诊模型</td><td>看轻量当日队列交互</td><td>当试验现场</td></tr>
+      <tr><td>Medplum</td><td class="r">平台不是产品</td><td>抄 FHIR 资源切分（中长期）</td><td>现场老师直接在云上点任务</td></tr>
+      <tr><td>OpenMRS 队列</td><td class="y">队列状态机可对标导检</td><td>抄叫号 / 转队列 / 工位</td><td>引入整套医院 Location 树</td></tr>
+      <tr><td>Marley</td><td class="y">挂号叫号可看</td><td>抄大屏与诊室占用</td><td>用 ERP 库存当测试品账</td></tr>
+      <tr><td>OpenEyes</td><td class="y">检查事件 + 影像</td><td>抄事件时间线与影像挂接</td><td>眼科流程当功效评价 SOP</td></tr>
+    </tbody>
+  </table>
+  </div>
+</section>
+
+<section id="borrow">
+  <h2><span class="num">10</span>给当前 KIS 的功能 / 参考清单</h2>
+  <p class="lead">当前系统 = 化妆品人体功效评价现场主干：招募与预约、预检签到、导检、访视任务、测试品、仪器影像、日记齐套、签出。下面只列「值得搬观念或旁路接入」的点。</p>
+  <div class="tblwrap">
+  <table>
+    <thead><tr><th>KIS 模块</th><th>可提供的功能或参考</th><th>优先看哪套</th></tr></thead>
+    <tbody>
+      <tr><td>招募 / 线索</td><td>广告来源、UTM、超过 N 小时未联系的待办</td><td>Mautic</td></tr>
+      <tr><td>预检签到 · 导检</td><td>队列、叫号、转工位、大屏</td><td>OpenMRS Queues、Marley、Med Track</td></tr>
+      <tr><td>访视任务 / eCRF 附属采集</td><td>质疑、改数原因、审计、签名、锁库</td><td>LibreClinica</td></tr>
+      <tr><td>测量影像</td><td>检查事件与影像同一时间线</td><td>OpenEyes</td></tr>
+      <tr><td>日记 / 问卷</td><td>Questionnaire 资源切分（不必上 FHIR 也能学建模）</td><td>Medplum 概念</td></tr>
+      <tr><td>测试品发放回收称重</td><td><b>无可抄成品</b>，继续自研</td><td>—</td></tr>
+      <tr><td>验证 / 审计包</td><td>公开测试规范 + 自测证据，降低 Part 11 / GCP 叙述成本</td><td>LibreClinica</td></tr>
+    </tbody>
+  </table>
+  </div>
+  <div class="box ok">
+    <b class="t">建议的体验顺序（每套 20–40 分钟）</b>
+    ① LibreClinica：建一个假研究，走录入和 Query。<br>
+    ② OpenMRS 队列：登录后只玩 Service Queues。<br>
+    ③ Marley：走完向导，配一个科室+医生+诊室，挂一个预约。<br>
+    ④ Mautic：建一个带 UTM 的表单，提交一条线索，看 Contact 来源。<br>
+    ⑤ OpenEyes：登录后打开一个 sample 患者的 Event。<br>
+    ⑥ Med Track / Medplum：扫一眼交互和资源模型即可。
+  </div>
+</section>
+
+<footer class="end">内部文档 · 账号仅用于火山云体验实例 · 不要把演示密码用于生产 · 探活 2026-09-28</footer>
+</div>
+<a class="toTop on" href="#tldr">↑</a>
+
+</body>
+</html>
