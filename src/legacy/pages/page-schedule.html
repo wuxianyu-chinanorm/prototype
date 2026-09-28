@@ -1,0 +1,127 @@
+<div class="page-header">
+          <div>
+            <h1>项目受理</h1>
+            <p class="subtitle">接收研究全链路推送 · 受理版本随推送带入 · 伦理批件 / 资源准备 / 招募预约 / 配置发布均绿灯后可工单派发</p>
+          </div>
+        </div>
+        <div class="data-panel">
+          <div class="data-panel__toolbar">
+            <div class="data-panel__filters filter-row" style="margin:0;">
+              <input type="search" class="input input--search" placeholder="研究编号 / 名称…" aria-label="搜索受理列表" />
+              <select class="input" id="accept-filter-status" aria-label="受理状态筛选">
+                <option value="all" selected>全部受理状态</option>
+                <option value="pending">未受理</option>
+                <option value="unscheduled">已受理·无排期</option>
+                <option value="scheduled">已受理·有排期</option>
+              </select>
+            </div>
+          </div>
+          <div class="data-panel__quick-bar data-panel__quick-bar--accept">
+            <div class="quick-filters" id="accept-quick-filters" role="toolbar" aria-label="受理快捷筛选">
+              <button type="button" class="is-active" data-accept-quick="all">全部 <span class="qf-count">(4)</span></button>
+              <button type="button" data-accept-quick="pending">待处理 <span class="qf-count">(1)</span></button>
+              <button type="button" data-accept-quick="gate-fail">门禁未过 <span class="qf-count">(2)</span></button>
+              <button type="button" data-accept-quick="rejected">已拒收 <span class="qf-count">(1)</span></button>
+            </div>
+          </div>
+          <div class="acceptance-table-scroll">
+            <table class="acceptance-table" id="acceptance-table" aria-label="项目受理列表">
+              <colgroup>
+                <col class="col-acc-id" />
+                <col class="col-acc-name" />
+                <col class="col-acc-ver" />
+                <col class="col-acc-status" />
+                <col class="col-acc-at" />
+                <col class="col-acc-by" />
+                <col class="col-acc-desk" />
+                <col class="col-acc-act" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>研究编号</th>
+                  <th>研究名称</th>
+                  <th class="th-center">受理版本</th>
+                  <th class="th-center">受理状态</th>
+                  <th class="th-center">受理时间</th>
+                  <th class="th-center">受理人</th>
+                  <th class="th-downstream-ack th-center" title="两组各两灯均为绿，方可工单派发">下游确认</th>
+                  <th class="th-center">操作</th>
+                </tr>
+              </thead>
+              <tbody id="acceptance-table-body">
+                <tr data-study-id="H2607051" data-study-name="高夫洁面clt+hut" data-accept-status="pending" data-accept-version="1" data-ack-ethics="off" data-ack-resource="off" data-ack-config="off">
+                  <td class="col-acc-id-cell"><span class="cell-mono">H2607051</span></td>
+                  <td class="td-wrap"><span class="td-clamp-2">高夫洁面clt+hut</span></td>
+                  <td class="td-center" data-col="accept-version"></td>
+                  <td class="td-center" data-col="accept-status"></td>
+                  <td class="td-center td-muted" data-col="accept-at">—</td>
+                  <td class="td-center td-muted" data-col="accept-by">—</td>
+                  <td data-col="desk-ack"><span class="td-muted">—</span></td>
+                  <td data-col="accept-actions"></td>
+                </tr>
+                <tr data-study-id="H26076887" data-study-name="Lipstick PRG 7000021803" data-accept-status="scheduled" data-accept-version="1" data-accept-at="2026-09-22 09:00" data-accept-by="张三" data-ack-ethics="ok" data-ack-resource="ok" data-ack-config="warn">
+                  <td class="col-acc-id-cell"><span class="cell-mono">H26076887</span></td>
+                  <td class="td-wrap"><span class="td-clamp-2">Lipstick PRG 7000021803</span></td>
+                  <td class="td-center" data-col="accept-version"></td>
+                  <td class="td-center" data-col="accept-status"></td>
+                  <td class="td-center td-date" data-col="accept-at"></td>
+                  <td data-col="accept-by"></td>
+                  <td data-col="desk-ack">
+                    <div class="downstream-ack-grid" aria-label="伦理批件绿灯，资源准备绿灯，招募预约黄灯，配置发布黄灯">
+                      <div class="downstream-pair">
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--ok" title="伦理批件 · 绿灯"></span><span class="downstream-lamp-col__label"><span>伦理</span><span>批件</span></span></div>
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--ok" title="资源准备 · 绿灯"></span><span class="downstream-lamp-col__label"><span>资源</span><span>准备</span></span></div>
+                      </div>
+                      <span class="downstream-lamps__sep" aria-hidden="true">-</span>
+                      <div class="downstream-pair">
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--warn" title="招募预约 · 黄灯"></span><span class="downstream-lamp-col__label"><span>招募</span><span>预约</span></span></div>
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--warn" title="配置发布 · 黄灯"></span><span class="downstream-lamp-col__label"><span>配置</span><span>发布</span></span></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-col="accept-actions"></td>
+                </tr>
+                <tr data-study-id="H26065102" data-study-name="精华液结合水光针注射4周临床研究" data-accept-status="rejected" data-accept-version="1" data-accept-at="2026-09-21 16:30" data-accept-by="张三" data-ack-ethics="off" data-ack-resource="off" data-ack-config="off">
+                  <td class="col-acc-id-cell"><span class="cell-mono">H26065102</span></td>
+                  <td class="td-wrap"><span class="td-clamp-2">精华液结合水光针注射4周临床研究</span></td>
+                  <td class="td-center" data-col="accept-version"></td>
+                  <td class="td-center" data-col="accept-status"></td>
+                  <td class="td-center td-date" data-col="accept-at"></td>
+                  <td data-col="accept-by"></td>
+                  <td data-col="desk-ack"><span class="td-muted">—</span></td>
+                  <td data-col="accept-actions"></td>
+                </tr>
+                <tr data-study-id="H26070219" data-study-name="New mask sensory evaluation" data-accept-status="unscheduled" data-accept-version="1" data-accept-at="2026-09-20 14:20" data-accept-by="张三" data-ack-ethics="ok" data-ack-resource="warn" data-ack-config="off">
+                  <td class="col-acc-id-cell"><span class="cell-mono">H26070219</span></td>
+                  <td class="td-wrap"><span class="td-clamp-2">New mask sensory evaluation</span></td>
+                  <td class="td-center" data-col="accept-version"></td>
+                  <td class="td-center" data-col="accept-status"></td>
+                  <td class="td-center td-date" data-col="accept-at"></td>
+                  <td data-col="accept-by"></td>
+                  <td data-col="desk-ack">
+                    <div class="downstream-ack-grid" aria-label="伦理批件绿灯，资源准备黄灯，招募预约灰灯，配置发布灰灯">
+                      <div class="downstream-pair">
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--ok" title="伦理批件 · 绿灯"></span><span class="downstream-lamp-col__label"><span>伦理</span><span>批件</span></span></div>
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--warn" title="资源准备 · 黄灯"></span><span class="downstream-lamp-col__label"><span>资源</span><span>准备</span></span></div>
+                      </div>
+                      <span class="downstream-lamps__sep" aria-hidden="true">-</span>
+                      <div class="downstream-pair">
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--off" title="招募预约 · 灰灯"></span><span class="downstream-lamp-col__label"><span>招募</span><span>预约</span></span></div>
+                        <div class="downstream-lamp-col"><span class="lamp-dot lamp-dot--off" title="配置发布 · 灰灯"></span><span class="downstream-lamp-col__label"><span>配置</span><span>发布</span></span></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td data-col="accept-actions"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <footer class="table-footer-bar" aria-label="受理列表说明">
+            <div class="table-footer-bar__legend">
+              <div class="acceptance-legend">
+                <span>下游：伦理批件·资源准备 | 招募预约·配置发布（灯在上、名称在下；未受理为 —）</span>
+                <span style="margin-left:10px;">四灯均为绿后，「工单派发」可用</span>
+              </div>
+            </div>
+          </footer>
+        </div>

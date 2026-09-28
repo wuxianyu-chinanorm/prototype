@@ -1,0 +1,1182 @@
+<div id="plan-list-shell" class="plan-list-shell recruit-view-panel is-active" data-recruit-panel="plans">
+        <div class="page-header">
+          <div>
+            <h1>招募计划管理</h1>
+            <p class="subtitle">创建和管理招募计划，追踪招募进度</p>
+          </div>
+          <div class="page-actions">
+            <button type="button" class="btn" id="btn-export">导出（需审批）</button>
+            <button type="button" class="btn btn--primary" id="btn-new-plan" disabled title="计划壳由调度入站创建，V1 不在此新建空计划">
+              新建计划
+            </button>
+          </div>
+        </div>
+
+        <div class="data-panel" id="recruit-plans-panel">
+          <div class="data-panel__toolbar">
+            <div class="data-panel__filters filter-row">
+              <input type="search" class="input input--search" placeholder="编号 / 标题 / 状态…" aria-label="搜索计划" title="查询编号、标题等" />
+              <select class="input" id="recruit-status-filter" aria-label="招募状态">
+                <option value="all" selected>全部招募状态</option>
+                <option value="not_started">未开始</option>
+                <option value="in_progress">进行中</option>
+                <option value="completed">已完成</option>
+              </select>
+            </div>
+          </div>
+          <div class="data-panel__quick-bar" id="recruit-plans-quick-bar">
+            <span class="data-panel__quick-label">快捷</span>
+            <div class="quick-filters" role="toolbar" aria-label="入站快捷筛选" id="recruit-plan-quick-filters">
+              <button type="button" class="is-active" data-quick="all">全部 <span class="qf-count">(3)</span></button>
+              <button type="button" data-quick="scheduled">有排期入站 <span class="qf-count">(2)</span></button>
+              <button type="button" data-quick="unscheduled">无排期入站 <span class="qf-count">(1)</span></button>
+              <button type="button" data-quick="today-new">今日新增 <span class="qf-count">(1)</span></button>
+            </div>
+          </div>
+          <div class="plan-table-scroll">
+            <table class="plan-table" aria-label="招募计划列表">
+              <colgroup>
+                <col class="col-study-id" />
+                <col class="col-study-name" />
+                <col style="width:2.35rem" />
+                <col style="width:2.35rem" />
+                <col style="width:4.4rem" />
+                <col style="width:4.4rem" />
+                <col style="width:3rem" />
+                <col style="width:2.5rem" />
+                <col style="width:4.75rem" />
+                <col style="width:4.75rem" />
+                <col class="col-actions" style="width:4.75rem" />
+              </colgroup>
+              <thead>
+                <tr>
+                  <th class="th-sticky-left">研究编号</th>
+                  <th class="th-study-name">研究名称</th>
+                  <th>样本量</th>
+                  <th title="计划预约人数；默认样本量×1.5，可在招募包弹窗修改保存">计划预约&#10;人数</th>
+                  <th>招募启动&#10;日期</th>
+                  <th>招募结束&#10;日期</th>
+                  <th title="本计划负责招募的专员">招募&#10;专员</th>
+                  <th title="招募计划生命周期">招募&#10;状态</th>
+                  <th class="th-rate">预约完成率</th>
+                  <th class="th-rate">入组完成率</th>
+                  <th class="th-sticky-right th-actions">操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-today-new="1" data-inbound="unscheduled" data-study-id="H2607051" data-study-name="高夫洁面clt+hut" data-sample-size="36" data-appt-quota="54" data-inbound-pkg="pending" data-inbound-schedule="pending" data-recruit-lifecycle="not_started">
+                  <td class="td-sticky-left">
+                    <div class="study-id-cell">
+                      <span class="cell-mono">H2607051</span>
+                      <span class="plan-new-badge" title="今日新增">新</span>
+                    </div>
+                  </td>
+                  <td class="td-title" title="刚入站未排期入站"><span class="td-clamp-2">高夫洁面clt+hut</span></td>
+                  <td class="td-narrow">36</td>
+                  <td class="td-narrow td-muted" data-col="appt-quota">54</td>
+                  <td class="td-date">2026-09-22</td>
+                  <td class="td-date">2026-11-12</td>
+                  <td class="td-narrow" data-col="recruit-specialist" title="待分配">—</td>
+                  <td class="td-narrow" data-col="recruit-status">
+                    <span class="badge-cell badge-cell--status-not-started plan-status-badge">未开始</span>
+                  </td>
+                  <td>
+                    <div class="rate-cell" title="0% (0/0)">
+                      <div class="rate-cell__bar"><span style="width:0%"></span></div>
+                      <span class="rate-cell__pct">0%</span>
+                      <span class="rate-cell__frac">(0/0)</span>
+                    </div>
+                  </td>
+                  <td data-col="enroll-rate">
+                    <div class="rate-cell" title="0% (0/36)">
+                      <div class="rate-cell__bar"><span style="width:0%"></span></div>
+                      <span class="rate-cell__pct">0%</span>
+                      <span class="rate-cell__frac">(0/36)</span>
+                    </div>
+                  </td>
+                  <td class="td-sticky-right td-actions">
+                    <div class="plan-row-actions">
+                      <button type="button" class="btn-op-link" data-action="open-plan-detail">详情</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-inbound="scheduled" data-study-id="H26076887" data-study-name="Lipstick PRG 7000021803" data-sample-size="80" data-specialists="李思雨" data-appt-quota="120" data-inbound-pkg="confirmed" data-inbound-schedule="pending" data-recruit-plan-enabled="1" data-recruit-plan-saved="1" data-recruit-lifecycle="in_progress">
+                  <td class="td-sticky-left">
+                    <span class="cell-mono">H26076887</span>
+                  </td>
+                  <td class="td-title" title="已排期入站"><span class="td-clamp-2">Lipstick PRG 7000021803</span></td>
+                  <td class="td-narrow">80</td>
+                  <td class="td-narrow" data-col="appt-quota">120</td>
+                  <td class="td-date">2026-11-02</td>
+                  <td class="td-date">2026-11-09</td>
+                  <td class="td-narrow" data-col="recruit-specialist">李思雨</td>
+                  <td class="td-narrow" data-col="recruit-status">
+                    <span class="badge-cell badge-cell--status-active plan-status-badge">进行中</span>
+                  </td>
+                  <td>
+                    <div class="rate-cell" title="36.7% (44/120)">
+                      <div class="rate-cell__bar"><span style="width:36.7%"></span></div>
+                      <span class="rate-cell__pct">36.7%</span>
+                      <span class="rate-cell__frac">(44/120)</span>
+                    </div>
+                  </td>
+                  <td data-col="enroll-rate">
+                    <div class="rate-cell" title="0% (0/80)">
+                      <div class="rate-cell__bar"><span style="width:0%"></span></div>
+                      <span class="rate-cell__pct">0%</span>
+                      <span class="rate-cell__frac">(0/80)</span>
+                    </div>
+                  </td>
+                  <td class="td-sticky-right td-actions">
+                    <div class="plan-row-actions">
+                      <button type="button" class="btn-op-link" data-action="open-plan-detail">详情</button>
+                    </div>
+                  </td>
+                </tr>
+                <tr data-inbound="scheduled" data-study-id="C26005288" data-study-name="舒缓修护面霜 7天 CLT" data-sample-size="10" data-specialists="陈雨桐" data-appt-quota="15" data-inbound-pkg="confirmed" data-inbound-schedule="confirmed" data-recruit-plan-enabled="1" data-recruit-plan-saved="1" data-recruit-lifecycle="completed">
+                  <td class="td-sticky-left">
+                    <span class="cell-mono">C26005288</span>
+                  </td>
+                  <td class="td-title" title="入组已满 · 计划预约已满"><span class="td-clamp-2">舒缓修护面霜 7天 CLT</span></td>
+                  <td class="td-narrow">10</td>
+                  <td class="td-narrow" data-col="appt-quota">15</td>
+                  <td class="td-date">2026-08-18</td>
+                  <td class="td-date">2026-09-20</td>
+                  <td class="td-narrow" data-col="recruit-specialist">陈雨桐</td>
+                  <td class="td-narrow" data-col="recruit-status">
+                    <span class="badge-cell badge-cell--status-done plan-status-badge">已完成</span>
+                  </td>
+                  <td>
+                    <div class="rate-cell" title="100% (15/15)">
+                      <div class="rate-cell__bar"><span style="width:100%"></span></div>
+                      <span class="rate-cell__pct">100%</span>
+                      <span class="rate-cell__frac">(15/15)</span>
+                    </div>
+                  </td>
+                  <td data-col="enroll-rate">
+                    <div class="rate-cell" title="100% (10/10)">
+                      <div class="rate-cell__bar"><span style="width:100%"></span></div>
+                      <span class="rate-cell__pct">100%</span>
+                      <span class="rate-cell__frac">(10/10)</span>
+                    </div>
+                  </td>
+                  <td class="td-sticky-right td-actions">
+                    <div class="plan-row-actions">
+                      <button type="button" class="btn-op-link" data-action="open-plan-detail">详情</button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <footer class="table-footer-bar" aria-label="表格底部">
+            <div class="table-footer-bar__legend">
+              <p class="inbound-tone-legend" aria-label="列表行字色说明">
+                <span class="inbound-tone-legend__label">字色说明：</span>
+                <span class="tone-unscheduled">灰色 · 未排期入站</span>
+                <span class="tone-changed">黄色 · 有变更</span>
+                <span class="tone-scheduled">蓝色 · 已排期入站</span>
+                <span style="margin-left:12px;">招募状态：保存并启动计划 → 进行中；入组完成率 100% → 已完成</span>
+              </p>
+            </div>
+            <div class="table-footer-bar__main">
+              <div class="table-pagination__meta">
+                <div class="table-pagination__summary" id="table-range-summary">共 2 条</div>
+                <div class="table-pagination__size">
+                  <label for="table-page-size">每页</label>
+                  <select id="table-page-size" aria-label="每页条数">
+                    <option value="20" selected>20</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                  </select>
+                  <span>条</span>
+                </div>
+              </div>
+              <nav class="table-pagination" aria-label="分页导航">
+                <button type="button" disabled aria-label="上一页">上一页</button>
+                <button type="button" class="is-active" aria-current="page" aria-label="第 1 页">1</button>
+                <button type="button" disabled aria-label="下一页">下一页</button>
+              </nav>
+            </div>
+          </footer>
+        </div><!-- /data-panel 招募计划列表 -->
+        </div><!-- /plan-list-shell -->
+
+        <div class="recruit-view-panel" id="recruit-panel-appointments" data-recruit-panel="appointments">
+          <div class="page-header">
+            <div>
+              <h1>预约管理</h1>
+              <p class="subtitle">新建预约、导入预约表 · 按到访日筛选当日预约队列</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" class="btn btn--primary" id="btn-appt-create">+ 新建预约</button>
+              <button type="button" class="btn" id="btn-appt-import">导入预约表</button>
+            </div>
+          </div>
+          <div class="data-panel" id="appt-queue-panel">
+            <div class="appt-month-calendar" aria-label="到访月历">
+              <div class="appt-month-calendar__nav">
+                <button type="button" class="appt-cal-nav" id="appt-cal-prev" aria-label="上个月">‹</button>
+                <span class="appt-month-calendar__title" id="appt-cal-title">2026年09月</span>
+                <button type="button" class="appt-cal-nav" id="appt-cal-next" aria-label="下个月">›</button>
+              </div>
+              <div class="appt-month-calendar__weekdays" aria-hidden="true">
+                <span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span>
+              </div>
+              <div class="appt-month-calendar__days" id="appt-calendar-days" role="grid" aria-label="2026年9月到访日"></div>
+              <div class="appt-cal-legend" aria-label="月历统计图例">
+                <span class="appt-cal-legend__item">
+                  <span class="appt-cal-legend__swatch appt-cal-legend__swatch--studies" aria-hidden="true"></span>
+                  研究数
+                </span>
+                <span class="appt-cal-legend__item">
+                  <span class="appt-cal-legend__swatch appt-cal-legend__swatch--appt" aria-hidden="true"></span>
+                  预约人数
+                </span>
+                <span class="appt-cal-legend__item">
+                  <span class="appt-cal-legend__swatch appt-cal-legend__swatch--zero" aria-hidden="true"></span>
+                  当日无预约 / 无研究
+                </span>
+                <span class="appt-cal-legend__item">
+                  <span class="appt-cal-legend__swatch appt-cal-legend__swatch--selected" aria-hidden="true"></span>
+                  当前筛选日
+                </span>
+              </div>
+            </div>
+            <div class="data-panel__toolbar">
+              <div class="appt-filter-toolbar">
+                <div class="appt-filter-grid">
+                  <select class="input" id="appt-filter-study" aria-label="研究编号">
+                    <option value="" selected>请选择研究编号</option>
+                    <option value="C26005075">C26005075</option>
+                    <option value="C26005101">C26005101</option>
+                    <option value="H26076887">H26076887</option>
+                    <option value="C26005288">C26005288</option>
+                  </select>
+                  <input
+                    type="search"
+                    class="input input--search appt-filter-search"
+                    id="appt-filter-search"
+                    placeholder="请搜索"
+                    aria-label="姓名或手机号搜索"
+                  />
+                </div>
+                <button type="button" class="btn" style="font-size:12px;color:#b91c1c;border-color:#fecaca;background:#fef2f2;flex-shrink:0;" disabled title="未勾选行">批量取消预约</button>
+              </div>
+            </div>
+            <div class="data-panel__quick-bar appt-v1-quick">
+              <span class="data-panel__quick-label">V1 预约</span>
+              <div class="quick-filters appt-v1-stats" role="toolbar" aria-label="研究快捷筛选">
+                <button type="button" class="is-active" data-appt-study="">全部 <span class="qf-count">(9)</span></button>
+                <button type="button" data-appt-study="C26005288">C26005288 <span class="qf-count">(5)</span></button>
+                <button type="button" data-appt-study="C26005075">C26005075 <span class="qf-count">(2)</span></button>
+                <button type="button" data-appt-study="C26005101">C26005101 <span class="qf-count">(1)</span></button>
+                <button type="button" data-appt-study="H26076887">H26076887 <span class="qf-count">(1)</span></button>
+              </div>
+            </div>
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="预约队列">
+                <colgroup>
+                  <col style="width:2.25rem" />
+                  <col style="width:6.5rem" />
+                  <col style="width:4rem" />
+                  <col style="width:3.25rem" />
+                  <col style="width:2.25rem" />
+                  <col style="width:2.25rem" />
+                  <col style="width:5.5rem" />
+                  <col style="width:4rem" />
+                  <col style="width:5rem" />
+                  <col style="width:3rem" />
+                  <col style="width:8.5rem" />
+                  <col style="width:4.5rem" />
+                  <col style="width:5.5rem" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th><input type="checkbox" aria-label="全选" disabled title="原型示意" /></th>
+                    <th>研究编号</th>
+                    <th>受试者姓名</th>
+                    <th>拼音</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>联络员</th>
+                    <th>备注</th>
+                    <th>访视点</th>
+                    <th>预约到访</th>
+                    <th>状态</th>
+                    <th class="col-sticky-op">操作</th>
+                  </tr>
+                </thead>
+                <tbody id="appt-queue-tbody">
+                  <tr data-appt-study="C26005075">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005075</td>
+                    <td class="pii-mask">张*</td>
+                    <td>ZM</td>
+                    <td>28</td>
+                    <td>女</td>
+                    <td class="cell-mono">138****2201</td>
+                    <td class="pii-mask">李*</td>
+                    <td class="td-muted">—</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-24 09:30</span>
+                        <span><span class="appt-time-stack__label">签到</span>—</span>
+                        <span><span class="appt-time-stack__label">签出</span>—</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">预约成功</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="appt-stub">编辑</button>
+                        <button type="button" class="table-row-actions__link table-row-actions__link--danger" data-action="appt-stub">取消</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005101">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005101</td>
+                    <td class="pii-mask">李*</td>
+                    <td>LT</td>
+                    <td>32</td>
+                    <td>女</td>
+                    <td class="cell-mono">139****8832</td>
+                    <td class="pii-mask">孙*</td>
+                    <td class="td-muted">敏感肌</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-24 10:00</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-24 09:52</span>
+                        <span><span class="appt-time-stack__label">签出</span>—</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--info">待签到</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">已推访视</span>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005075">
+                    <td class="td-muted">—</td>
+                    <td class="cell-mono">C26005075</td>
+                    <td class="pii-mask">王*</td>
+                    <td>WH</td>
+                    <td>25</td>
+                    <td>男</td>
+                    <td class="cell-mono">137****0091</td>
+                    <td class="pii-mask">童*</td>
+                    <td class="td-muted">导入</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-24 14:00</span>
+                        <span><span class="appt-time-stack__label">签到</span>—</span>
+                        <span><span class="appt-time-stack__label">签出</span>—</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--warn">导入挂起</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="appt-stub">编辑</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="H26076887">
+                    <td class="td-muted">—</td>
+                    <td class="cell-mono">H26076887</td>
+                    <td class="pii-mask">赵*</td>
+                    <td>ZL</td>
+                    <td>41</td>
+                    <td>女</td>
+                    <td class="cell-mono">136****7710</td>
+                    <td class="td-muted">—</td>
+                    <td class="td-muted">黑名单</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-24 15:30</span>
+                        <span><span class="appt-time-stack__label">签到</span>—</span>
+                        <span><span class="appt-time-stack__label">签出</span>—</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--muted">未约</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">不可取消</span>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005288">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="pii-mask">周*</td>
+                    <td>ZY</td>
+                    <td>26</td>
+                    <td>女</td>
+                    <td class="cell-mono">135****6612</td>
+                    <td class="pii-mask">陈*</td>
+                    <td class="td-muted">—</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-18 09:00</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-18 08:55</span>
+                        <span><span class="appt-time-stack__label">签出</span>2026-09-18 12:10</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">预约成功</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">已入组</span>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005288">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="pii-mask">吴*</td>
+                    <td>WX</td>
+                    <td>29</td>
+                    <td>女</td>
+                    <td class="cell-mono">136****8820</td>
+                    <td class="pii-mask">陈*</td>
+                    <td class="td-muted">—</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-18 10:30</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-18 10:28</span>
+                        <span><span class="appt-time-stack__label">签出</span>2026-09-18 13:05</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">预约成功</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">已入组</span>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005288">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="pii-mask">郑*</td>
+                    <td>ZH</td>
+                    <td>33</td>
+                    <td>男</td>
+                    <td class="cell-mono">137****1190</td>
+                    <td class="pii-mask">陈*</td>
+                    <td class="td-muted">—</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-19 14:00</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-19 13:58</span>
+                        <span><span class="appt-time-stack__label">签出</span>2026-09-19 16:40</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">预约成功</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="appt-stub">改期</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005288">
+                    <td><input type="checkbox" aria-label="选择预约" /></td>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="pii-mask">冯*</td>
+                    <td>FY</td>
+                    <td>24</td>
+                    <td>女</td>
+                    <td class="cell-mono">138****3308</td>
+                    <td class="pii-mask">陈*</td>
+                    <td class="td-muted">筛败替换</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-19 15:30</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-19 15:25</span>
+                        <span><span class="appt-time-stack__label">签出</span>—</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--err">筛败</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">只读</span>
+                    </td>
+                  </tr>
+                  <tr data-appt-study="C26005288">
+                    <td><input type="checkbox" aria-label="选择预约" disabled title="计划已满 · 仅展示占档" /></td>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="pii-mask">蒋*</td>
+                    <td>JL</td>
+                    <td>27</td>
+                    <td>女</td>
+                    <td class="cell-mono">139****7744</td>
+                    <td class="pii-mask">陈*</td>
+                    <td class="td-muted">末批占档</td>
+                    <td>V1</td>
+                    <td class="td-appt-visit">
+                      <div class="appt-time-stack">
+                        <span><span class="appt-time-stack__label">预约</span>2026-09-20 11:00</span>
+                        <span><span class="appt-time-stack__label">签到</span>2026-09-20 10:58</span>
+                        <span><span class="appt-time-stack__label">签出</span>2026-09-20 14:02</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">预约成功</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="appt-stub">编辑</button>
+                        <button type="button" class="table-row-actions__link table-row-actions__link--danger" data-action="appt-stub">取消</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="预约列表底部">
+              <div class="table-footer-bar__main">
+                <div class="table-pagination__meta">
+                  <div class="table-pagination__summary" id="appt-queue-summary">共 9 条 · 2026-09-24 队列</div>
+                  <div class="table-pagination__size">
+                    <label for="appt-page-size">每页</label>
+                    <select id="appt-page-size" aria-label="每页条数">
+                      <option value="20" selected>20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    <span>条</span>
+                  </div>
+                </div>
+                <nav class="table-pagination" aria-label="分页">
+                  <button type="button" disabled aria-label="上一页">上一页</button>
+                  <button type="button" class="is-active" aria-current="page" aria-label="第 1 页">1</button>
+                  <button type="button" disabled aria-label="下一页">下一页</button>
+                </nav>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <div class="recruit-view-panel" id="recruit-panel-screening" data-recruit-panel="screening">
+          <div class="page-header">
+            <div>
+              <h1>筛选管理</h1>
+              <p class="subtitle">只读消费筛选入组台 · 入组情况 / 知情 / 筛败结论（不可改写）</p>
+            </div>
+          </div>
+          <div class="recruit-readonly-banner" role="note">
+            <span class="desk-tag">筛选入组台 · 真源</span>
+            <span>本页为招募侧<strong>只读</strong>视图：<strong>入组情况、入组编号、知情签署/撤回</strong>由筛选入组台写入；SC 号由访视操作台签到后同步展示。招募台<strong>不提供</strong>编辑入口。</span>
+          </div>
+          <div class="filter-row">
+            <select id="screening-filter-study" aria-label="研究编号">
+              <option value="" selected>全部研究</option>
+              <option value="C26005288">C26005288</option>
+              <option value="H26076887">H26076887</option>
+              <option value="H26065102">H26065102</option>
+            </select>
+            <input type="search" placeholder="姓名 / SC号 / 手机号" aria-label="搜索" style="min-width: 220px;" />
+            <select aria-label="入组情况">
+              <option selected>全部入组情况</option>
+              <option>筛选中</option>
+              <option>已入组</option>
+              <option>筛败</option>
+              <option>知情撤回</option>
+            </select>
+          </div>
+          <div class="paper">
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="筛选只读列表" id="screening-visit-table">
+                <thead>
+                  <tr>
+                    <th>研究编号</th>
+                    <th>SC号</th>
+                    <th>RD号</th>
+                    <th>姓名</th>
+                    <th>知情签署</th>
+                    <th>入组情况</th>
+                    <th>结论说明</th>
+                    <th>同步时间</th>
+                  </tr>
+                </thead>
+                <tbody id="screening-visit-tbody">
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250901</td>
+                    <td class="cell-mono">RD-90101</td>
+                    <td class="pii-mask">周*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>入排终裁通过 · 样本 1/10</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 12:15</td>
+                  </tr>
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250902</td>
+                    <td class="cell-mono">RD-90102</td>
+                    <td class="pii-mask">吴*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>入排终裁通过 · 样本 2/10</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 13:20</td>
+                  </tr>
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250903</td>
+                    <td class="cell-mono">RD-90103</td>
+                    <td class="pii-mask">郑*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>入排终裁通过 · 样本 3/10</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-19 16:55</td>
+                  </tr>
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250904</td>
+                    <td class="cell-mono">RD-90104</td>
+                    <td class="pii-mask">蒋*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>末批入组 · 样本 10/10 · 计划已满</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-20 14:30</td>
+                  </tr>
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250905</td>
+                    <td>—</td>
+                    <td class="pii-mask">冯*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--err">筛败</span></td>
+                    <td>合并用药不符合入排 · 不占样本名额</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-19 16:10</td>
+                  </tr>
+                  <tr data-screening-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250906</td>
+                    <td class="cell-mono">RD-90106</td>
+                    <td class="pii-mask">沈*</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>入排终裁通过（列表节选 · 共 10 人已入组）</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-19 11:05</td>
+                  </tr>
+                  <tr data-screening-study="H26076887">
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240115</td>
+                    <td class="cell-mono">RD-88012</td>
+                    <td>李婷</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--ok">已入组</span></td>
+                    <td>入排终裁通过 · 入组编号 RD-88012</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 11:20</td>
+                  </tr>
+                  <tr data-screening-study="H26076887">
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240118</td>
+                    <td>—</td>
+                    <td>陈悦</td>
+                    <td><span class="badge-cell badge-cell--ok">已签署</span></td>
+                    <td><span class="badge-cell badge-cell--err">筛败</span></td>
+                    <td>合并用药不符合入排 · 筛败提前结算轨（只读标记）</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 10:45</td>
+                  </tr>
+                  <tr data-screening-study="H26076887">
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240121</td>
+                    <td>—</td>
+                    <td>周航</td>
+                    <td><span class="badge-cell badge-cell--warn">未签署</span></td>
+                    <td><span class="badge-cell badge-cell--info">筛选中</span></td>
+                    <td>待病史调查 / 入排终裁</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 09:05</td>
+                  </tr>
+                  <tr data-screening-study="H26065102">
+                    <td class="cell-mono">H26065102</td>
+                    <td class="cell-mono">SC-239901</td>
+                    <td>—</td>
+                    <td>刘洋</td>
+                    <td><span class="badge-cell badge-cell--err">撤回</span></td>
+                    <td><span class="badge-cell badge-cell--muted">退出</span></td>
+                    <td>知情撤回 · 原因：个人原因放弃参与（筛选入组台）</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-10-12 16:30</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="筛选列表分页">
+              <div class="table-footer-bar__main" style="border-top:none;width:100%;">
+                <div class="table-pagination__meta">
+                  <div class="table-pagination__summary" id="screening-visit-summary">共 10 条 · 只读快照</div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <div class="recruit-view-panel" id="recruit-panel-visit" data-recruit-panel="visit">
+          <div class="page-header">
+            <div>
+              <h1>访视管理</h1>
+              <p class="subtitle">只读消费访视操作台 · 签到 / 签出 / 到访态（不可改写）</p>
+            </div>
+          </div>
+          <div class="recruit-readonly-banner" role="note">
+            <span class="desk-tag">访视操作台 · 真源</span>
+            <span>本页为招募侧<strong>只读</strong>视图：<strong>签到、签出、筛选编号（SC）</strong>及到访过程态由访视操作台写入；招募台仅展示与协调，<strong>不重复录入</strong>现场数据。</span>
+          </div>
+          <div class="filter-row">
+            <select id="visit-filter-study" aria-label="研究编号">
+              <option value="" selected>全部研究</option>
+              <option value="C26005288">C26005288</option>
+              <option value="H26076887">H26076887</option>
+              <option value="H26065102">H26065102</option>
+            </select>
+            <input type="search" placeholder="姓名 / SC号 / 手机号" aria-label="搜索" style="min-width: 220px;" />
+            <select aria-label="到访状态">
+              <option selected>全部到访状态</option>
+              <option>待签到</option>
+              <option>到访中</option>
+              <option>已签出</option>
+              <option>缺席</option>
+            </select>
+          </div>
+          <div class="paper">
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="访视只读列表" id="visit-mgmt-table">
+                <thead>
+                  <tr>
+                    <th>研究编号</th>
+                    <th>SC号</th>
+                    <th>姓名</th>
+                    <th>访视点</th>
+                    <th>签到</th>
+                    <th>签出</th>
+                    <th>到访状态</th>
+                    <th>同步时间</th>
+                  </tr>
+                </thead>
+                <tbody id="visit-mgmt-tbody">
+                  <tr data-visit-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250901</td>
+                    <td class="pii-mask">周*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 08:55</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 12:10</td>
+                    <td><span class="badge-cell badge-cell--ok">已签出</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 12:12</td>
+                  </tr>
+                  <tr data-visit-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250902</td>
+                    <td class="pii-mask">吴*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 10:28</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 13:05</td>
+                    <td><span class="badge-cell badge-cell--ok">已签出</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 13:06</td>
+                  </tr>
+                  <tr data-visit-study="C26005288">
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250905</td>
+                    <td class="pii-mask">冯*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-19 15:25</td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--info">到访中</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-19 15:26</td>
+                  </tr>
+                  <tr data-visit-study="H26076887">
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240115</td>
+                    <td class="pii-mask">李*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 09:52</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 11:55</td>
+                    <td><span class="badge-cell badge-cell--ok">已签出</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 11:56</td>
+                  </tr>
+                  <tr data-visit-study="H26076887">
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240121</td>
+                    <td class="pii-mask">周*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 09:05</td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--info">到访中</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 09:06</td>
+                  </tr>
+                  <tr data-visit-study="H26065102">
+                    <td class="cell-mono">H26065102</td>
+                    <td class="cell-mono">SC-239901</td>
+                    <td class="pii-mask">刘*</td>
+                    <td>V1</td>
+                    <td class="td-muted">—</td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--warn">缺席</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-10-12 10:00</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="访视列表分页">
+              <div class="table-footer-bar__main" style="border-top:none;width:100%;">
+                <div class="table-pagination__meta">
+                  <div class="table-pagination__summary" id="visit-mgmt-summary">共 6 条 · 只读快照</div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <div class="recruit-view-panel" id="recruit-panel-settlement" data-recruit-panel="settlement">
+          <div class="page-header">
+            <div>
+              <h1>结算管理</h1>
+              <p class="subtitle">只读访视操作台 · 访视编排完成情况（完成 / 退出）</p>
+            </div>
+          </div>
+          <div class="recruit-readonly-banner" role="note">
+            <span class="desk-tag">访视操作台 · 真源</span>
+            <span>列表展示各访视点<strong>完成 / 退出</strong>终态及<strong>退出原因</strong>；礼金组批与发放态在计划礼金规则下另轨处理（PRD ⑧），本页聚焦<strong>结算轨只读</strong>（与「访视管理」到访过程态区分）。</span>
+          </div>
+          <div class="filter-row">
+            <select aria-label="研究编号">
+              <option selected>全部研究</option>
+              <option>H26076887</option>
+              <option>H26065102</option>
+            </select>
+            <select aria-label="完成情况">
+              <option selected>全部</option>
+              <option>完成</option>
+              <option>退出</option>
+              <option>进行中</option>
+            </select>
+            <input type="search" placeholder="SC号 / 姓名" aria-label="搜索" style="min-width: 200px;" />
+          </div>
+          <div class="paper">
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="访视完成情况">
+                <thead>
+                  <tr>
+                    <th>研究编号</th>
+                    <th>SC号</th>
+                    <th>姓名</th>
+                    <th>访视点</th>
+                    <th>完成情况</th>
+                    <th>退出原因</th>
+                    <th>末次签出</th>
+                    <th>同步时间</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240110</td>
+                    <td>吴倩</td>
+                    <td>V1–V2</td>
+                    <td><span class="badge-cell badge-cell--ok">完成</span></td>
+                    <td class="td-muted">—</td>
+                    <td>2026-11-19 16:40</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-19 16:42</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240112</td>
+                    <td>孙杰</td>
+                    <td>V1</td>
+                    <td><span class="badge-cell badge-cell--muted">退出</span></td>
+                    <td>受试者主动退出 · 工作冲突无法完成随访</td>
+                    <td>2026-11-06 12:10</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-06 12:11</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">H26076887</td>
+                    <td class="cell-mono">SC-240115</td>
+                    <td>李婷</td>
+                    <td>V1</td>
+                    <td><span class="badge-cell badge-cell--info">进行中</span></td>
+                    <td class="td-muted">—</td>
+                    <td>2026-11-05 11:55</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-11-05 11:56</td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">H26065102</td>
+                    <td class="cell-mono">SC-239880</td>
+                    <td>马欣</td>
+                    <td>V1–V3</td>
+                    <td><span class="badge-cell badge-cell--muted">退出</span></td>
+                    <td>AE 相关 · 研究者建议退出（访视操作台登记）</td>
+                    <td>2026-10-20 09:30</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-10-20 09:32</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="完成情况分页">
+              <div class="table-footer-bar__main" style="border-top:none;width:100%;">
+                <div class="table-pagination__meta">
+                  <div class="table-pagination__summary">共 4 条 · 退出行展示原因字段</div>
+                </div>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <div class="recruit-view-panel" id="recruit-panel-subject-master" data-recruit-panel="subject-master">
+          <div class="page-header">
+            <div>
+              <h1>主档管理</h1>
+              <p class="subtitle">受试者一号一档真源 · 字段对齐预约队列人口学展示 · 供导入匹配与占档前校验（PRD §6.1 / §6.4）</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" class="btn" id="btn-master-export">导出（需审批）</button>
+              <button type="button" class="btn" id="btn-master-import">批量导入</button>
+              <button type="button" class="btn btn--primary" id="btn-master-create">+ 新建建档</button>
+            </div>
+          </div>
+          <div class="recruit-readonly-banner" role="note" style="background:#f0fdf4;border-color:#bbf7d0;">
+            <span class="desk-tag" style="background:#166534;color:#fff;">用户运营台 · 真源</span>
+            <span>跨项目<strong>受试者编号</strong>全局唯一；同一自然人可登记多个手机号，<strong>仅一个手机号处于启用</strong>（占档/匹配真源），其余为禁用并在列表中展示<strong>关联信息</strong>（指向启用档受试者编号）。招募台仅消费匹配结果。列表默认 L1 脱敏。</span>
+          </div>
+          <div class="data-panel" id="subject-master-panel">
+            <div class="data-panel__toolbar">
+              <div class="data-panel__filters filter-row">
+                <input
+                  type="search"
+                  class="input input--search"
+                  id="master-filter-search"
+                  placeholder="受试者编号 / 姓名 / 手机号"
+                  aria-label="搜索主档"
+                />
+                <select class="input" id="master-filter-status" aria-label="主档状态">
+                  <option value="all" selected>全部主档状态</option>
+                  <option value="normal">正常</option>
+                  <option value="incomplete">待补全</option>
+                  <option value="void">作废</option>
+                </select>
+                <select class="input" id="master-filter-blacklist" aria-label="黑名单">
+                  <option value="all" selected>全部黑名单</option>
+                  <option value="no">非黑名单</option>
+                  <option value="yes">黑名单</option>
+                </select>
+              </div>
+            </div>
+            <div class="data-panel__quick-bar">
+              <span class="data-panel__quick-label">快捷</span>
+              <div class="quick-filters" role="toolbar" aria-label="主档快捷筛选">
+                <button type="button" class="is-active" data-master-quick="all">全部 <span class="qf-count">(8)</span></button>
+                <button type="button" data-master-quick="multi">跨项目≥2 <span class="qf-count">(2)</span></button>
+                <button type="button" data-master-quick="blacklist">黑名单 <span class="qf-count">(1)</span></button>
+                <button type="button" data-master-quick="incomplete">待补全 <span class="qf-count">(1)</span></button>
+              </div>
+            </div>
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" id="subject-master-table" aria-label="受试者主档列表">
+                <colgroup>
+                  <col style="width:6.5rem" />
+                  <col style="width:4rem" />
+                  <col style="width:3.25rem" />
+                  <col style="width:2.25rem" />
+                  <col style="width:2.25rem" />
+                  <col style="width:5.5rem" />
+                  <col style="width:3.5rem" />
+                  <col style="width:6.5rem" />
+                  <col style="width:3.25rem" />
+                  <col style="width:3.25rem" />
+                  <col style="width:3.5rem" />
+                  <col style="width:4.5rem" />
+                  <col style="width:5.5rem" />
+                </colgroup>
+                <thead>
+                  <tr>
+                    <th>受试者编号</th>
+                    <th>受试者姓名</th>
+                    <th>拼音</th>
+                    <th>年龄</th>
+                    <th>性别</th>
+                    <th>手机号</th>
+                    <th>手机号启用状态</th>
+                    <th title="禁用手机号指向当前启用的受试者编号">关联信息</th>
+                    <th>黑名单</th>
+                    <th>参与项目数</th>
+                    <th>主档状态</th>
+                    <th>最近更新</th>
+                    <th class="col-sticky-op">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-master-id="SUB-2024-01882" data-master-blacklist="0" data-master-status="normal" data-master-phone-enabled="1">
+                    <td class="cell-mono">SUB-2024-01882</td>
+                    <td class="pii-mask">张*</td>
+                    <td>ZM</td>
+                    <td>28</td>
+                    <td>女</td>
+                    <td class="cell-mono">138****2201</td>
+                    <td><span class="badge-cell badge-cell--ok">启用</span></td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">3</td>
+                    <td><span class="badge-cell badge-cell--ok">正常</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-20 14:22</td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">详情</button>
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">编辑</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2025-01883" data-master-blacklist="0" data-master-status="normal" data-master-phone-enabled="0" data-master-link-id="SUB-2024-01882">
+                    <td class="cell-mono">SUB-2025-01883</td>
+                    <td class="pii-mask">张*</td>
+                    <td>ZM</td>
+                    <td>28</td>
+                    <td>女</td>
+                    <td class="cell-mono">186****1102</td>
+                    <td><span class="badge-cell badge-cell--muted">禁用</span></td>
+                    <td class="cell-mono" title="启用档受试者编号">SUB-2024-01882</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">3</td>
+                    <td><span class="badge-cell badge-cell--ok">正常</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-07-08 16:40</td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">只读</span>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2024-01904" data-master-blacklist="0" data-master-status="normal" data-master-phone-enabled="1">
+                    <td class="cell-mono">SUB-2024-01904</td>
+                    <td class="pii-mask">李*</td>
+                    <td>LT</td>
+                    <td>32</td>
+                    <td>女</td>
+                    <td class="cell-mono">139****8832</td>
+                    <td><span class="badge-cell badge-cell--ok">启用</span></td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">2</td>
+                    <td><span class="badge-cell badge-cell--ok">正常</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-18 09:15</td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">详情</button>
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">编辑</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2024-01905" data-master-blacklist="0" data-master-status="normal" data-master-phone-enabled="0" data-master-link-id="SUB-2024-01904">
+                    <td class="cell-mono">SUB-2024-01905</td>
+                    <td class="pii-mask">李*</td>
+                    <td>LT</td>
+                    <td>32</td>
+                    <td>女</td>
+                    <td class="cell-mono">158****4420</td>
+                    <td><span class="badge-cell badge-cell--muted">禁用</span></td>
+                    <td class="cell-mono" title="启用档受试者编号">SUB-2024-01904</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">2</td>
+                    <td><span class="badge-cell badge-cell--ok">正常</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-06-15 11:02</td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">只读</span>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2023-07710" data-master-blacklist="1" data-master-status="normal" data-master-phone-enabled="1">
+                    <td class="cell-mono">SUB-2023-07710</td>
+                    <td class="pii-mask">赵*</td>
+                    <td>ZL</td>
+                    <td>41</td>
+                    <td>女</td>
+                    <td class="cell-mono">136****7710</td>
+                    <td><span class="badge-cell badge-cell--ok">启用</span></td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--err">是</span></td>
+                    <td class="td-narrow">5</td>
+                    <td><span class="badge-cell badge-cell--warn">限制占档</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-08-02 11:40</td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">详情</button>
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">编辑</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2025-00106" data-master-blacklist="0" data-master-status="incomplete" data-master-phone-enabled="1">
+                    <td class="cell-mono">SUB-2025-00106</td>
+                    <td class="pii-mask">王*</td>
+                    <td>WH</td>
+                    <td>25</td>
+                    <td>男</td>
+                    <td class="cell-mono">137****0091</td>
+                    <td><span class="badge-cell badge-cell--ok">启用</span></td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">0</td>
+                    <td><span class="badge-cell badge-cell--warn">待补全</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-24 08:30</td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">补档</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2024-03308" data-master-blacklist="0" data-master-status="normal" data-master-phone-enabled="1">
+                    <td class="cell-mono">SUB-2024-03308</td>
+                    <td class="pii-mask">周*</td>
+                    <td>ZY</td>
+                    <td>26</td>
+                    <td>女</td>
+                    <td class="cell-mono">135****6612</td>
+                    <td><span class="badge-cell badge-cell--ok">启用</span></td>
+                    <td class="td-muted">—</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">4</td>
+                    <td><span class="badge-cell badge-cell--ok">正常</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-12 16:05</td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">详情</button>
+                        <button type="button" class="table-row-actions__link" data-action="master-stub">编辑</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr data-master-id="SUB-2022-09901" data-master-blacklist="0" data-master-status="void" data-master-phone-enabled="0">
+                    <td class="cell-mono">SUB-2022-09901</td>
+                    <td class="pii-mask">陈*</td>
+                    <td>CY</td>
+                    <td>38</td>
+                    <td>女</td>
+                    <td class="cell-mono td-muted" title="作废手机号不可新占档">159****0000</td>
+                    <td><span class="badge-cell badge-cell--muted">禁用</span></td>
+                    <td class="td-muted" title="主档作废，无启用关联">—</td>
+                    <td><span class="badge-cell badge-cell--ok">否</span></td>
+                    <td class="td-narrow">1</td>
+                    <td><span class="badge-cell badge-cell--muted">作废</span></td>
+                    <td class="cell-mono" style="font-size:11px;">2026-03-01 10:00</td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">只读</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="主档列表底部">
+              <div class="table-footer-bar__legend">
+                <span>列字段与预约管理队列人口学列对齐；扩展手机号启用状态（启用/禁用）与关联信息（禁用行指向启用受试者编号）· 默认 L1 掩码</span>
+              </div>
+              <div class="table-footer-bar__main">
+                <div class="table-pagination__meta">
+                  <div class="table-pagination__summary" id="subject-master-summary">共 8 条</div>
+                  <div class="table-pagination__size">
+                    <label for="master-page-size">每页</label>
+                    <select id="master-page-size" aria-label="每页条数">
+                      <option value="20" selected>20</option>
+                      <option value="50">50</option>
+                      <option value="100">100</option>
+                    </select>
+                    <span>条</span>
+                  </div>
+                </div>
+                <nav class="table-pagination" aria-label="分页">
+                  <button type="button" disabled aria-label="上一页">上一页</button>
+                  <button type="button" class="is-active" aria-current="page" aria-label="第 1 页">1</button>
+                  <button type="button" disabled aria-label="下一页">下一页</button>
+                </nav>
+              </div>
+            </footer>
+          </div>

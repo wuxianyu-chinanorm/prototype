@@ -1,0 +1,266 @@
+<div class="visit-collect-panel is-active" data-vc-panel="front-desk" id="visit-panel-front-desk">
+          <div class="page-header">
+            <div>
+              <h1>前台登记</h1>
+              <p class="subtitle">到访作业 · 核对预约与身份 · 登记完成后进入导检队列</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" class="btn btn--primary" data-action="guide-stub">+ 现场登记</button>
+            </div>
+          </div>
+          <div class="data-panel">
+            <div class="data-panel__toolbar">
+              <div class="data-panel__filters filter-row">
+                <input type="search" class="input input--search" placeholder="姓名 / 手机号 / 预约号" aria-label="搜索前台队列" />
+                <select class="input" aria-label="登记状态">
+                  <option selected>全部</option>
+                  <option>待登记</option>
+                  <option>已登记</option>
+                </select>
+              </div>
+            </div>
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="前台登记队列">
+                <thead>
+                  <tr>
+                    <th>研究编号</th>
+                    <th>姓名</th>
+                    <th>手机号</th>
+                    <th>预约到访</th>
+                    <th>登记状态</th>
+                    <th class="col-sticky-op">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-mono">C26005101</td>
+                    <td class="pii-mask">李*</td>
+                    <td class="cell-mono">139****8832</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-24 10:00</td>
+                    <td><span class="badge-cell badge-cell--warn">待登记</span></td>
+                    <td class="col-sticky-op">
+                      <button type="button" class="table-row-actions__link" data-action="guide-stub">确认登记</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">C26005075</td>
+                    <td class="pii-mask">张*</td>
+                    <td class="cell-mono">138****2201</td>
+                    <td class="cell-mono" style="font-size:11px;">2026-09-24 09:30</td>
+                    <td><span class="badge-cell badge-cell--ok">已登记</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">已进导检</span>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="visit-collect-panel" data-vc-panel="guide-progress" id="visit-panel-guide-progress">
+          <div class="page-header">
+            <div>
+              <h1>导检进度</h1>
+              <p class="subtitle">访视操作台 · 签到 / 签出 · 生成 SC 号 · 聚合各模块进度看板</p>
+            </div>
+            <div class="page-actions">
+              <button type="button" class="btn" id="btn-guide-export">导出（需审批）</button>
+              <button type="button" class="btn btn--primary" id="btn-guide-scan">扫码签到</button>
+            </div>
+          </div>
+          <div class="recruit-readonly-banner" role="note">
+            <span class="desk-tag">访视操作台</span>
+            <span>
+              导检进度负责<strong>签到、签出</strong>（生成 SC）；<strong>洁面平衡</strong>、<strong>XX操作</strong>（照灯、撕皮）、<strong>产品操作</strong>在各自菜单录入，本页展示总进度。
+            </span>
+          </div>
+          <div class="data-panel">
+            <div class="data-panel__toolbar">
+              <div class="data-panel__filters filter-row">
+                <input type="search" class="input input--search" placeholder="SC号 / 姓名 / 手机号" aria-label="搜索导检队列" />
+                <select class="input" aria-label="研究编号">
+                  <option selected>全部研究</option>
+                  <option>C26005288</option>
+                  <option>H26076887</option>
+                  <option>C26005075</option>
+                </select>
+                <select class="input" aria-label="导检状态">
+                  <option selected>全部状态</option>
+                  <option>待签到</option>
+                  <option>导检中</option>
+                  <option>已签出</option>
+                </select>
+              </div>
+            </div>
+            <div class="data-panel__quick-bar">
+              <span class="data-panel__quick-label">节点图例</span>
+              <div class="quick-filters" role="toolbar" aria-label="导检节点说明">
+                <span class="guide-step guide-step--ok" style="cursor:default;">已完成</span>
+                <span class="guide-step guide-step--warn" style="cursor:default;">进行中</span>
+                <span class="guide-step guide-step--off" style="cursor:default;">未开始</span>
+              </div>
+            </div>
+            <div class="recruit-subject-table-scroll">
+              <table class="recruit-subject-table" aria-label="导检进度队列">
+                <thead>
+                  <tr>
+                    <th>研究编号</th>
+                    <th>SC号</th>
+                    <th>姓名</th>
+                    <th>访视点</th>
+                    <th>签到</th>
+                    <th>签出</th>
+                    <th>模块进度</th>
+                    <th>当前状态</th>
+                    <th class="col-sticky-op">操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="cell-mono">C26005075</td>
+                    <td class="cell-mono">SC-250801</td>
+                    <td class="pii-mask">张*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">09:52</td>
+                    <td class="td-muted">—</td>
+                    <td>
+                      <div class="guide-progress-steps" aria-label="各模块进度">
+                        <span class="guide-step guide-step--ok">登记</span>
+                        <span class="guide-step guide-step--warn">导检</span>
+                        <span class="guide-step guide-step--warn">洁面</span>
+                        <span class="guide-step guide-step--off">XX</span>
+                        <span class="guide-step guide-step--off">产品</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--info">导检中</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="guide-stub">签出</button>
+                        <button type="button" class="table-row-actions__link" data-action="guide-stub">录节点</button>
+                      </div>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">C26005101</td>
+                    <td class="cell-mono">SC-250802</td>
+                    <td class="pii-mask">李*</td>
+                    <td>V1</td>
+                    <td class="td-muted">—</td>
+                    <td class="td-muted">—</td>
+                    <td>
+                      <div class="guide-progress-steps">
+                        <span class="guide-step guide-step--ok">登记</span>
+                        <span class="guide-step guide-step--off">导检</span>
+                        <span class="guide-step guide-step--off">洁面</span>
+                        <span class="guide-step guide-step--off">XX</span>
+                        <span class="guide-step guide-step--off">产品</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--warn">待签到</span></td>
+                    <td class="col-sticky-op">
+                      <button type="button" class="table-row-actions__link" data-action="guide-stub">签到</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250901</td>
+                    <td class="pii-mask">周*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">08:55</td>
+                    <td class="cell-mono" style="font-size:11px;">12:10</td>
+                    <td>
+                      <div class="guide-progress-steps">
+                        <span class="guide-step guide-step--ok">登记</span>
+                        <span class="guide-step guide-step--ok">导检</span>
+                        <span class="guide-step guide-step--ok">洁面</span>
+                        <span class="guide-step guide-step--ok">XX</span>
+                        <span class="guide-step guide-step--ok">产品</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--ok">已签出</span></td>
+                    <td class="col-sticky-op">
+                      <span class="table-row-actions__hint">已完成</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="cell-mono">C26005288</td>
+                    <td class="cell-mono">SC-250905</td>
+                    <td class="pii-mask">冯*</td>
+                    <td>V1</td>
+                    <td class="cell-mono" style="font-size:11px;">15:25</td>
+                    <td class="td-muted">—</td>
+                    <td>
+                      <div class="guide-progress-steps">
+                        <span class="guide-step guide-step--ok">登记</span>
+                        <span class="guide-step guide-step--ok">导检</span>
+                        <span class="guide-step guide-step--ok">洁面</span>
+                        <span class="guide-step guide-step--warn">XX</span>
+                        <span class="guide-step guide-step--off">产品</span>
+                      </div>
+                    </td>
+                    <td><span class="badge-cell badge-cell--info">导检中</span></td>
+                    <td class="col-sticky-op">
+                      <div class="table-row-actions">
+                        <button type="button" class="table-row-actions__link" data-action="guide-stub">录节点</button>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <footer class="table-footer-bar" aria-label="导检进度说明">
+              <div class="table-footer-bar__legend">
+                <span>总进度 = 前台登记 → 导检（签到/签出）→ 洁面平衡 → XX操作 → 产品操作；与招募「访视管理」只读视图同源</span>
+              </div>
+            </footer>
+          </div>
+        </div>
+
+        <div class="visit-collect-panel" data-vc-panel="crf-work" id="vc-panel-subject-archive">
+          <div class="page-header">
+            <div>
+              <h1 id="vc-page-title">访视 CRF 作业台</h1>
+              <p class="subtitle" id="vc-page-subtitle">
+                eCRF 作业 · 支持查看 / 编辑 / 质疑 · 左侧访视树 · 右侧 CRF 表单（与交付归档只读副本同源）
+              </p>
+            </div>
+          </div>
+
+          <div class="edc-mode-bar" id="vc-edc-mode-bar" role="toolbar" aria-label="CRF 作业模式">
+            <span class="edc-mode-bar__label">作业模式</span>
+            <button type="button" class="edc-mode-btn is-active" data-edc-mode="view">查看</button>
+            <button type="button" class="edc-mode-btn" data-edc-mode="edit">编辑</button>
+            <button type="button" class="edc-mode-btn" data-edc-mode="query">质疑</button>
+            <span class="edc-mode-bar__hint" id="vc-edc-mode-hint">只读浏览字段与审计信息</span>
+          </div>
+          <div class="deliver-toolbar" id="vc-toolbar" aria-label="访视执行筛选">
+            <label>
+              项目
+              <select id="vc-filter-study">
+                <option value="H26104001" selected>H26104001 · 4周4访视保湿验证（示例）</option>
+                <option value="H2607051">H2607051 · 功效评价研究 A</option>
+                <option value="H26076887">H26076887 · 保湿修护测试 B</option>
+              </select>
+            </label>
+            <label>
+              筛选编号
+              <select id="vc-filter-screen">
+                <option value="SC-2603-018">SC-2603-018</option>
+              </select>
+            </label>
+            <p class="deliver-toolbar__hint">
+              选择受试者后在左侧展开访视节点；表单落库后同步至「交付归档 · 访视档案（只读副本）」。
+            </p>
+          </div>
+          <div class="paper">
+            <div class="deliver-visit-shell deliver-visit-shell--edc">
+              <nav class="deliver-visit-nav" id="vc-visit-nav" aria-label="访视时间点与表单"></nav>
+              <div class="deliver-visit-main">
+                <div class="edc-archive-shell" id="vc-edc-root" aria-live="polite">
+                  <div class="edc-empty-hint">请选择研究编号、筛选编号，并在<strong>左侧</strong>点击 eCRF / 表单。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>

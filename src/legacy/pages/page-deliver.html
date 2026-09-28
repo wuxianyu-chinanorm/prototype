@@ -1,0 +1,322 @@
+<div class="page-header">
+          <div>
+            <h1 id="deliver-page-title">项目列表</h1>
+            <p class="subtitle" id="deliver-page-subtitle">按项目查看交付就绪状态 · 侧栏「项目归档台」</p>
+          </div>
+        </div>
+
+        <div class="deliver-toolbar" id="deliver-toolbar" aria-label="交付归档筛选">
+          <label>
+            项目
+            <select id="deliver-filter-study">
+              <option value="all">全部项目</option>
+              <option value="H26104001">H26104001 · 4周4访视保湿验证（示例）</option>
+              <option value="H2607051" selected>H2607051 · 功效评价研究 A</option>
+              <option value="H26076887">H26076887 · 保湿修护测试 B</option>
+            </select>
+          </label>
+          <label id="deliver-filter-screen-wrap" hidden>
+            筛选编号
+            <select id="deliver-filter-screen">
+              <option value="SC-2603-018">SC-2603-018</option>
+            </select>
+          </label>
+          <label id="deliver-filter-visit-wrap" hidden>
+            访视
+            <select id="deliver-filter-visit">
+              <option value="all">全部访视</option>
+              <option value="V0">V0 筛选</option>
+              <option value="V1" selected>V1 基线</option>
+              <option value="V2">V2 随访</option>
+            </select>
+          </label>
+          <label id="deliver-filter-subject-wrap" hidden>
+            受试者
+            <input type="search" id="deliver-filter-subject" placeholder="筛选号 / 随机号" value="S-0182" />
+          </label>
+          <p class="deliver-toolbar__hint" id="deliver-toolbar-hint">
+            项目视角：先选项目，再进入完整性矩阵或交付批次；受试者视角：项目 + 访视 + 人，下方 Tab 切换资料类型（只读归档副本）。
+          </p>
+        </div>
+
+        <div class="deliver-doc-tabs" id="deliver-doc-tabs" role="tablist" aria-label="资料类型" hidden>
+          <button type="button" class="is-active" role="tab" aria-selected="true" data-deliver-doc="consent">知情</button>
+          <button type="button" role="tab" aria-selected="false" data-deliver-doc="questionnaire">问卷 / 日记</button>
+          <button type="button" role="tab" aria-selected="false" data-deliver-doc="ecrf">eCRF</button>
+          <button type="button" role="tab" aria-selected="false" data-deliver-doc="source">源数据 / 附件</button>
+          <button type="button" role="tab" aria-selected="false" data-deliver-doc="query">质疑 / 关闭</button>
+        </div>
+
+        <div class="deliver-view-panel is-active" id="deliver-panel-project-list" data-deliver-panel="project-list">
+          <div class="paper">
+            <table class="study-chain-table" style="min-width: 48rem;" aria-label="交付项目列表">
+              <thead>
+                <tr>
+                  <th>研究编号</th>
+                  <th>研究名称</th>
+                  <th>受试者数</th>
+                  <th>资料完整率</th>
+                  <th>最近交付批次</th>
+                  <th>归档状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-mono">H26104001</td>
+                  <td>4周4访视保湿验证（示例）</td>
+                  <td>36</td>
+                  <td><span class="deliver-cell deliver-cell--ok">100%</span></td>
+                  <td class="cell-mono">DLV-2026-03-28-01</td>
+                  <td>可打包</td>
+                  <td>
+                    <button type="button" class="btn btn--text" data-vc-go="archive">访视档案</button>
+                  </td>
+                </tr>
+                <tr>
+                  <td class="cell-mono">H2607051</td>
+                  <td>功效评价研究 A</td>
+                  <td>42</td>
+                  <td><span class="deliver-cell deliver-cell--warn">91%</span></td>
+                  <td class="cell-mono">DLV-2026-09-20-01</td>
+                  <td>可打包</td>
+                  <td><button type="button" class="btn btn--text" data-deliver-go="completeness">看矩阵</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-mono">H26076887</td>
+                  <td>保湿修护测试 B</td>
+                  <td>28</td>
+                  <td><span class="deliver-cell deliver-cell--ok">100%</span></td>
+                  <td class="cell-mono">DLV-2026-09-22-02</td>
+                  <td>已锁定</td>
+                  <td><button type="button" class="btn btn--text" data-deliver-go="delivery-batch">看批次</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-completeness" data-deliver-panel="completeness">
+          <div class="paper">
+            <p style="font-size: 13px; color: var(--mui-text-secondary); margin-bottom: 12px; line-height: 1.5;">
+              受试者 × 资料模块完成度（示意）。点击单元格可跳转「受试者资料台 · 资料时间线」。
+            </p>
+            <div class="deliver-matrix-wrap">
+              <table class="deliver-matrix" aria-label="完整性矩阵">
+                <thead>
+                  <tr>
+                    <th>筛选号</th>
+                    <th>知情</th>
+                    <th>问卷</th>
+                    <th>eCRF</th>
+                    <th>源数据</th>
+                    <th>质疑关闭</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><button type="button" class="btn btn--text" data-deliver-go="subject-timeline">S-0182</button></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--warn">缺 1</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" class="btn btn--text" data-deliver-go="subject-timeline">S-0194</button></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--miss">缺</span></td>
+                    <td><span class="deliver-cell deliver-cell--miss">缺</span></td>
+                    <td><span class="deliver-cell deliver-cell--warn">缺 1</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                  </tr>
+                  <tr>
+                    <td><button type="button" class="btn btn--text" data-deliver-go="subject-timeline">S-0201</button></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                    <td><span class="deliver-cell deliver-cell--ok">齐</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-delivery-batch" data-deliver-panel="delivery-batch">
+          <div class="deliver-batch-grid">
+            <article class="deliver-batch-card">
+              <h3>DLV-2026-09-20-01</h3>
+              <p>H2607051 · 申办方导出 · 含 eCRF + 问卷 PDF · 2026-09-20 16:40 生成</p>
+              <span class="deliver-cell deliver-cell--warn">待签收</span>
+            </article>
+            <article class="deliver-batch-card">
+              <h3>DLV-2026-09-22-02</h3>
+              <p>H26076887 · 监管稽查包 · 全量源数据索引 · 2026-09-22 11:05 生成</p>
+              <span class="deliver-cell deliver-cell--ok">已签收</span>
+            </article>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-subject-search" data-deliver-panel="subject-search">
+          <div class="paper">
+            <table class="study-chain-table" style="min-width: 40rem;" aria-label="受试者检索结果">
+              <thead>
+                <tr>
+                  <th>筛选号</th>
+                  <th>随机号</th>
+                  <th>当前访视</th>
+                  <th>资料齐套</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-mono">S-0182</td>
+                  <td class="cell-mono">R-2208</td>
+                  <td>V1 基线</td>
+                  <td><span class="deliver-cell deliver-cell--warn">缺 eCRF</span></td>
+                  <td><button type="button" class="btn btn--text" data-deliver-go="subject-timeline">时间线</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-mono">S-0194</td>
+                  <td class="cell-mono">R-2215</td>
+                  <td>V1 基线</td>
+                  <td><span class="deliver-cell deliver-cell--miss">多项缺失</span></td>
+                  <td><button type="button" class="btn btn--text" data-deliver-go="missing-list">缺失清单</button></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="deliver-doc-preview" id="deliver-doc-preview-subject-search">
+              当前资料 Tab：<strong>知情</strong> — 展示该受试者已锁定知情 PDF 版本与签署时间（原型占位）。
+            </div>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-subject-timeline" data-deliver-panel="subject-timeline">
+          <div class="paper">
+            <p style="font-size: 13px; margin-bottom: 12px;">S-0182 · R-2208 · H2607051 · V1 基线</p>
+            <ul class="deliver-timeline">
+              <li>
+                <time datetime="2026-09-10">2026-09-10 09:12</time>
+                知情签署完成 · 版本 IC-v3 · 电子签
+              </li>
+              <li>
+                <time datetime="2026-09-10">2026-09-10 09:40</time>
+                病史 / 入排问卷提交 · 与到访筛选阶段数据一致（归档副本）
+              </li>
+              <li>
+                <time datetime="2026-09-12">2026-09-12 14:05</time>
+                eCRF V1 部分保存 · <strong style="color:#b45309;">待补：皮肤科医生评估表</strong>
+              </li>
+              <li>
+                <time datetime="2026-09-12">2026-09-12 16:20</time>
+                仪器原始文件入库 · Corneometer × 3
+              </li>
+            </ul>
+            <div class="deliver-doc-preview" id="deliver-doc-preview-subject-timeline">
+              当前资料 Tab：<strong>知情</strong> — 时间线高亮与 Tab 联动；切换 Tab 可过滤时间线事件类型（原型示意）。
+            </div>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-missing-list" data-deliver-panel="missing-list">
+          <div class="paper">
+            <table class="study-chain-table" style="min-width: 44rem;" aria-label="缺失清单">
+              <thead>
+                <tr>
+                  <th>筛选号</th>
+                  <th>访视</th>
+                  <th>缺失项</th>
+                  <th>责任模块</th>
+                  <th>截止</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-mono">S-0182</td>
+                  <td>V1</td>
+                  <td>皮肤科医生评估表（eCRF）</td>
+                  <td>采集提交 · eCRF</td>
+                  <td>2026-09-25</td>
+                </tr>
+                <tr>
+                  <td class="cell-mono">S-0194</td>
+                  <td>V1</td>
+                  <td>第 7 日日记、TEWL 原始文件</td>
+                  <td>问卷 / 仪器</td>
+                  <td>2026-09-24</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-pack-export" data-deliver-panel="pack-export">
+          <div class="paper">
+            <div class="deliver-ops-steps">
+              <span class="is-done">1. 选项目</span>
+              <span class="is-done">2. 完整性预检</span>
+              <span>3. 生成包</span>
+              <span>4. 出站 / 下载</span>
+            </div>
+            <p style="font-size: 13px; line-height: 1.55; color: var(--mui-text-secondary); margin-bottom: 14px;">
+              打包范围：当前项目全部已锁定访视 · 含知情、eCRF、问卷、源数据清单（不含未关闭质疑原文）。
+            </p>
+            <button type="button" class="btn btn--primary">创建导出任务</button>
+            <button type="button" class="btn">下载上次包 DLV-2026-09-20-01</button>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-signoff" data-deliver-panel="signoff">
+          <div class="paper">
+            <table class="study-chain-table" style="min-width: 36rem;" aria-label="签收确认">
+              <thead>
+                <tr>
+                  <th>交付批次</th>
+                  <th>接收方</th>
+                  <th>状态</th>
+                  <th>操作</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-mono">DLV-2026-09-20-01</td>
+                  <td>申办方 PM</td>
+                  <td><span class="deliver-cell deliver-cell--warn">待签收</span></td>
+                  <td><button type="button" class="btn btn--primary">确认签收</button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="deliver-view-panel" id="deliver-panel-archive-lock" data-deliver-panel="archive-lock">
+          <div class="paper">
+            <p style="font-size: 13px; line-height: 1.55; margin-bottom: 12px;">
+              锁定后资料只读；与「质量审核」阶段冻结规则衔接（原型示意）。
+            </p>
+            <table class="study-chain-table" style="min-width: 32rem;" aria-label="归档锁定">
+              <thead>
+                <tr>
+                  <th>项目</th>
+                  <th>锁定范围</th>
+                  <th>状态</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="cell-mono">H2607051</td>
+                  <td>V0–V1</td>
+                  <td>未锁定 · <button type="button" class="btn btn--text">申请锁定</button></td>
+                </tr>
+                <tr>
+                  <td class="cell-mono">H26076887</td>
+                  <td>全访视</td>
+                  <td><span class="deliver-cell deliver-cell--ok">已锁定</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>

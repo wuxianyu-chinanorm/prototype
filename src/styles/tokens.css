@@ -1,0 +1,37 @@
+:root {
+      /* 视觉基调：借鉴 shadcn/ui（Zinc）+ Ant Design 5 表格密度 */
+      --mui-primary: #0d9488;
+      --mui-primary-dark: #0f766e;
+      --mui-primary-light: #ccfbf1;
+      --mui-error: #dc2626;
+      --mui-warning: #d97706;
+      --mui-success: #059669;
+      --mui-text: #18181b;
+      --mui-text-secondary: #71717a;
+      --mui-divider: #e4e4e7;
+      --mui-bg: #f4f4f5;
+      --mui-paper: #ffffff;
+      --mui-appbar: rgba(255, 255, 255, 0.92);
+      --muted: #f4f4f5;
+      --muted-foreground: #71717a;
+      --card: #ffffff;
+      --border: #e4e4e7;
+      --ring: rgba(13, 148, 136, 0.35);
+      --shadow-1: 0 1px 2px rgba(24, 24, 27, 0.05);
+      --shadow-2: 0 8px 24px rgba(24, 24, 27, 0.08), 0 2px 6px rgba(24, 24, 27, 0.04);
+      --radius: 10px;
+      --radius-sm: 8px;
+      /* 列表行高：表头 / 数据行一致，避免 1 行与 2 行错落 */
+      --kis-table-row-h: 3.75rem;
+      /* v0.8 七阶段色 */
+      --phase-schedule: #1565c0;
+      --phase-prep: #1c3a5e;
+      --phase-recruit: #0f766e;
+      --phase-visit: #4f46e5;
+      --phase-visit-collect: #0d9488;
+      --phase-collect: #15803d;
+      --phase-quality: #6b2a35;
+      --phase-deliver: #b45309;
+      --phase-audit: #475569;
+      --phase-active: var(--phase-prep);
+    }

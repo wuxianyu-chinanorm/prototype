@@ -1,0 +1,7 @@
+/**
+ * 样式入口：设计令牌 → 原型样式 → 团队增量覆盖
+ * 协作建议：新样式写在 features/ 或 components/ 下，逐步从 legacy/prototype.css 拆出
+ */
+@import "./tokens.css";
+@import "./legacy/prototype.css";
+@import "./utilities.css";

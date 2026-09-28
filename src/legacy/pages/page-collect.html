@@ -1,0 +1,33 @@
+<div class="page-header">
+          <div>
+            <h1 id="collect-page-title">仪器测量台</h1>
+            <p class="subtitle" id="collect-page-subtitle">
+              仪器测量 · EDC 落库 · 测量原始值写入 CRF 字段 · 完整访视树见「访视执行 · 采集提交」
+            </p>
+          </div>
+        </div>
+        <div class="paper" style="padding: 16px 20px;">
+          <div class="edc-collect-tabs" role="tablist" id="collect-edc-tabs">
+            <button type="button" class="is-active" data-collect-tab="records" role="tab" aria-selected="true">本台数据记录</button>
+            <button type="button" data-collect-tab="crf" role="tab" aria-selected="false">关联 CRF 字段</button>
+          </div>
+          <div class="edc-collect-list" id="collect-edc-panel-records">
+            <div class="edc-collect-list__row">
+              <div>
+                <div>Corneometer · 脸颊 L/R</div>
+                <div class="edc-collect-list__meta">SC-2603-018 · V1 · 工单 TPK-2026-0310 · 已同步 EDC</div>
+              </div>
+              <span class="badge-cell badge-cell--ok">已提交</span>
+            </div>
+            <div class="edc-collect-list__row">
+              <div>
+                <div>TEWL · 前臂</div>
+                <div class="edc-collect-list__meta">SC-2603-018 · V2 · 待复核</div>
+              </div>
+              <span class="badge-cell badge-cell--warn">draft</span>
+            </div>
+          </div>
+          <p id="collect-edc-panel-crf" hidden style="font-size:13px;color:var(--mui-text-secondary);line-height:1.55;margin:12px 0 0;">
+            字段映射：<strong>COR.HYDR.L</strong> / <strong>COR.HYDR.R</strong> ← 仪器测量台原始文件 · 保存后可在「访视执行 · 访视 CRF 作业台」查看完整 CRF。
+          </p>
+        </div>
