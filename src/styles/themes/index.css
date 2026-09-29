@@ -1,0 +1,13 @@
+/**
+ * KIS 主题包入口。
+ * 加风格：新建 <id>.css（全部写在 html[data-kis-theme="<id>"] 下），
+ * 在本文件 @import，并在 src/themes/registry.ts 加一条元数据。
+ * classic 无样式表；属性只打在本页 documentElement，不进 staff / subject / 开源参考。
+ */
+@import "./switcher.css";
+@import "./presentation.css";
+@import "./beacon.css";
+@import "./clarity.css";
+@import "./atlas.css";
+@import "./lumen.css";
+@import "./notion.css";

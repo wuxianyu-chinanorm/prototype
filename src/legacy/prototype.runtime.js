@@ -1374,6 +1374,11 @@
           renderDeliverVisitArchive();
         }
         if (!options.skipPersist) persistNavState();
+        try {
+          document.dispatchEvent(
+            new CustomEvent("kis-phase-change", { detail: { phase: "visit-collect", view: viewId } })
+          );
+        } catch (vcEvtErr) { /* ignore */ }
       }
 
       function showVisitCollectPage() {
@@ -1632,6 +1637,9 @@
           }
         }
         if (!options.skipPersist) persistNavState();
+        try {
+          document.dispatchEvent(new CustomEvent("kis-phase-change", { detail: { phase: phase } }));
+        } catch (phaseEvtErr) { /* ignore */ }
       }
 
       function restoreNavState() {

@@ -1,0 +1,1394 @@
+/* 主题展示层：由 src/themes/presentation/* 注入 DOM，classic 不加载 */
+
+.kis-theme-ambient {
+  pointer-events: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.kis-theme-ambient--beacon {
+  background:
+    radial-gradient(640px 320px at 8% 0%, rgba(13, 148, 136, 0.14), transparent 62%),
+    radial-gradient(520px 280px at 92% 8%, rgba(99, 102, 241, 0.08), transparent 58%);
+}
+
+.kis-theme-ambient--clarity {
+  background:
+    radial-gradient(560px 240px at 100% 0%, rgba(234, 88, 12, 0.08), transparent 55%),
+    radial-gradient(480px 220px at 0% 100%, rgba(17, 24, 39, 0.04), transparent 60%);
+}
+
+#kis-prototype-host.kis-theme-surface--beacon,
+#kis-prototype-host.kis-theme-surface--clarity,
+#kis-prototype-host.kis-theme-surface--atlas {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Page header 布局差异 ───────────────────────────────── */
+.kis-page-header--beacon.page-header {
+  align-items: stretch;
+  padding: 4px 0 18px;
+  border-bottom: 1px solid rgba(13, 148, 136, 0.12);
+  margin-bottom: 20px;
+}
+
+.kis-page-header--clarity.page-header {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.kis-page-header--clarity.page-header .page-actions {
+  order: 3;
+  justify-content: flex-start;
+}
+
+.kis-page-header--clarity.page-header > div:first-child {
+  order: 1;
+}
+
+.kis-page-header--atlas.page-header {
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  margin-bottom: 18px;
+}
+
+.kis-page-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.kis-page-meta__chip {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #475569;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+}
+
+html[data-kis-theme="beacon"] .kis-page-meta__chip {
+  background: rgba(13, 148, 136, 0.08);
+  border-color: rgba(13, 148, 136, 0.18);
+  color: #115e59;
+}
+
+html[data-kis-theme="beacon"] .kis-page-meta__chip--live {
+  background: #ecfdf5;
+  border-color: #a7f3d0;
+  color: #047857;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.12);
+}
+
+html[data-kis-theme="clarity"] .kis-page-meta__chip--accent {
+  background: #ffedd5;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+html[data-kis-theme="atlas"] .kis-page-meta__chip--alert {
+  background: #fef2f2;
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+/* ── 主按钮 glyph ───────────────────────────────────────── */
+.kis-btn-glyph {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+html[data-kis-theme="clarity"] .kis-btn-glyph {
+  border-radius: 999px;
+}
+
+/* ── 状态 pill ──────────────────────────────────────────── */
+.kis-status-pill {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  padding-left: 8px !important;
+}
+
+.kis-status-pill__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.kis-status-pill__dot--ok { background: #16a34a; box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.2); }
+.kis-status-pill__dot--warn { background: #ea580c; box-shadow: 0 0 0 3px rgba(234, 88, 12, 0.18); }
+.kis-status-pill__dot--err { background: #dc2626; box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.16); }
+.kis-status-pill__dot--info { background: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.14); }
+.kis-status-pill__dot--muted { background: #94a3b8; }
+
+html[data-kis-theme="beacon"] .kis-status-pill--beacon.badge-cell {
+  border-radius: 999px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+}
+
+/* ── 身份列（Clarity / Atlas） ───────────────────────────── */
+.kis-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.kis-identity__avatar {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, #64748b, #334155);
+  flex-shrink: 0;
+}
+
+html[data-kis-theme="clarity"] .kis-identity__avatar {
+  background: linear-gradient(145deg, #fb923c, #ea580c);
+}
+
+html[data-kis-theme="atlas"] .kis-identity__avatar {
+  background: linear-gradient(145deg, #6366f1, #3b4fd4);
+  border-radius: 8px;
+}
+
+.kis-identity__label {
+  font-weight: 650;
+  color: #111827;
+}
+
+/* ── Atlas 分段条 ───────────────────────────────────────── */
+.kis-segment-bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 12px 16px;
+  border-bottom: 1px solid #e5e7eb;
+  background: #fafafa;
+}
+
+.kis-segment-bar__item {
+  font: inherit;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  color: #4b5563;
+  cursor: default;
+}
+
+.kis-segment-bar__item.is-active {
+  border-color: #c7d2fe;
+  background: #eef2ff;
+  color: #3730a3;
+}
+
+.kis-segment-bar__item--warn {
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+.kis-segment-bar__item--err {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.kis-compliance-badge {
+  display: inline-flex !important;
+  align-items: center;
+  gap: 6px;
+  font-weight: 650;
+}
+
+.kis-compliance-badge__icon {
+  font-size: 10px;
+  opacity: 0.85;
+}
+
+/* ── 工具栏 deck ────────────────────────────────────────── */
+.kis-toolbar-deck {
+  background: linear-gradient(180deg, #fafafa 0%, #fff 100%) !important;
+  padding: 16px 18px !important;
+}
+
+html[data-kis-theme="clarity"] .kis-toolbar-deck {
+  border-radius: 14px 14px 0 0;
+  margin: 0 12px;
+  border: 1px solid #e5e7eb;
+  border-bottom: none;
+}
+
+html[data-kis-theme="clarity"] .kis-data-panel--deck.data-panel {
+  padding-top: 0;
+}
+
+html[data-kis-theme="clarity"] .kis-data-panel--deck .recruit-subject-table-scroll,
+html[data-kis-theme="clarity"] .kis-data-panel--deck .plan-table-scroll {
+  margin: 0 12px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 0 0 14px 14px;
+  overflow: hidden;
+}
+
+/* ── Beacon：表格行左指示 ───────────────────────────────── */
+html[data-kis-theme="beacon"] .recruit-subject-table tbody tr,
+html[data-kis-theme="beacon"] .plan-table tbody tr,
+html[data-kis-theme="beacon"] .study-chain-table tbody tr {
+  box-shadow: inset 3px 0 0 transparent;
+  transition: box-shadow 0.15s ease, background 0.15s ease;
+}
+
+html[data-kis-theme="beacon"] .recruit-subject-table tbody tr:hover,
+html[data-kis-theme="beacon"] .plan-table tbody tr:hover,
+html[data-kis-theme="beacon"] .study-chain-table tbody tr:hover {
+  box-shadow: inset 3px 0 0 #0f766e;
+}
+
+/* ── Atlas：操作列按钮化 ─────────────────────────────────── */
+html[data-kis-theme="atlas"] .table-row-actions__link {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 10px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  text-decoration: none !important;
+  font-weight: 650;
+}
+
+html[data-kis-theme="atlas"] .table-row-actions__link:hover {
+  background: #eef2ff;
+  border-color: #c7d2fe;
+}
+
+.kis-theme-ambient--atlas {
+  background:
+    linear-gradient(180deg, rgba(59, 79, 212, 0.04) 0%, transparent 28%),
+    radial-gradient(480px 200px at 0% 100%, rgba(59, 79, 212, 0.06), transparent 55%);
+}
+
+/* ── Beacon 控制塔 KPI ───────────────────────────────────── */
+.kis-beacon-ops {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) auto;
+  gap: 12px;
+  align-items: stretch;
+  margin-bottom: 16px;
+}
+
+.kis-beacon-ops__card {
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid #dbe4e2;
+  background: #fff;
+  box-shadow: 0 10px 28px -22px rgba(15, 23, 42, 0.35);
+}
+
+.kis-beacon-ops__card--primary {
+  border-color: rgba(13, 148, 136, 0.22);
+  background: linear-gradient(145deg, #fff 0%, rgba(204, 251, 241, 0.35) 100%);
+}
+
+.kis-beacon-ops__card--warn {
+  border-color: #fed7aa;
+  background: linear-gradient(145deg, #fff 7%, #fff7ed 100%);
+}
+
+.kis-beacon-ops__card--ok {
+  border-color: #bbf7d0;
+  background: linear-gradient(145deg, #fff 0%, #ecfdf5 100%);
+}
+
+.kis-beacon-ops__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #64748b;
+}
+
+.kis-beacon-ops__value {
+  display: block;
+  margin-top: 4px;
+  font-size: 28px;
+  font-weight: 750;
+  letter-spacing: -0.03em;
+  color: #0f172a;
+  line-height: 1.1;
+}
+
+.kis-beacon-ops__hint {
+  display: block;
+  margin-top: 2px;
+  font-size: 11px;
+  color: #94a3b8;
+}
+
+.kis-beacon-ops__live {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: center;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  color: #047857;
+  background: #ecfdf5;
+  border: 1px solid #a7f3d0;
+  white-space: nowrap;
+}
+
+.kis-beacon-ops__pulse {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55);
+  animation: kis-beacon-pulse 1.8s ease-out infinite;
+}
+
+@keyframes kis-beacon-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.55); }
+  70% { box-shadow: 0 0 0 10px rgba(16, 185, 129, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+}
+
+html[data-kis-theme="beacon"] .kis-page-actions--beacon {
+  flex-direction: column;
+  align-items: stretch;
+  min-width: 168px;
+}
+
+html[data-kis-theme="beacon"] .kis-page-actions--beacon .btn--primary {
+  order: -1;
+  padding: 11px 18px;
+  font-weight: 700;
+  box-shadow: 0 12px 24px -14px rgba(15, 118, 110, 0.65);
+}
+
+html[data-kis-theme="beacon"] .kis-page-header--beacon.page-header {
+  flex-wrap: nowrap;
+  gap: 20px;
+}
+
+html[data-kis-theme="beacon"] .kis-page-header--beacon.page-header > div:first-child {
+  flex: 1;
+  min-width: 0;
+}
+
+html[data-kis-theme="beacon"] .kis-row--heat-warn {
+  background: linear-gradient(90deg, rgba(234, 88, 12, 0.06) 0%, transparent 42%);
+}
+
+html[data-kis-theme="beacon"] .kis-row--heat-err {
+  background: linear-gradient(90deg, rgba(225, 29, 72, 0.07) 0%, transparent 45%);
+}
+
+/* ── Clarity 空气感布局 ─────────────────────────────────── */
+.kis-clarity-eyebrow {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #ea580c;
+}
+
+html[data-kis-theme="clarity"] .kis-page-header--clarity.page-header h1 {
+  font-size: 1.65rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+html[data-kis-theme="clarity"] .kis-page-actions--clarity {
+  width: 100%;
+  max-width: 420px;
+}
+
+html[data-kis-theme="clarity"] .kis-page-actions--clarity .btn--primary {
+  flex: 1;
+  justify-content: center;
+  padding: 12px 20px;
+  font-weight: 700;
+  border-radius: 999px;
+}
+
+html[data-kis-theme="clarity"] .kis-page-actions--clarity .btn:not(.btn--primary) {
+  border-radius: 999px;
+}
+
+html[data-kis-theme="clarity"] .kis-clarity-panel.data-panel {
+  display: flex;
+  flex-direction: column;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+html[data-kis-theme="clarity"] .kis-clarity-panel .data-panel__quick-bar {
+  order: -2;
+  margin: 0 0 12px;
+  padding: 10px 14px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  box-shadow: var(--shadow-2);
+}
+
+html[data-kis-theme="clarity"] .kis-clarity-pill.badge-cell {
+  border-radius: 999px !important;
+  padding: 4px 12px !important;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+/* ── Atlas 合规台 ─────────────────────────────────────────── */
+.kis-atlas-ribbon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #3730a3;
+  background: #eef2ff;
+  border-bottom: 1px solid #c7d2fe;
+}
+
+.kis-atlas-ribbon__mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  background: #3b4fd4;
+}
+
+.kis-page-header--atlas-split.page-header {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  column-gap: 20px;
+  row-gap: 12px;
+  align-items: start;
+}
+
+.kis-page-header--atlas-split.page-header > div:first-child {
+  grid-column: 1;
+  grid-row: 1 / span 2;
+}
+
+.kis-page-header--atlas-split.page-header .page-actions {
+  grid-column: 2;
+  grid-row: 1;
+  justify-content: flex-end;
+}
+
+.kis-atlas-metrics {
+  grid-column: 2;
+  grid-row: 2;
+  display: flex;
+  gap: 10px;
+}
+
+.kis-atlas-metrics__cell {
+  min-width: 72px;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  text-align: center;
+}
+
+.kis-atlas-metrics__cell--alert {
+  border-color: #fecaca;
+  background: #fef2f2;
+}
+
+.kis-atlas-metrics__n {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  color: #111827;
+  line-height: 1.1;
+}
+
+.kis-atlas-metrics__l {
+  display: block;
+  margin-top: 2px;
+  font-size: 10px;
+  font-weight: 650;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #6b7280;
+}
+
+html[data-kis-theme="atlas"] .kis-segment-bar__item {
+  cursor: pointer;
+  transition: background 0.12s ease, border-color 0.12s ease;
+}
+
+html[data-kis-theme="atlas"] .kis-segment-bar__item:hover {
+  background: #f9fafb;
+}
+
+html[data-kis-theme="atlas"] .kis-atlas-table thead th:first-child,
+html[data-kis-theme="atlas"] .kis-atlas-table tbody td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 2;
+  background: inherit;
+  box-shadow: 1px 0 0 #e5e7eb;
+}
+
+html[data-kis-theme="atlas"] .kis-atlas-table thead th:first-child {
+  background: var(--atlas-head, #fafafa);
+}
+
+html[data-kis-theme="atlas"] .kis-data-panel--deck.data-panel {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-2);
+}
+
+html[data-kis-theme="lumen"] .kis-page-meta__chip--lumen {
+  background: #f4f4f5;
+  border-color: #e4e4e7;
+  color: #3f3f46;
+}
+
+.kis-theme-ambient--lumen {
+  background: radial-gradient(640px 240px at 50% 0%, rgba(107, 101, 128, 0.05), transparent 62%);
+}
+
+#kis-prototype-host.kis-theme-surface--lumen {
+  position: relative;
+  z-index: 1;
+}
+
+/* ── Lumen 页头 / 工具条 ─────────────────────────────────── */
+.kis-lumen-crumb {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.kis-lumen-crumb span:nth-child(3) {
+  color: #52525b;
+}
+
+.kis-page-header--lumen.page-header {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 10px;
+}
+
+.kis-lumen-grid-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 14px;
+  border-bottom: 1px solid #e4e4e7;
+  background: #fafafa;
+}
+
+.kis-lumen-grid-toolbar__left {
+  display: flex;
+  gap: 6px;
+}
+
+.kis-lumen-grid-toolbar__pill {
+  font: inherit;
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 650;
+  color: #71717a;
+  border: 1px solid #e4e4e7;
+  background: #fff;
+  cursor: pointer;
+}
+
+.kis-lumen-grid-toolbar__pill.is-active {
+  color: #18181b;
+  border-color: #d4d4d8;
+  background: #f4f4f5;
+}
+
+.kis-lumen-grid-toolbar__meta {
+  font-size: 11px;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+/* ── Lumen 表头 ─────────────────────────────────────────── */
+.kis-lumen-th {
+  position: relative;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.kis-lumen-th__icon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  margin-right: 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  color: #52525b;
+  background: #f4f4f5;
+  vertical-align: middle;
+}
+
+.kis-lumen-th__label {
+  vertical-align: middle;
+}
+
+.kis-lumen-th__sort {
+  margin-left: 6px;
+  font-size: 10px;
+  color: #cbd5e1;
+  vertical-align: middle;
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-th--rail {
+  box-shadow: inset 3px 0 0 var(--lumen-rail, #c4bdd6);
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-th__resize {
+  position: absolute;
+  top: 22%;
+  right: 2px;
+  width: 4px;
+  height: 56%;
+  border-radius: 4px;
+  background: transparent;
+  cursor: col-resize;
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-th:hover .kis-lumen-th__resize {
+  background: rgba(107, 101, 128, 0.2);
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-th.is-sorted-asc .kis-lumen-th__sort,
+html[data-kis-theme="lumen"] .kis-lumen-th.is-sorted-desc .kis-lumen-th__sort {
+  color: #52525b;
+  font-weight: 800;
+}
+
+.kis-lumen-field-tip {
+  position: fixed;
+  z-index: 10000;
+  transform: translate(-50%, calc(-100% - 6px));
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background: #18181b;
+  box-shadow: 0 8px 20px -8px rgba(0, 0, 0, 0.35);
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.kis-lumen-field-tip::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -4px;
+  width: 8px;
+  height: 8px;
+  background: #18181b;
+  transform: translateX(-50%) rotate(45deg);
+}
+
+/* ── Lumen 单元格交互 ─────────────────────────────────────── */
+.kis-lumen-link-cell,
+.kis-lumen-editable-cell {
+  position: relative;
+  min-height: 2rem;
+}
+
+.kis-lumen-link-cell__text {
+  font-weight: 650;
+  color: #18181b;
+}
+
+.kis-lumen-link-cell__ext {
+  margin-left: 4px;
+  font-size: 11px;
+  opacity: 0.7;
+}
+
+.kis-lumen-hover-btn {
+  position: absolute;
+  top: 50%;
+  right: 6px;
+  transform: translateY(-50%) scale(0.98);
+  opacity: 0;
+  pointer-events: none;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  padding: 4px 10px;
+  border-radius: 8px;
+  transition: opacity 0.12s ease, transform 0.12s ease, background 0.12s ease;
+  cursor: pointer;
+}
+
+.kis-lumen-hover-btn--ghost {
+  border: 1px solid #e4e4e7;
+  background: rgba(255, 255, 255, 0.92);
+  color: #3f3f46;
+  box-shadow: 0 4px 14px -8px rgba(24, 24, 27, 0.25);
+  backdrop-filter: blur(6px);
+}
+
+.kis-lumen-tr:hover .kis-lumen-hover-btn,
+.kis-lumen-tr.is-row-active .kis-lumen-hover-btn {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(-50%) scale(1);
+}
+
+.kis-lumen-hover-btn--ghost:hover {
+  background: #fff;
+  border-color: #d4d4d8;
+}
+
+.kis-lumen-locked-cell {
+  cursor: not-allowed;
+  color: #64748b;
+}
+
+.kis-lumen-locked-cell:hover {
+  outline: 1px dashed #cbd5e1;
+  outline-offset: -2px;
+}
+
+.kis-lumen-inline-input {
+  width: 100%;
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid #9d98b0;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(107, 101, 128, 0.14);
+}
+
+.kis-lumen-editable-cell:hover {
+  cursor: text;
+}
+
+.kis-lumen-cell--error .kis-lumen-inline-input,
+.kis-lumen-cell--error {
+  border-color: #e11d48;
+}
+
+.kis-lumen-cell--error .kis-lumen-inline-input {
+  border-color: #e11d48;
+  box-shadow: 0 0 0 3px rgba(225, 29, 72, 0.12);
+}
+
+/* ── Lumen Score / Bool ───────────────────────────────────── */
+.kis-lumen-score {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-width: 4.75rem;
+  padding: 5px 14px !important;
+  border-radius: 999px !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  letter-spacing: 0.01em;
+}
+
+.kis-lumen-score--high {
+  background: #ecfdf5 !important;
+  color: #047857 !important;
+}
+
+.kis-lumen-score--medium {
+  background: #fff7ed !important;
+  color: #c2410c !important;
+}
+
+.kis-lumen-score--low {
+  background: #fef2f2 !important;
+  color: #b91c1c !important;
+}
+
+.kis-lumen-score--neutral {
+  background: #f1f5f9 !important;
+  color: #475569 !important;
+}
+
+.kis-lumen-bool {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.kis-lumen-bool--yes {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.kis-lumen-bool--no {
+  background: #f1f5f9;
+  color: #94a3b8;
+}
+
+html[data-kis-theme="lumen"] .kis-btn-glyph {
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-table--compact tbody td {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+html[data-kis-theme="lumen"] .kis-lumen-table--compact {
+  --kis-table-row-h: 3.1rem;
+}
+
+/* ── Notion 文档 / 数据库 ─────────────────────────────────── */
+#kis-prototype-host.kis-theme-surface--notion {
+  position: relative;
+  z-index: 1;
+}
+
+html[data-kis-theme="notion"] .shell-body {
+  background: #fff;
+}
+
+html[data-kis-theme="notion"] .kis-notion-scope {
+  width: 100%;
+}
+
+/* Hero 占满 .main 列宽（不突破侧栏，避免横向错位） */
+.kis-notion-hero {
+  width: 100%;
+  margin: 0;
+  background: #fff;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  margin-bottom: 4px;
+}
+
+.kis-notion-hero--workspace {
+  border-bottom-color: rgba(55, 53, 47, 0.06);
+  margin-bottom: 0;
+}
+
+.kis-notion-hero--workspace .kis-notion-hero__inner {
+  padding-top: 20px;
+  padding-bottom: 14px;
+}
+
+.kis-notion-hero--workspace .kis-notion-page-icon {
+  font-size: 42px;
+  margin-top: 0;
+  margin-bottom: 6px;
+  filter: none;
+}
+
+.kis-notion-hero--workspace .kis-notion-title {
+  font-size: 1.875rem !important;
+}
+
+html[data-kis-theme="notion"] .kis-notion-scope[data-notion-scope-kind="workspace"] .deliver-toolbar,
+html[data-kis-theme="notion"] .kis-notion-scope[data-notion-scope-kind="workspace"] .edc-mode-bar {
+  margin-left: clamp(16px, 3vw, 40px);
+  margin-right: clamp(16px, 3vw, 40px);
+}
+
+html[data-kis-theme="notion"] .kis-notion-scope[data-notion-scope-kind="workspace"] .paper,
+html[data-kis-theme="notion"] .kis-notion-scope[data-notion-scope-kind="workspace"] .edc-shell {
+  margin-left: clamp(12px, 2.5vw, 32px);
+  margin-right: clamp(12px, 2.5vw, 32px);
+}
+
+.kis-notion-cover {
+  height: 172px;
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(120deg, rgba(227, 226, 224, 0.95) 0%, rgba(245, 244, 242, 0.98) 42%, rgba(212, 228, 246, 0.9) 100%);
+}
+
+.kis-notion-hero__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 clamp(20px, 4vw, 56px) 22px;
+}
+
+.kis-notion-doc {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0 clamp(16px, 3vw, 40px) 32px;
+}
+
+.kis-notion-page-icon {
+  font-size: 68px;
+  line-height: 1;
+  margin-top: -36px;
+  margin-bottom: 8px;
+  filter: drop-shadow(0 6px 16px rgba(0, 0, 0, 0.06));
+}
+
+.kis-notion-header.page-header {
+  display: block;
+  margin-bottom: 0;
+  padding-top: 4px;
+}
+
+.kis-notion-title {
+  font-size: 2.5rem !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.03em !important;
+  color: #37352f !important;
+  line-height: 1.15;
+  margin: 0 0 4px;
+}
+
+.kis-notion-subtitle {
+  font-size: 14px !important;
+  color: #787774 !important;
+  max-width: 36rem;
+}
+
+.kis-notion-actions.page-actions {
+  float: right;
+  margin-top: -52px;
+  gap: 6px;
+}
+
+.kis-notion-share-btn {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: 1px solid rgba(55, 53, 47, 0.16);
+  background: #fff;
+  color: #37352f;
+  cursor: default;
+}
+
+.kis-notion-props {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 18px;
+  padding: 10px 0 0;
+  border-bottom: none;
+}
+
+.kis-notion-prop {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+}
+
+.kis-notion-prop__k {
+  color: #787774;
+  min-width: 52px;
+}
+
+.kis-notion-prop__v {
+  color: #37352f;
+  font-weight: 500;
+}
+
+.kis-notion-db-shell {
+  margin-top: 8px;
+}
+
+.kis-notion-db-chrome {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 8px 0 10px;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+.kis-notion-views {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.kis-notion-view {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #787774;
+  cursor: pointer;
+}
+
+.kis-notion-view.is-active {
+  color: #37352f;
+  background: rgba(55, 53, 47, 0.08);
+}
+
+.kis-notion-db-tools {
+  display: flex;
+  gap: 4px;
+}
+
+.kis-notion-tool {
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: #787774;
+  cursor: default;
+}
+
+.kis-notion-tool:hover {
+  background: rgba(55, 53, 47, 0.06);
+}
+
+.kis-notion-db-toolbar.data-panel__toolbar {
+  padding: 8px 0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.kis-notion-db-quick.data-panel__quick-bar {
+  padding: 6px 0 10px !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+html[data-kis-theme="notion"] table.kis-notion-table {
+  width: 100%;
+  font-size: 14px;
+}
+
+html[data-kis-theme="notion"] table.kis-notion-table thead th {
+  font-weight: 500;
+  color: #787774;
+  border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+  background: transparent;
+  padding: 6px 8px;
+}
+
+html[data-kis-theme="notion"] table.kis-notion-table tbody td {
+  border-bottom: 1px solid rgba(55, 53, 47, 0.06);
+  padding: 7px 8px;
+  vertical-align: middle;
+}
+
+html[data-kis-theme="notion"] table.kis-notion-table tbody tr:hover td {
+  background: rgba(55, 53, 47, 0.03);
+}
+
+.kis-notion-select-col {
+  width: 28px;
+  padding-left: 4px !important;
+  padding-right: 0 !important;
+}
+
+.kis-notion-check {
+  width: 14px;
+  height: 14px;
+  accent-color: #2383e2;
+  cursor: default;
+}
+
+.kis-notion-cell-title {
+  font-weight: 600;
+  color: #37352f;
+}
+
+.kis-notion-tag {
+  display: inline-flex !important;
+  align-items: center;
+  padding: 2px 8px !important;
+  border-radius: 4px !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 1.35;
+}
+
+.kis-notion-tag--green {
+  background: #edf3ec !important;
+  color: #448361 !important;
+}
+
+.kis-notion-tag--yellow {
+  background: #fbf3db !important;
+  color: #d9730d !important;
+}
+
+.kis-notion-tag--red {
+  background: #fdebec !important;
+  color: #e03e3e !important;
+}
+
+.kis-notion-tag--blue {
+  background: #e7f3ff !important;
+  color: #2383e2 !important;
+}
+
+.kis-notion-tag--gray {
+  background: rgba(227, 226, 224, 0.65) !important;
+  color: #787774 !important;
+}
+
+/* ── Board Kanban ─────────────────────────────────────────── */
+.kis-notion-kanban {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  overflow-x: auto;
+  padding: 14px 0 10px;
+  min-height: 320px;
+}
+
+.kis-notion-kanban-col {
+  flex: 0 0 min(300px, 82vw);
+  background: rgba(227, 226, 224, 0.35);
+  border-radius: 10px;
+  padding: 8px;
+  max-height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.kis-notion-kanban-col.is-drop-target {
+  outline: 2px solid rgba(35, 131, 226, 0.45);
+  background: rgba(231, 243, 255, 0.55);
+}
+
+.kis-notion-kanban-col__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 6px 8px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #37352f;
+}
+
+.kis-notion-kanban-col__count {
+  font-size: 12px;
+  font-weight: 500;
+  color: #787774;
+  background: rgba(255, 255, 255, 0.65);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.kis-notion-kanban-col__body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow-y: auto;
+  padding: 2px;
+  flex: 1;
+}
+
+.kis-notion-kanban-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  box-shadow: 0 1px 2px rgba(15, 15, 15, 0.06);
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  cursor: grab;
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.kis-notion-kanban-card:hover {
+  box-shadow: 0 6px 18px -10px rgba(15, 15, 15, 0.25);
+}
+
+.kis-notion-kanban-card.is-dragging {
+  opacity: 0.55;
+  cursor: grabbing;
+  transform: scale(0.98);
+}
+
+.kis-notion-kanban-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #37352f;
+  margin-bottom: 4px;
+}
+
+.kis-notion-kanban-card__meta {
+  font-size: 12px;
+  color: #787774;
+  margin-bottom: 8px;
+  line-height: 1.4;
+}
+
+.kis-notion-board:not(.kis-notion-kanban)[hidden] {
+  display: none !important;
+}
+
+/* ── Gallery ──────────────────────────────────────────────── */
+.kis-notion-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 14px;
+  padding: 14px 0 8px;
+}
+
+.kis-notion-gallery-card {
+  background: #fff;
+  border: 1px solid rgba(55, 53, 47, 0.09);
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.12s ease, transform 0.12s ease;
+}
+
+.kis-notion-gallery-card:hover {
+  box-shadow: 0 10px 28px -16px rgba(15, 15, 15, 0.28);
+  transform: translateY(-2px);
+}
+
+.kis-notion-gallery-card__cover {
+  height: 88px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(145deg, #9b9a97 0%, #787774 100%);
+}
+
+.kis-notion-gallery-card__body {
+  padding: 10px 12px 12px;
+}
+
+.kis-notion-gallery-card__title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #37352f;
+  margin-bottom: 4px;
+}
+
+.kis-notion-gallery-card__meta {
+  font-size: 12px;
+  color: #787774;
+  margin-bottom: 8px;
+  line-height: 1.35;
+}
+
+.kis-notion-fab {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 40;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 999px;
+  color: #fff;
+  background: #37352f;
+  box-shadow: 0 8px 28px -6px rgba(0, 0, 0, 0.35);
+  cursor: pointer;
+}
+
+.kis-notion-fab:hover {
+  background: #2f2d28;
+}
+
+@media (max-width: 960px) {
+  .kis-notion-hero__inner {
+    padding: 0 16px 18px;
+  }
+  .kis-notion-doc {
+    padding: 0 12px 24px;
+  }
+  .kis-notion-actions.page-actions {
+    float: none;
+    margin-top: 12px;
+  }
+}
+
+@media (max-width: 960px) {
+  .kis-beacon-ops {
+    grid-template-columns: 1fr 1fr;
+  }
+  .kis-beacon-ops__live {
+    grid-column: 1 / -1;
+    justify-content: center;
+  }
+  .kis-page-header--atlas-split.page-header {
+    grid-template-columns: 1fr;
+  }
+  .kis-atlas-metrics,
+  .kis-page-header--atlas-split.page-header .page-actions {
+    grid-column: 1;
+  }
+}

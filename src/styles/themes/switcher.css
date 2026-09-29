@@ -1,0 +1,104 @@
+/* 风格开关本身。各主题样式写在同目录的 <id>.css，用 html[data-kis-theme] 限定。 */
+
+.theme-switch {
+  position: relative;
+}
+
+.theme-switch__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 34px;
+  padding: 0 10px 0 12px;
+  border: 1px solid var(--mui-divider);
+  border-radius: 999px;
+  background: var(--mui-paper);
+  color: var(--mui-text);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.theme-switch__btn:hover {
+  background: rgba(15, 118, 110, 0.06);
+  border-color: rgba(15, 118, 110, 0.28);
+}
+
+.theme-switch__btn:focus-visible {
+  outline: 2px solid var(--mui-primary-light);
+  outline-offset: 2px;
+}
+
+.theme-switch__kicker {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--mui-text-secondary);
+}
+
+.theme-switch__btn svg {
+  width: 14px;
+  height: 14px;
+  color: var(--mui-text-secondary);
+}
+
+.theme-switch__menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  z-index: 1300;
+  min-width: 220px;
+  padding: 6px;
+  background: #fff;
+  border: 1px solid var(--mui-divider);
+  border-radius: 12px;
+  box-shadow: var(--shadow-2);
+}
+
+.theme-switch__menu[hidden] {
+  display: none;
+}
+
+.theme-switch__item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  width: 100%;
+  padding: 8px 10px;
+  border: none;
+  border-radius: 8px;
+  background: transparent;
+  color: var(--mui-text);
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.theme-switch__item:hover {
+  background: #f4f7f7;
+}
+
+.theme-switch__item.is-current {
+  background: rgba(13, 148, 136, 0.1);
+}
+
+.theme-switch__item-label {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.theme-switch__english {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--mui-text-secondary);
+}
+
+.theme-switch__hint {
+  font-size: 12px;
+  color: var(--mui-text-secondary);
+}

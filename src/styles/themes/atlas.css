@@ -1,0 +1,604 @@
+/*
+ * Atlas — 企业合规台气质（灵感来自 Vanta / Fathom 类产品，非逐像素照抄）。
+ * 关键词：白底、细灰线、靛蓝强调、左指示条、状态色胶囊、结构化留白。
+ * 只在 html[data-kis-theme="atlas"] 下叠加。
+ */
+
+/* ── Tokens ─────────────────────────────────────────────── */
+html[data-kis-theme="atlas"] {
+  --mui-primary: #3b4fd4;
+  --mui-primary-dark: #2f3fb0;
+  --mui-primary-light: #e8ebff;
+  --mui-error: #dc2626;
+  --mui-warning: #ea580c;
+  --mui-success: #16a34a;
+  --mui-text: #111827;
+  --mui-text-secondary: #6b7280;
+  --mui-divider: #e5e7eb;
+  --mui-bg: #f8f9fb;
+  --mui-paper: #ffffff;
+  --mui-appbar: rgba(255, 255, 255, 0.96);
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --ring: rgba(59, 79, 212, 0.28);
+  --shadow-1: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-2: 0 12px 28px -18px rgba(17, 24, 39, 0.18), 0 1px 3px rgba(17, 24, 39, 0.04);
+  --radius: 10px;
+  --radius-sm: 8px;
+  --kis-table-row-h: 4.25rem;
+
+  --atlas-ink: #111827;
+  --atlas-mute: #6b7280;
+  --atlas-faint: #9ca3af;
+  --atlas-line: #e5e7eb;
+  --atlas-soft: #f3f4f6;
+  --atlas-softer: #f8f9fb;
+  --atlas-blue: #3b4fd4;
+  --atlas-blue-soft: rgba(59, 79, 212, 0.1);
+  --atlas-blue-mid: rgba(59, 79, 212, 0.16);
+  --atlas-row-hover: #f9fafb;
+  --atlas-head: #fafafa;
+}
+
+/* ── Atmosphere ─────────────────────────────────────────── */
+html[data-kis-theme="atlas"] body {
+  color: var(--atlas-ink);
+  background: var(--mui-bg);
+}
+
+html[data-kis-theme="atlas"] .main {
+  background: #fff;
+  padding: 24px 28px 48px;
+}
+
+/* ── App bar ────────────────────────────────────────────── */
+html[data-kis-theme="atlas"] .app-bar {
+  min-height: 56px;
+  background: #fff;
+  border-bottom: 1px solid var(--atlas-line);
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+html[data-kis-theme="atlas"] .app-bar__logo {
+  border-radius: 8px;
+  background: linear-gradient(145deg, #5b6cf0 0%, #3b4fd4 100%);
+  box-shadow: none;
+}
+
+html[data-kis-theme="atlas"] .app-bar__brand {
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+html[data-kis-theme="atlas"] .app-bar__project select {
+  border-radius: 8px;
+  border-color: var(--atlas-line);
+  background: #fff;
+  box-shadow: none;
+}
+
+html[data-kis-theme="atlas"] .app-bar__notify {
+  border-radius: 8px;
+  color: #4b5563;
+}
+
+html[data-kis-theme="atlas"] .app-bar__notify:hover {
+  background: var(--atlas-soft);
+  color: var(--atlas-ink);
+}
+
+html[data-kis-theme="atlas"] .app-bar__notify-badge {
+  background: #ef4444;
+  box-shadow: 0 0 0 2px #fff;
+  border-radius: 999px;
+}
+
+html[data-kis-theme="atlas"] .notify-panel {
+  border-radius: 12px;
+  border-color: var(--atlas-line);
+  box-shadow: var(--shadow-2);
+}
+
+html[data-kis-theme="atlas"] .notify-panel__head {
+  background: var(--atlas-softer);
+  border-bottom-color: var(--atlas-line);
+}
+
+html[data-kis-theme="atlas"] .notify-item:hover {
+  background: var(--atlas-row-hover);
+}
+
+html[data-kis-theme="atlas"] .notify-item__tag {
+  background: var(--atlas-blue-mid);
+  color: var(--atlas-blue);
+  border-radius: 999px;
+}
+
+/* ── Phase nav ──────────────────────────────────────────── */
+html[data-kis-theme="atlas"] .phase-nav button {
+  border-radius: 0;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+html[data-kis-theme="atlas"] .phase-nav button:hover {
+  background: transparent;
+  color: var(--atlas-ink);
+}
+
+html[data-kis-theme="atlas"] .phase-nav button.is-active,
+html[data-kis-theme="atlas"] .phase-visit-dd__trigger.is-active {
+  color: var(--atlas-blue);
+  font-weight: 650;
+  background: transparent;
+  border-bottom-color: var(--atlas-blue);
+}
+
+html[data-kis-theme="atlas"] .phase-visit-dd__menu {
+  border-radius: 12px;
+  border-color: var(--atlas-line);
+  box-shadow: var(--shadow-2);
+  padding: 6px;
+}
+
+html[data-kis-theme="atlas"] .phase-visit-dd__item {
+  border-radius: 8px;
+}
+
+html[data-kis-theme="atlas"] .phase-visit-dd__item:hover,
+html[data-kis-theme="atlas"] .phase-ref-dd .phase-visit-dd__item.is-current {
+  background: var(--atlas-blue-soft);
+}
+
+html[data-kis-theme="atlas"] .phase-visit-dd__icon--staff {
+  background: linear-gradient(145deg, #5b6cf0, #3b4fd4);
+}
+
+html[data-kis-theme="atlas"] .theme-switch__btn {
+  border-radius: 8px;
+  border-color: var(--atlas-line);
+  background: #fff;
+  box-shadow: none;
+}
+
+html[data-kis-theme="atlas"] .theme-switch__menu {
+  border-radius: 12px;
+  border-color: var(--atlas-line);
+}
+
+html[data-kis-theme="atlas"] .theme-switch__item.is-current {
+  background: var(--atlas-blue-soft);
+}
+
+/* ── Sidebar：白底 + 左蓝指示条 ─────────────────────────── */
+html[data-kis-theme="atlas"] .sidebar {
+  background: #fff;
+  border-right: 1px solid var(--atlas-line);
+  padding: 14px 10px 28px;
+}
+
+html[data-kis-theme="atlas"] .sidebar-l1,
+html[data-kis-theme="atlas"] .sidebar-l2 button,
+html[data-kis-theme="atlas"] .sidebar-l1.is-leaf {
+  border-radius: 8px;
+  color: #374151;
+}
+
+html[data-kis-theme="atlas"] .sidebar-l1:hover,
+html[data-kis-theme="atlas"] .sidebar-l2 button:hover,
+html[data-kis-theme="atlas"] .sidebar-visit-step:hover {
+  background: var(--atlas-softer);
+}
+
+html[data-kis-theme="atlas"] .sidebar .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar .sidebar-l1.is-leaf.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-visit-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-recruit .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-prep .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-schedule .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-deliver .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-settings .sidebar-l2 button.is-active,
+html[data-kis-theme="atlas"] .sidebar.is-phase-visit .sidebar-l2 button.is-active {
+  background: var(--atlas-blue-soft);
+  color: var(--atlas-blue);
+  font-weight: 650;
+  border-left-color: var(--atlas-blue);
+  box-shadow: none;
+  outline: none;
+}
+
+html[data-kis-theme="atlas"] .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-visit-collect .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-recruit .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-prep .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-schedule .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-deliver .sidebar-l1__dot,
+html[data-kis-theme="atlas"] .sidebar.is-phase-settings .sidebar-l1__dot {
+  background: var(--atlas-blue);
+  box-shadow: none;
+}
+
+html[data-kis-theme="atlas"] .sidebar .nav-badge {
+  border-radius: 999px;
+  background: #fee2e2;
+  color: #b91c1c;
+  font-weight: 700;
+}
+
+html[data-kis-theme="atlas"] .sidebar-l2 {
+  border-left: 1px solid var(--atlas-line);
+  margin-left: 14px;
+  padding-left: 4px;
+}
+
+/* ── Page header ────────────────────────────────────────── */
+html[data-kis-theme="atlas"] .page-header {
+  margin-bottom: 20px;
+}
+
+html[data-kis-theme="atlas"] .page-header h1 {
+  color: var(--atlas-ink);
+  font-size: 1.5rem;
+  font-weight: 750;
+  letter-spacing: -0.035em;
+}
+
+html[data-kis-theme="atlas"] .page-header .subtitle {
+  color: var(--atlas-mute);
+  margin-top: 8px;
+}
+
+html[data-kis-theme="atlas"] .breadcrumb a {
+  color: var(--atlas-blue);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+html[data-kis-theme="atlas"] .btn {
+  border-radius: 8px;
+  border-color: var(--atlas-line);
+  background: #fff;
+  box-shadow: none;
+  font-weight: 600;
+}
+
+html[data-kis-theme="atlas"] .btn:hover {
+  background: var(--atlas-softer);
+  border-color: #d1d5db;
+}
+
+html[data-kis-theme="atlas"] .btn--primary {
+  background: var(--atlas-blue);
+  border-color: var(--atlas-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+html[data-kis-theme="atlas"] .btn--primary:hover {
+  background: #2f3fb0;
+  border-color: #2f3fb0;
+}
+
+html[data-kis-theme="atlas"] .btn--text {
+  color: var(--atlas-blue);
+}
+
+html[data-kis-theme="atlas"] .plan-table .btn-op-link,
+html[data-kis-theme="atlas"] .recruit-subject-table .table-row-actions__link,
+html[data-kis-theme="atlas"] .study-chain-table .chain-actions a,
+html[data-kis-theme="atlas"] table.desk-map-table [data-col="map-sync-action"] .btn-op-link,
+html[data-kis-theme="atlas"] table.acceptance-table .btn-op-link {
+  color: var(--atlas-blue);
+  font-weight: 650;
+}
+
+html[data-kis-theme="atlas"] .push-dispatch-btn.is-unpushed {
+  color: var(--atlas-blue);
+  font-weight: 650;
+}
+
+/* ── Inputs / filters ───────────────────────────────────── */
+html[data-kis-theme="atlas"] input,
+html[data-kis-theme="atlas"] select,
+html[data-kis-theme="atlas"] textarea,
+html[data-kis-theme="atlas"] .input,
+html[data-kis-theme="atlas"] .table-pagination__size select {
+  border-color: var(--atlas-line);
+  border-radius: 8px;
+  background: #fff;
+  color: var(--atlas-ink);
+}
+
+html[data-kis-theme="atlas"] input:focus,
+html[data-kis-theme="atlas"] select:focus,
+html[data-kis-theme="atlas"] textarea:focus,
+html[data-kis-theme="atlas"] .input:focus,
+html[data-kis-theme="atlas"] .app-bar__project select:focus {
+  outline: 2px solid var(--mui-primary-light);
+  border-color: #818cf8;
+}
+
+html[data-kis-theme="atlas"] .quick-filters {
+  background: transparent;
+  border: 1px solid var(--atlas-line);
+  border-radius: 999px;
+  padding: 3px;
+}
+
+html[data-kis-theme="atlas"] .quick-filters button {
+  border-radius: 999px;
+  font-weight: 550;
+  color: #4b5563;
+}
+
+html[data-kis-theme="atlas"] .quick-filters button:hover {
+  background: var(--atlas-softer);
+  color: var(--atlas-ink);
+}
+
+html[data-kis-theme="atlas"] .quick-filters button.is-active {
+  background: #fff;
+  color: var(--atlas-ink);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
+  border: 1px solid var(--atlas-line);
+}
+
+/* ── Cards / panels：细边框、轻阴影 ─────────────────────── */
+html[data-kis-theme="atlas"] .data-panel,
+html[data-kis-theme="atlas"] .paper,
+html[data-kis-theme="atlas"] .placeholder-panel {
+  border-radius: 12px;
+  border: 1px solid var(--atlas-line);
+  box-shadow: none;
+  background: #fff;
+  overflow: hidden;
+}
+
+html[data-kis-theme="atlas"] .data-panel__toolbar {
+  background: #fff;
+  border-bottom: 1px solid var(--atlas-line);
+  padding: 14px 18px;
+}
+
+html[data-kis-theme="atlas"] .data-panel__quick-bar {
+  background: #fff;
+  border-bottom-color: var(--atlas-line);
+  padding: 10px 18px;
+}
+
+html[data-kis-theme="atlas"] .data-panel__quick-label {
+  color: var(--atlas-faint);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+html[data-kis-theme="atlas"] .desk-tag {
+  border-radius: 999px;
+  background: var(--atlas-blue-soft);
+  color: var(--atlas-blue);
+  font-weight: 650;
+}
+
+/* ── Tables：开放列表感 ─────────────────────────────────── */
+html[data-kis-theme="atlas"] table.plan-table thead th,
+html[data-kis-theme="atlas"] table.recruit-subject-table thead th,
+html[data-kis-theme="atlas"] table.study-chain-table thead th,
+html[data-kis-theme="atlas"] table.acceptance-table thead th,
+html[data-kis-theme="atlas"] table.desk-map-table thead th,
+html[data-kis-theme="atlas"] table.inbound-schedule-table th,
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-right.th-actions,
+html[data-kis-theme="atlas"] table.recruit-subject-table thead th.col-sticky-op,
+html[data-kis-theme="atlas"] .study-chain-table thead th.th-push-dispatch,
+html[data-kis-theme="atlas"] .study-chain-table thead th.th-sticky-act {
+  background: #fff;
+  border-bottom: 1px solid var(--atlas-line);
+  color: var(--atlas-faint);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="atlas"] .plan-table .td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="atlas"] .plan-table .td-sticky-right,
+html[data-kis-theme="atlas"] table.recruit-subject-table .col-sticky-op {
+  border-color: var(--atlas-line);
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody td,
+html[data-kis-theme="atlas"] table.recruit-subject-table tbody td,
+html[data-kis-theme="atlas"] .study-chain-table tbody td,
+html[data-kis-theme="atlas"] table.acceptance-table tbody td,
+html[data-kis-theme="atlas"] table.desk-map-table td,
+html[data-kis-theme="atlas"] table.inbound-schedule-table td {
+  border-bottom-color: #f3f4f6;
+  color: #1f2937;
+}
+
+html[data-kis-theme="atlas"] .study-chain-table tbody tr td,
+html[data-kis-theme="atlas"] .plan-table tbody tr:not([data-inbound]) td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"] td,
+html[data-kis-theme="atlas"] table.recruit-subject-table tbody tr td {
+  background: #fff;
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr:hover td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"]:hover td,
+html[data-kis-theme="atlas"] table.recruit-subject-table tbody tr:hover td,
+html[data-kis-theme="atlas"] table.recruit-subject-table tbody tr:hover .col-sticky-op,
+html[data-kis-theme="atlas"] .study-chain-table tbody tr:hover td,
+html[data-kis-theme="atlas"] .study-chain-table tbody tr:hover .td-push-dispatch,
+html[data-kis-theme="atlas"] .study-chain-table tbody tr:hover .td-sticky-act,
+html[data-kis-theme="atlas"] table.acceptance-table tbody tr:hover td,
+html[data-kis-theme="atlas"] table.desk-map-table tbody tr:hover td {
+  background: var(--atlas-row-hover);
+  filter: none;
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"] td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-right {
+  background: #fff7ed;
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"]:hover td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-right {
+  background: #ffedd5;
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"] td,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-right {
+  background: #fafafa;
+}
+
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="atlas"] .plan-table thead th.th-sticky-right {
+  background: #fff;
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr:hover .td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr:hover .td-sticky-right,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-right,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-right {
+  background: var(--atlas-row-hover);
+}
+
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-right,
+html[data-kis-theme="atlas"] .plan-table tbody tr:not([data-inbound]) td.td-sticky-left,
+html[data-kis-theme="atlas"] .plan-table tbody tr:not([data-inbound]) .td-sticky-right {
+  background: #fff;
+}
+
+html[data-kis-theme="atlas"] .plan-table .td-title,
+html[data-kis-theme="atlas"] .study-chain-table .td-title {
+  font-weight: 650;
+  color: var(--atlas-ink);
+}
+
+/* ── Badges：描边软底胶囊（合规台感） ───────────────────── */
+html[data-kis-theme="atlas"] .badge-cell,
+html[data-kis-theme="atlas"] .badge-cell--status-pending,
+html[data-kis-theme="atlas"] .badge-cell--status-not-started,
+html[data-kis-theme="atlas"] .badge-cell--status-active,
+html[data-kis-theme="atlas"] .badge-cell--status-done,
+html[data-kis-theme="atlas"] .badge-cell--ok,
+html[data-kis-theme="atlas"] .badge-cell--warn,
+html[data-kis-theme="atlas"] .badge-cell--err,
+html[data-kis-theme="atlas"] .badge-cell--info,
+html[data-kis-theme="atlas"] .badge-cell--muted {
+  border-radius: 999px;
+  font-weight: 650;
+  letter-spacing: 0.01em;
+  box-shadow: none;
+  padding: 2px 10px;
+  border: 1px solid transparent;
+}
+
+html[data-kis-theme="atlas"] .badge-cell--ok,
+html[data-kis-theme="atlas"] .badge-cell--status-active {
+  background: #f0fdf4;
+  color: #15803d;
+  border-color: #bbf7d0;
+}
+
+html[data-kis-theme="atlas"] .badge-cell--warn {
+  background: #fff7ed;
+  color: #c2410c;
+  border-color: #fed7aa;
+}
+
+html[data-kis-theme="atlas"] .badge-cell--err {
+  background: #fef2f2;
+  color: #b91c1c;
+  border-color: #fecaca;
+}
+
+html[data-kis-theme="atlas"] .badge-cell--info,
+html[data-kis-theme="atlas"] .badge-cell--status-not-started {
+  background: #eff6ff;
+  color: #1d4ed8;
+  border-color: #bfdbfe;
+}
+
+html[data-kis-theme="atlas"] .badge-cell--muted,
+html[data-kis-theme="atlas"] .badge-cell--status-done,
+html[data-kis-theme="atlas"] .badge-cell--status-pending {
+  background: #f9fafb;
+  color: #4b5563;
+  border-color: #e5e7eb;
+}
+
+/* ── Footer / pagination ────────────────────────────────── */
+html[data-kis-theme="atlas"] .table-footer-bar {
+  background: #fff;
+  border-top-color: var(--atlas-line);
+}
+
+html[data-kis-theme="atlas"] .table-footer-bar__legend {
+  background: var(--atlas-softer);
+  border-bottom-color: var(--atlas-line);
+}
+
+html[data-kis-theme="atlas"] .table-pagination button {
+  border-radius: 8px;
+  border-color: var(--atlas-line);
+  background: #fff;
+}
+
+html[data-kis-theme="atlas"] .table-pagination button:hover:not(:disabled) {
+  background: var(--atlas-softer);
+  border-color: #d1d5db;
+  color: var(--atlas-ink);
+}
+
+html[data-kis-theme="atlas"] .table-pagination button.is-active {
+  background: var(--atlas-blue);
+  border-color: var(--atlas-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* ── Misc ───────────────────────────────────────────────── */
+html[data-kis-theme="atlas"] .lamp--ok {
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.14);
+}
+
+html[data-kis-theme="atlas"] .lamp--warn {
+  background: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.14);
+}
+
+html[data-kis-theme="atlas"] .inbound-tone-legend .tone-scheduled {
+  color: var(--atlas-blue);
+}
+
+html[data-kis-theme="atlas"] .study-chain-table thead th.is-sorted .sort-icon {
+  color: var(--atlas-blue);
+}
+
+html[data-kis-theme="atlas"] .modal,
+html[data-kis-theme="atlas"] .inbound-modal,
+html[data-kis-theme="atlas"] .acceptance-detail,
+html[data-kis-theme="atlas"] .appt-queue-shell,
+html[data-kis-theme="atlas"] .readiness-bar,
+html[data-kis-theme="atlas"] .schedule-flow-banner,
+html[data-kis-theme="atlas"] .content-tabs,
+html[data-kis-theme="atlas"] .inbound-scope-bar {
+  border-color: var(--atlas-line);
+}

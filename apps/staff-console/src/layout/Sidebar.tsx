@@ -40,10 +40,10 @@ export function Sidebar() {
   ];
 
   return (
-    <aside className="relative flex w-[248px] shrink-0 flex-col bg-[#0a1120] text-slate-300">
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(400px_260px_at_0%_0%,rgba(20,184,166,.18),transparent),radial-gradient(300px_300px_at_100%_100%,rgba(99,102,241,.14),transparent)]" />
+    <aside className="relative flex w-[248px] shrink-0 flex-col border-r border-slate-200/80 bg-[#f6f8f8] text-slate-700">
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(420px_240px_at_0%_0%,rgba(13,148,136,.12),transparent),radial-gradient(280px_220px_at_100%_100%,rgba(99,102,241,.08),transparent)]" />
       <div className="relative flex items-center gap-3 px-5 pt-5 pb-6">
-        <div className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-teal-400 to-indigo-500 shadow-[0_8px_20px_-6px_rgba(20,184,166,.7)]">
+        <div className="grid size-9 place-items-center rounded-xl bg-gradient-to-br from-teal-500 to-teal-700 shadow-[0_8px_18px_-8px_rgba(13,148,136,.7)]">
           <svg viewBox="0 0 24 24" className="size-5 text-white" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round">
             <circle cx="5" cy="12" r="2" />
             <circle cx="19" cy="6" r="2" />
@@ -52,8 +52,8 @@ export function Sidebar() {
           </svg>
         </div>
         <div>
-          <div className="text-[15px] font-semibold tracking-tight text-white">访视中枢</div>
-          <div className="text-[11px] text-slate-400">现场控制塔 · 原型</div>
+          <div className="text-[15px] font-semibold tracking-tight text-slate-900">访视中枢</div>
+          <div className="text-[11px] text-slate-500">现场控制塔 · 原型</div>
         </div>
       </div>
 
@@ -62,12 +62,12 @@ export function Sidebar() {
         <NavGroup title="开工前准备" items={prep} />
       </nav>
 
-      <div className="relative m-3 rounded-xl bg-white/[.04] p-3 ring-1 ring-white/[.06]">
+      <div className="relative m-3 rounded-xl bg-white p-3 shadow-[0_1px_2px_rgba(15,23,42,.04)] ring-1 ring-slate-200/80">
         <div className="flex items-center gap-2.5">
           <Avatar name={data.site.operator.name} hue={data.site.operator.hue} size={32} />
           <div className="min-w-0">
-            <div className="text-[13px] font-medium text-white">{data.site.operator.name}</div>
-            <div className="truncate text-[11px] text-slate-400">
+            <div className="text-[13px] font-medium text-slate-900">{data.site.operator.name}</div>
+            <div className="truncate text-[11px] text-slate-500">
               {data.site.operator.role} · {data.site.site.short}
             </div>
           </div>
@@ -80,7 +80,7 @@ export function Sidebar() {
 function NavGroup({ title, items }: { title: string; items: Item[] }) {
   return (
     <div>
-      <div className="px-3 pb-2 text-[10.5px] font-semibold uppercase tracking-[.14em] text-slate-500">{title}</div>
+      <div className="px-3 pb-2 text-[10.5px] font-semibold uppercase tracking-[.14em] text-slate-400">{title}</div>
       <div className="space-y-0.5">
         {items.map((it) => (
           <NavLink
@@ -90,20 +90,20 @@ function NavGroup({ title, items }: { title: string; items: Item[] }) {
             className={({ isActive }) =>
               cx(
                 'group relative flex h-10 items-center gap-3 rounded-[10px] px-3 text-[13.5px] transition-colors',
-                isActive ? 'bg-white/[.08] text-white' : 'text-slate-400 hover:bg-white/[.04] hover:text-slate-100',
+                isActive ? 'bg-white text-teal-900 shadow-[0_1px_2px_rgba(15,23,42,.04)] ring-1 ring-teal-100' : 'text-slate-600 hover:bg-white/70 hover:text-slate-900',
               )
             }
           >
             {({ isActive }) => (
               <>
-                {isActive && <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-teal-400 shadow-[0_0_12px_rgba(45,212,191,.8)]" />}
-                <it.icon className={cx('size-[18px]', isActive ? 'text-teal-300' : 'text-slate-500 group-hover:text-slate-300')} strokeWidth={1.9} />
+                {isActive && <span className="absolute left-0 top-2 bottom-2 w-[3px] rounded-r-full bg-teal-600" />}
+                <it.icon className={cx('size-[18px]', isActive ? 'text-teal-700' : 'text-slate-400 group-hover:text-slate-600')} strokeWidth={1.9} />
                 {it.label}
                 {!!it.badge && (
                   <span
                     className={cx(
                       'ml-auto min-w-5 rounded-md px-1.5 text-center text-[11px] font-semibold tabular-nums leading-5',
-                      it.urgent ? 'bg-rose-500/90 text-white' : 'bg-white/10 text-slate-300',
+                      it.urgent ? 'bg-rose-500 text-white' : 'bg-slate-200/80 text-slate-600',
                     )}
                   >
                     {it.badge}

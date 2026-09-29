@@ -1,0 +1,601 @@
+/*
+ * Clarity — 空气感 SaaS 工作台（灵感来自轻量 CRM / 生产力工具，非逐像素照抄）。
+ * 关键词：冷灰底、白卡片、软阴影、圆角胶囊、字偶宽松的表头、暖橙强调。
+ * 只在 html[data-kis-theme="clarity"] 下叠加。
+ */
+
+/* ── Tokens ─────────────────────────────────────────────── */
+html[data-kis-theme="clarity"] {
+  --mui-primary: #ea580c;
+  --mui-primary-dark: #c2410c;
+  --mui-primary-light: #ffedd5;
+  --mui-error: #e11d48;
+  --mui-warning: #d97706;
+  --mui-success: #16a34a;
+  --mui-text: #111827;
+  --mui-text-secondary: #6b7280;
+  --mui-divider: #e5e7eb;
+  --mui-bg: #f3f4f6;
+  --mui-paper: #ffffff;
+  --mui-appbar: rgba(255, 255, 255, 0.92);
+  --muted: #f3f4f6;
+  --muted-foreground: #6b7280;
+  --card: #ffffff;
+  --border: #e5e7eb;
+  --ring: rgba(234, 88, 12, 0.28);
+  --shadow-1: 0 1px 2px rgba(17, 24, 39, 0.04);
+  --shadow-2: 0 18px 40px -24px rgba(17, 24, 39, 0.22), 0 2px 8px rgba(17, 24, 39, 0.04);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --kis-table-row-h: 4.1rem;
+
+  --clarity-ink: #111827;
+  --clarity-mute: #6b7280;
+  --clarity-line: #e5e7eb;
+  --clarity-soft: #f3f4f6;
+  --clarity-softer: #f9fafb;
+  --clarity-accent: #ea580c;
+  --clarity-accent-soft: rgba(234, 88, 12, 0.1);
+  --clarity-accent-mid: rgba(234, 88, 12, 0.16);
+  --clarity-row-hover: #f9fafb;
+  --clarity-head: #f9fafb;
+}
+
+/* ── Atmosphere ─────────────────────────────────────────── */
+html[data-kis-theme="clarity"] body {
+  color: var(--clarity-ink);
+  background: var(--mui-bg);
+}
+
+html[data-kis-theme="clarity"] .main {
+  background: var(--clarity-softer);
+  padding: 24px 28px 48px;
+}
+
+/* ── App bar ────────────────────────────────────────────── */
+html[data-kis-theme="clarity"] .app-bar {
+  min-height: 58px;
+  background: rgba(255, 255, 255, 0.94);
+  border-bottom: 1px solid var(--clarity-line);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+}
+
+html[data-kis-theme="clarity"] .app-bar__logo {
+  border-radius: 12px;
+  background: linear-gradient(145deg, #fb923c 0%, #ea580c 100%);
+  box-shadow: 0 8px 16px -10px rgba(234, 88, 12, 0.7);
+}
+
+html[data-kis-theme="clarity"] .app-bar__brand {
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+html[data-kis-theme="clarity"] .app-bar__project select {
+  border-radius: 12px;
+  border-color: var(--clarity-line);
+  background: var(--clarity-softer);
+  box-shadow: none;
+}
+
+html[data-kis-theme="clarity"] .app-bar__notify {
+  border-radius: 12px;
+  color: #4b5563;
+}
+
+html[data-kis-theme="clarity"] .app-bar__notify:hover {
+  background: var(--clarity-soft);
+  color: var(--clarity-ink);
+}
+
+html[data-kis-theme="clarity"] .app-bar__notify-badge {
+  background: var(--clarity-accent);
+  box-shadow: 0 0 0 2px #fff;
+  border-radius: 999px;
+}
+
+html[data-kis-theme="clarity"] .notify-panel {
+  border-radius: 16px;
+  border-color: var(--clarity-line);
+  box-shadow: var(--shadow-2);
+}
+
+html[data-kis-theme="clarity"] .notify-panel__head {
+  background: var(--clarity-softer);
+  border-bottom-color: var(--clarity-line);
+}
+
+html[data-kis-theme="clarity"] .notify-item:hover {
+  background: var(--clarity-row-hover);
+}
+
+html[data-kis-theme="clarity"] .notify-item__tag {
+  background: var(--clarity-accent-mid);
+  color: #c2410c;
+  border-radius: 999px;
+}
+
+/* ── Phase nav ──────────────────────────────────────────── */
+html[data-kis-theme="clarity"] .phase-nav button {
+  border-radius: 999px;
+  padding-inline: 12px;
+  color: #4b5563;
+}
+
+html[data-kis-theme="clarity"] .phase-nav button:hover {
+  background: var(--clarity-soft);
+  color: var(--clarity-ink);
+}
+
+html[data-kis-theme="clarity"] .phase-nav button.is-active,
+html[data-kis-theme="clarity"] .phase-visit-dd__trigger.is-active {
+  color: var(--clarity-ink);
+  font-weight: 650;
+  background: var(--clarity-soft);
+  border-bottom-color: var(--clarity-accent);
+}
+
+html[data-kis-theme="clarity"] .phase-visit-dd__menu {
+  border-radius: 16px;
+  border-color: var(--clarity-line);
+  box-shadow: var(--shadow-2);
+  padding: 8px;
+}
+
+html[data-kis-theme="clarity"] .phase-visit-dd__item {
+  border-radius: 12px;
+}
+
+html[data-kis-theme="clarity"] .phase-visit-dd__item:hover,
+html[data-kis-theme="clarity"] .phase-ref-dd .phase-visit-dd__item.is-current {
+  background: var(--clarity-soft);
+}
+
+html[data-kis-theme="clarity"] .phase-visit-dd__icon--staff {
+  background: linear-gradient(145deg, #fb923c, #ea580c);
+}
+
+html[data-kis-theme="clarity"] .theme-switch__btn {
+  border-radius: 999px;
+  border-color: var(--clarity-line);
+  background: var(--clarity-softer);
+  box-shadow: none;
+}
+
+html[data-kis-theme="clarity"] .theme-switch__menu {
+  border-radius: 16px;
+  border-color: var(--clarity-line);
+}
+
+html[data-kis-theme="clarity"] .theme-switch__item.is-current {
+  background: var(--clarity-accent-soft);
+}
+
+/* ── Sidebar：浅灰导航面 + 胶囊选中 ─────────────────────── */
+html[data-kis-theme="clarity"] .sidebar {
+  background: #f3f4f6;
+  border-right: 1px solid var(--clarity-line);
+  padding: 16px 12px 28px;
+}
+
+html[data-kis-theme="clarity"] .sidebar-l1,
+html[data-kis-theme="clarity"] .sidebar-l2 button,
+html[data-kis-theme="clarity"] .sidebar-l1.is-leaf {
+  border-radius: 12px;
+  border-left-color: transparent !important;
+  color: #374151;
+}
+
+html[data-kis-theme="clarity"] .sidebar-l1:hover,
+html[data-kis-theme="clarity"] .sidebar-l2 button:hover,
+html[data-kis-theme="clarity"] .sidebar-visit-step:hover {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+html[data-kis-theme="clarity"] .sidebar .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar .sidebar-l1.is-leaf.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-visit-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-recruit .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-prep .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-schedule .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-deliver .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-settings .sidebar-l2 button.is-active,
+html[data-kis-theme="clarity"] .sidebar.is-phase-visit .sidebar-l2 button.is-active {
+  background: #ffffff;
+  color: var(--clarity-ink);
+  font-weight: 650;
+  border-left-color: transparent !important;
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.05);
+  outline: none;
+}
+
+html[data-kis-theme="clarity"] .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-visit-collect .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-recruit .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-prep .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-schedule .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-deliver .sidebar-l1__dot,
+html[data-kis-theme="clarity"] .sidebar.is-phase-settings .sidebar-l1__dot {
+  background: var(--clarity-accent);
+  box-shadow: none;
+}
+
+html[data-kis-theme="clarity"] .sidebar .nav-badge {
+  border-radius: 8px;
+  background: var(--clarity-accent);
+  color: #fff;
+  font-weight: 700;
+  min-width: 1.4rem;
+  text-align: center;
+}
+
+/* ── Page header ────────────────────────────────────────── */
+html[data-kis-theme="clarity"] .page-header {
+  margin-bottom: 20px;
+}
+
+html[data-kis-theme="clarity"] .page-header h1 {
+  color: var(--clarity-ink);
+  font-size: 1.6rem;
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+html[data-kis-theme="clarity"] .page-header .subtitle {
+  color: var(--clarity-mute);
+  margin-top: 8px;
+}
+
+html[data-kis-theme="clarity"] .breadcrumb a {
+  color: var(--clarity-accent);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+html[data-kis-theme="clarity"] .btn {
+  border-radius: 12px;
+  border-color: var(--clarity-line);
+  background: #fff;
+  box-shadow: var(--shadow-1);
+  font-weight: 600;
+}
+
+html[data-kis-theme="clarity"] .btn:hover {
+  background: var(--clarity-softer);
+  border-color: #d1d5db;
+}
+
+html[data-kis-theme="clarity"] .btn--primary {
+  background: var(--clarity-accent);
+  border-color: var(--clarity-accent);
+  color: #fff;
+  box-shadow: 0 8px 18px -10px rgba(234, 88, 12, 0.7);
+}
+
+html[data-kis-theme="clarity"] .btn--primary:hover {
+  background: #c2410c;
+  border-color: #c2410c;
+}
+
+html[data-kis-theme="clarity"] .btn--text {
+  color: var(--clarity-accent);
+}
+
+html[data-kis-theme="clarity"] .plan-table .btn-op-link,
+html[data-kis-theme="clarity"] .recruit-subject-table .table-row-actions__link,
+html[data-kis-theme="clarity"] .study-chain-table .chain-actions a,
+html[data-kis-theme="clarity"] table.desk-map-table [data-col="map-sync-action"] .btn-op-link,
+html[data-kis-theme="clarity"] table.acceptance-table .btn-op-link {
+  color: var(--clarity-accent);
+  font-weight: 650;
+}
+
+html[data-kis-theme="clarity"] .push-dispatch-btn.is-unpushed {
+  color: var(--clarity-accent);
+  font-weight: 650;
+}
+
+/* ── Inputs / filters ───────────────────────────────────── */
+html[data-kis-theme="clarity"] input,
+html[data-kis-theme="clarity"] select,
+html[data-kis-theme="clarity"] textarea,
+html[data-kis-theme="clarity"] .input,
+html[data-kis-theme="clarity"] .table-pagination__size select {
+  border-color: var(--clarity-line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--clarity-ink);
+}
+
+html[data-kis-theme="clarity"] input:focus,
+html[data-kis-theme="clarity"] select:focus,
+html[data-kis-theme="clarity"] textarea:focus,
+html[data-kis-theme="clarity"] .input:focus,
+html[data-kis-theme="clarity"] .app-bar__project select:focus {
+  outline: 2px solid var(--mui-primary-light);
+  border-color: #fb923c;
+}
+
+html[data-kis-theme="clarity"] .quick-filters {
+  background: var(--clarity-soft);
+  border-color: transparent;
+  border-radius: 999px;
+  padding: 4px;
+}
+
+html[data-kis-theme="clarity"] .quick-filters button {
+  border-radius: 999px;
+  font-weight: 550;
+}
+
+html[data-kis-theme="clarity"] .quick-filters button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--clarity-ink);
+}
+
+html[data-kis-theme="clarity"] .quick-filters button.is-active {
+  background: #fff;
+  color: var(--clarity-ink);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.06);
+}
+
+/* ── Cards / panels ─────────────────────────────────────── */
+html[data-kis-theme="clarity"] .data-panel,
+html[data-kis-theme="clarity"] .paper,
+html[data-kis-theme="clarity"] .placeholder-panel {
+  border-radius: 16px;
+  border: 1px solid var(--clarity-line);
+  box-shadow: 0 1px 2px rgba(17, 24, 39, 0.03), 0 12px 28px -20px rgba(17, 24, 39, 0.16);
+  background: #fff;
+  overflow: hidden;
+}
+
+html[data-kis-theme="clarity"] .data-panel__toolbar {
+  background: #fff;
+  border-bottom: 1px solid var(--clarity-line);
+  padding: 16px 20px;
+}
+
+html[data-kis-theme="clarity"] .data-panel__quick-bar {
+  background: #fff;
+  border-bottom-color: var(--clarity-line);
+  padding: 12px 20px;
+}
+
+html[data-kis-theme="clarity"] .data-panel__quick-label {
+  color: #9ca3af;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+html[data-kis-theme="clarity"] .desk-tag {
+  border-radius: 999px;
+  background: var(--clarity-soft);
+  color: #374151;
+  font-weight: 650;
+}
+
+/* ── Tables ─────────────────────────────────────────────── */
+html[data-kis-theme="clarity"] table.plan-table thead th,
+html[data-kis-theme="clarity"] table.recruit-subject-table thead th,
+html[data-kis-theme="clarity"] table.study-chain-table thead th,
+html[data-kis-theme="clarity"] table.acceptance-table thead th,
+html[data-kis-theme="clarity"] table.desk-map-table thead th,
+html[data-kis-theme="clarity"] table.inbound-schedule-table th,
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-right.th-actions,
+html[data-kis-theme="clarity"] table.recruit-subject-table thead th.col-sticky-op,
+html[data-kis-theme="clarity"] .study-chain-table thead th.th-push-dispatch,
+html[data-kis-theme="clarity"] .study-chain-table thead th.th-sticky-act {
+  background: var(--clarity-head);
+  border-bottom: 1px solid var(--clarity-line);
+  color: #9ca3af;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+html[data-kis-theme="clarity"] .plan-table thead th,
+html[data-kis-theme="clarity"] table.recruit-subject-table thead th,
+html[data-kis-theme="clarity"] .study-chain-table thead th,
+html[data-kis-theme="clarity"] table.acceptance-table thead th {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="clarity"] .plan-table .td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="clarity"] .plan-table .td-sticky-right,
+html[data-kis-theme="clarity"] table.recruit-subject-table .col-sticky-op {
+  border-color: var(--clarity-line);
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody td,
+html[data-kis-theme="clarity"] table.recruit-subject-table tbody td,
+html[data-kis-theme="clarity"] .study-chain-table tbody td,
+html[data-kis-theme="clarity"] table.acceptance-table tbody td,
+html[data-kis-theme="clarity"] table.desk-map-table td,
+html[data-kis-theme="clarity"] table.inbound-schedule-table td {
+  border-bottom-color: #f3f4f6;
+  color: #1f2937;
+}
+
+html[data-kis-theme="clarity"] .study-chain-table tbody tr td,
+html[data-kis-theme="clarity"] .plan-table tbody tr:not([data-inbound]) td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"] td,
+html[data-kis-theme="clarity"] table.recruit-subject-table tbody tr td {
+  background: #fff;
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr:hover td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"]:hover td,
+html[data-kis-theme="clarity"] table.recruit-subject-table tbody tr:hover td,
+html[data-kis-theme="clarity"] table.recruit-subject-table tbody tr:hover .col-sticky-op,
+html[data-kis-theme="clarity"] .study-chain-table tbody tr:hover td,
+html[data-kis-theme="clarity"] .study-chain-table tbody tr:hover .td-push-dispatch,
+html[data-kis-theme="clarity"] .study-chain-table tbody tr:hover .td-sticky-act,
+html[data-kis-theme="clarity"] table.acceptance-table tbody tr:hover td,
+html[data-kis-theme="clarity"] table.desk-map-table tbody tr:hover td {
+  background: var(--clarity-row-hover);
+  filter: none;
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"] td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-right {
+  background: #fff7ed;
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"]:hover td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-right {
+  background: #ffedd5;
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"] td,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-right {
+  background: #f9fafb;
+}
+
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="clarity"] .plan-table thead th.th-sticky-right {
+  background: var(--clarity-head);
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr:hover .td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr:hover .td-sticky-right,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-right,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-right {
+  background: var(--clarity-row-hover);
+}
+
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-right,
+html[data-kis-theme="clarity"] .plan-table tbody tr:not([data-inbound]) td.td-sticky-left,
+html[data-kis-theme="clarity"] .plan-table tbody tr:not([data-inbound]) .td-sticky-right {
+  background: #fff;
+}
+
+html[data-kis-theme="clarity"] .plan-table .td-title,
+html[data-kis-theme="clarity"] .study-chain-table .td-title,
+html[data-kis-theme="clarity"] .recruit-subject-table td:first-child {
+  font-weight: 650;
+  color: var(--clarity-ink);
+}
+
+/* ── Badges：软色胶囊 ───────────────────────────────────── */
+html[data-kis-theme="clarity"] .badge-cell,
+html[data-kis-theme="clarity"] .badge-cell--status-pending,
+html[data-kis-theme="clarity"] .badge-cell--status-not-started,
+html[data-kis-theme="clarity"] .badge-cell--status-active,
+html[data-kis-theme="clarity"] .badge-cell--status-done,
+html[data-kis-theme="clarity"] .badge-cell--ok,
+html[data-kis-theme="clarity"] .badge-cell--warn,
+html[data-kis-theme="clarity"] .badge-cell--err,
+html[data-kis-theme="clarity"] .badge-cell--info,
+html[data-kis-theme="clarity"] .badge-cell--muted {
+  border-radius: 999px;
+  font-weight: 650;
+  letter-spacing: 0.02em;
+  box-shadow: none;
+  padding: 3px 10px;
+}
+
+html[data-kis-theme="clarity"] .badge-cell--ok,
+html[data-kis-theme="clarity"] .badge-cell--status-active {
+  background: #dcfce7;
+  color: #166534;
+}
+
+html[data-kis-theme="clarity"] .badge-cell--warn {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+html[data-kis-theme="clarity"] .badge-cell--err {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+html[data-kis-theme="clarity"] .badge-cell--info,
+html[data-kis-theme="clarity"] .badge-cell--status-not-started {
+  background: #dbeafe;
+  color: #1d4ed8;
+}
+
+html[data-kis-theme="clarity"] .badge-cell--muted,
+html[data-kis-theme="clarity"] .badge-cell--status-done,
+html[data-kis-theme="clarity"] .badge-cell--status-pending {
+  background: #f3f4f6;
+  color: #4b5563;
+}
+
+/* ── Footer / pagination ────────────────────────────────── */
+html[data-kis-theme="clarity"] .table-footer-bar {
+  background: #fff;
+  border-top-color: var(--clarity-line);
+}
+
+html[data-kis-theme="clarity"] .table-footer-bar__legend {
+  background: var(--clarity-softer);
+  border-bottom-color: var(--clarity-line);
+}
+
+html[data-kis-theme="clarity"] .table-pagination button {
+  border-radius: 10px;
+  border-color: var(--clarity-line);
+  background: #fff;
+}
+
+html[data-kis-theme="clarity"] .table-pagination button:hover:not(:disabled) {
+  background: var(--clarity-soft);
+  border-color: #d1d5db;
+  color: var(--clarity-ink);
+}
+
+html[data-kis-theme="clarity"] .table-pagination button.is-active {
+  background: var(--clarity-ink);
+  border-color: var(--clarity-ink);
+  color: #fff;
+  box-shadow: none;
+}
+
+/* ── Misc ───────────────────────────────────────────────── */
+html[data-kis-theme="clarity"] .lamp--ok {
+  background: #22c55e;
+  box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16);
+}
+
+html[data-kis-theme="clarity"] .lamp--warn {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.16);
+}
+
+html[data-kis-theme="clarity"] .inbound-tone-legend .tone-scheduled {
+  color: var(--clarity-accent);
+}
+
+html[data-kis-theme="clarity"] .study-chain-table thead th.is-sorted .sort-icon {
+  color: var(--clarity-accent);
+}
+
+html[data-kis-theme="clarity"] .modal,
+html[data-kis-theme="clarity"] .inbound-modal,
+html[data-kis-theme="clarity"] .acceptance-detail,
+html[data-kis-theme="clarity"] .appt-queue-shell,
+html[data-kis-theme="clarity"] .readiness-bar,
+html[data-kis-theme="clarity"] .schedule-flow-banner,
+html[data-kis-theme="clarity"] .content-tabs,
+html[data-kis-theme="clarity"] .inbound-scope-bar {
+  border-color: var(--clarity-line);
+}

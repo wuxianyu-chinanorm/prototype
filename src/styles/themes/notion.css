@@ -1,0 +1,188 @@
+/*
+ * Notion — 暖白文档 + 全宽数据库（灵感来自 Notion UI，非官方资源）。
+ */
+
+html[data-kis-theme="notion"] {
+  --mui-primary: #2383e2;
+  --mui-primary-dark: #1a6cbd;
+  --mui-primary-light: #e7f3ff;
+  --mui-text: #37352f;
+  --mui-text-secondary: #787774;
+  --mui-divider: rgba(55, 53, 47, 0.09);
+  --mui-bg: #ffffff;
+  --mui-paper: #ffffff;
+  --muted-foreground: #787774;
+  --border: rgba(55, 53, 47, 0.09);
+  --radius: 6px;
+  --notion-text: #37352f;
+  --notion-muted: #787774;
+  --notion-bg: #ffffff;
+  --notion-sidebar: #f7f6f3;
+  --notion-hover: rgba(55, 53, 47, 0.06);
+  --notion-blue: #2383e2;
+}
+
+html[data-kis-theme="notion"] body,
+html.kis-notion-root[data-kis-theme="notion"] body {
+  color: var(--notion-text);
+  background: var(--notion-bg);
+}
+
+html[data-kis-theme="notion"] .app-bar {
+  min-height: 44px;
+  background: var(--notion-bg);
+  border-bottom: 1px solid var(--mui-divider);
+  box-shadow: none;
+}
+
+html[data-kis-theme="notion"] .app-bar__logo {
+  border-radius: 4px;
+  background: var(--notion-text);
+  box-shadow: none;
+}
+
+html[data-kis-theme="notion"] .app-bar__brand {
+  font-weight: 600;
+  color: var(--notion-muted);
+  font-size: 14px;
+}
+
+html[data-kis-theme="notion"] .app-bar__project select {
+  border: none;
+  background: transparent;
+  font-weight: 500;
+}
+
+html[data-kis-theme="notion"] .phase-nav button {
+  border-radius: 6px;
+  color: var(--notion-muted);
+  font-weight: 500;
+}
+
+html[data-kis-theme="notion"] .phase-nav button.is-active {
+  color: var(--notion-text);
+  background: var(--notion-hover);
+}
+
+html[data-kis-theme="notion"] .sidebar {
+  background: var(--notion-sidebar);
+  border-right: 1px solid var(--mui-divider);
+  padding-top: 8px;
+}
+
+html[data-kis-theme="notion"] .sidebar-l1,
+html[data-kis-theme="notion"] .sidebar-l2 button {
+  border-radius: 6px;
+  font-weight: 500;
+  color: var(--notion-muted);
+}
+
+html[data-kis-theme="notion"] .sidebar .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar .sidebar-l1.is-leaf.is-active {
+  background: var(--notion-hover);
+  color: var(--notion-text);
+  border-left-color: transparent;
+  box-shadow: none;
+  outline: none;
+  font-weight: 600;
+}
+
+html[data-kis-theme="notion"] .sidebar-l1__dot {
+  background: var(--notion-muted);
+  box-shadow: none;
+}
+
+html[data-kis-theme="notion"] .main {
+  background: var(--notion-bg);
+  padding: 0 0 96px;
+  overflow-x: hidden;
+  min-width: 0;
+}
+
+html[data-kis-theme="notion"] .shell-body {
+  grid-template-columns: minmax(200px, 240px) minmax(0, 1fr);
+}
+
+/* 阶段侧栏：去掉 KIS 绿条/色点，统一 Notion 灰底选中 */
+html[data-kis-theme="notion"] .sidebar.is-phase-visit-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-recruit .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-prep .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-schedule .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-deliver .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-settings .sidebar-l2 button.is-active,
+html[data-kis-theme="notion"] .sidebar.is-phase-visit .sidebar-l2 button.is-active {
+  color: var(--notion-text) !important;
+  background: var(--notion-hover) !important;
+  border-left-color: transparent !important;
+  box-shadow: none !important;
+}
+
+html[data-kis-theme="notion"] .sidebar-l2 button {
+  border-left: 3px solid transparent !important;
+  margin: 1px 6px;
+  width: calc(100% - 12px);
+  text-align: left;
+}
+
+html[data-kis-theme="notion"] .sidebar.is-phase-visit-collect .sidebar-l1__dot,
+html[data-kis-theme="notion"] .sidebar.is-phase-recruit .sidebar-l1__dot,
+html[data-kis-theme="notion"] .sidebar.is-phase-prep .sidebar-l1__dot,
+html[data-kis-theme="notion"] .sidebar.is-phase-schedule .sidebar-l1__dot,
+html[data-kis-theme="notion"] .sidebar.is-phase-deliver .sidebar-l1__dot,
+html[data-kis-theme="notion"] .sidebar.is-phase-settings .sidebar-l1__dot {
+  background: rgba(55, 53, 47, 0.35) !important;
+  box-shadow: none !important;
+}
+
+html[data-kis-theme="notion"] .sidebar-l2 button.is-active .sidebar-l1__dot {
+  background: var(--notion-text) !important;
+}
+
+html[data-kis-theme="notion"] .deliver-toolbar {
+  background: rgba(242, 241, 238, 0.55);
+  border: none;
+  box-shadow: none;
+  border-radius: 6px;
+}
+
+html[data-kis-theme="notion"] .btn {
+  border-radius: 6px;
+  border-color: var(--mui-divider);
+  font-weight: 500;
+  box-shadow: none;
+}
+
+html[data-kis-theme="notion"] .btn--primary {
+  background: var(--notion-blue);
+  border-color: var(--notion-blue);
+  color: #fff;
+  box-shadow: none;
+}
+
+html[data-kis-theme="notion"] .input,
+html[data-kis-theme="notion"] select.input {
+  border-radius: 6px;
+  border-color: var(--mui-divider);
+  background: rgba(242, 241, 238, 0.6);
+}
+
+html[data-kis-theme="notion"] .input--search {
+  background: rgba(242, 241, 238, 0.6);
+}
+
+html[data-kis-theme="notion"] .data-panel {
+  border: none;
+  box-shadow: none;
+  background: transparent;
+  border-radius: 0;
+}
+
+html[data-kis-theme="notion"] .kis-notion-scope {
+  max-width: 100%;
+}
+
+html[data-kis-theme="notion"] .theme-switch__btn {
+  border-color: var(--mui-divider);
+  background: #fff;
+}

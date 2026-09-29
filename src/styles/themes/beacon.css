@@ -1,0 +1,568 @@
+/*
+ * Beacon — 访视中枢亮色控制塔。
+ * 只在 html[data-kis-theme="beacon"] 下叠加，不改 classic 任何规则。
+ * 目标：旧工作台整页换皮（壳层 / 表单 / 卡片 / 表格 / 分页 / 状态色）。
+ */
+
+/* ── Tokens ─────────────────────────────────────────────── */
+html[data-kis-theme="beacon"] {
+  --mui-primary: #0f766e;
+  --mui-primary-dark: #115e59;
+  --mui-primary-light: #ccfbf1;
+  --mui-error: #e11d48;
+  --mui-warning: #d97706;
+  --mui-success: #059669;
+  --mui-text: #0f172a;
+  --mui-text-secondary: #64748b;
+  --mui-divider: #dbe4e2;
+  --mui-bg: #e8eef0;
+  --mui-paper: #ffffff;
+  --mui-appbar: rgba(255, 255, 255, 0.88);
+  --muted: #f1f5f4;
+  --muted-foreground: #64748b;
+  --card: #ffffff;
+  --border: #dbe4e2;
+  --ring: rgba(15, 118, 110, 0.35);
+  --shadow-1: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-2: 0 14px 36px -18px rgba(15, 23, 42, 0.18), 0 2px 6px rgba(15, 23, 42, 0.04);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --beacon-surface: #f6f8f8;
+  --beacon-ink: #0f172a;
+  --beacon-teal: #0f766e;
+  --beacon-teal-soft: rgba(13, 148, 136, 0.08);
+  --beacon-teal-mid: rgba(13, 148, 136, 0.14);
+  --beacon-row-hover: rgba(13, 148, 136, 0.06);
+  --beacon-head: #f1f5f4;
+  --beacon-line: #e2ebe9;
+}
+
+/* ── Page atmosphere ────────────────────────────────────── */
+html[data-kis-theme="beacon"] body {
+  color: var(--beacon-ink);
+  background:
+    radial-gradient(900px 320px at 0% 0%, rgba(13, 148, 136, 0.1), transparent 60%),
+    radial-gradient(700px 280px at 100% 0%, rgba(99, 102, 241, 0.06), transparent 55%),
+    var(--mui-bg);
+}
+
+html[data-kis-theme="beacon"] .main {
+  background: transparent;
+  padding: 22px 28px 40px;
+}
+
+/* ── App bar ────────────────────────────────────────────── */
+html[data-kis-theme="beacon"] .app-bar {
+  min-height: 60px;
+  border-bottom-color: var(--beacon-line);
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.03);
+  backdrop-filter: blur(14px);
+}
+
+html[data-kis-theme="beacon"] .app-bar__logo {
+  border-radius: 12px;
+  background: linear-gradient(145deg, #0f766e 0%, #14b8a6 100%);
+  box-shadow: 0 8px 18px -10px rgba(13, 148, 136, 0.7);
+}
+
+html[data-kis-theme="beacon"] .app-bar__brand {
+  letter-spacing: -0.02em;
+}
+
+html[data-kis-theme="beacon"] .app-bar__project select {
+  border-radius: 10px;
+  border-color: var(--beacon-line);
+  background: #fff;
+  box-shadow: var(--shadow-1);
+}
+
+html[data-kis-theme="beacon"] .app-bar__notify {
+  border-radius: 12px;
+  color: #475569;
+}
+
+html[data-kis-theme="beacon"] .app-bar__notify:hover {
+  background: var(--beacon-teal-soft);
+  color: var(--beacon-teal);
+}
+
+html[data-kis-theme="beacon"] .app-bar__notify-badge {
+  background: #e11d48;
+  box-shadow: 0 0 0 2px #fff;
+}
+
+html[data-kis-theme="beacon"] .app-bar__user-name {
+  color: var(--beacon-ink);
+}
+
+html[data-kis-theme="beacon"] .notify-panel {
+  border-radius: 14px;
+  border-color: var(--beacon-line);
+  box-shadow: var(--shadow-2);
+}
+
+html[data-kis-theme="beacon"] .notify-panel__head {
+  background: var(--beacon-head);
+  border-bottom-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .notify-item:hover {
+  background: var(--beacon-row-hover);
+}
+
+html[data-kis-theme="beacon"] .notify-item__tag {
+  background: var(--beacon-teal-mid);
+  color: var(--beacon-teal);
+}
+
+/* ── Phase nav / dropdowns ──────────────────────────────── */
+html[data-kis-theme="beacon"] .phase-nav button {
+  border-radius: 10px;
+  letter-spacing: -0.01em;
+}
+
+html[data-kis-theme="beacon"] .phase-nav button:hover {
+  background: var(--beacon-teal-soft);
+  color: var(--beacon-ink);
+}
+
+html[data-kis-theme="beacon"] .phase-nav button.is-active,
+html[data-kis-theme="beacon"] .phase-visit-dd__trigger.is-active {
+  color: var(--beacon-teal);
+  font-weight: 650;
+}
+
+html[data-kis-theme="beacon"] .phase-visit-dd__menu {
+  border-radius: 14px;
+  border-color: var(--beacon-line);
+  box-shadow: var(--shadow-2);
+  padding: 8px;
+}
+
+html[data-kis-theme="beacon"] .phase-visit-dd__item {
+  border-radius: 10px;
+}
+
+html[data-kis-theme="beacon"] .phase-visit-dd__item:hover,
+html[data-kis-theme="beacon"] .phase-ref-dd .phase-visit-dd__item.is-current {
+  background: var(--beacon-teal-soft);
+}
+
+html[data-kis-theme="beacon"] .phase-visit-dd__icon--staff {
+  background: linear-gradient(145deg, #0f766e, #14b8a6);
+}
+
+html[data-kis-theme="beacon"] .theme-switch__btn {
+  border-color: var(--beacon-line);
+  background: #fff;
+  box-shadow: var(--shadow-1);
+}
+
+html[data-kis-theme="beacon"] .theme-switch__menu {
+  border-radius: 14px;
+  border-color: var(--beacon-line);
+}
+
+/* ── Sidebar ────────────────────────────────────────────── */
+html[data-kis-theme="beacon"] .sidebar {
+  background:
+    radial-gradient(420px 240px at 0% 0%, rgba(13, 148, 136, 0.12), transparent 70%),
+    radial-gradient(280px 220px at 100% 100%, rgba(99, 102, 241, 0.05), transparent 70%),
+    var(--beacon-surface);
+  border-right: 1px solid var(--beacon-line);
+  padding: 14px 10px 24px;
+}
+
+html[data-kis-theme="beacon"] .sidebar-l1,
+html[data-kis-theme="beacon"] .sidebar-l2 button,
+html[data-kis-theme="beacon"] .sidebar-l1.is-leaf {
+  border-radius: 10px;
+}
+
+html[data-kis-theme="beacon"] .sidebar-l1:hover,
+html[data-kis-theme="beacon"] .sidebar-l2 button:hover {
+  background: rgba(255, 255, 255, 0.72);
+}
+
+html[data-kis-theme="beacon"] .sidebar .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar .sidebar-l1.is-leaf.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-visit-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-recruit .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-prep .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-schedule .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-collect .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-deliver .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-settings .sidebar-l2 button.is-active,
+html[data-kis-theme="beacon"] .sidebar.is-phase-visit .sidebar-l2 button.is-active {
+  background: #ffffff;
+  color: #134e4a;
+  font-weight: 650;
+  border-left-color: var(--beacon-teal);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  outline: 1px solid #ccfbf1;
+}
+
+html[data-kis-theme="beacon"] .sidebar-l1__dot,
+html[data-kis-theme="beacon"] .sidebar.is-phase-visit-collect .sidebar-l1__dot,
+html[data-kis-theme="beacon"] .sidebar.is-phase-recruit .sidebar-l1__dot {
+  background: var(--beacon-teal);
+  box-shadow: 0 0 0 3px var(--beacon-teal-soft);
+}
+
+html[data-kis-theme="beacon"] .sidebar .nav-badge {
+  border-radius: 999px;
+  background: #ffe4e6;
+  color: #be123c;
+}
+
+html[data-kis-theme="beacon"] .sidebar-visit-step:hover {
+  background: rgba(255, 255, 255, 0.75);
+}
+
+/* ── Page header / actions ──────────────────────────────── */
+html[data-kis-theme="beacon"] .page-header h1 {
+  color: var(--beacon-ink);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+html[data-kis-theme="beacon"] .page-header .subtitle {
+  color: #64748b;
+}
+
+html[data-kis-theme="beacon"] .breadcrumb a {
+  color: var(--beacon-teal);
+}
+
+/* ── Buttons ────────────────────────────────────────────── */
+html[data-kis-theme="beacon"] .btn {
+  border-radius: 10px;
+  border-color: var(--beacon-line);
+  box-shadow: var(--shadow-1);
+}
+
+html[data-kis-theme="beacon"] .btn:hover {
+  background: var(--beacon-head);
+  border-color: #c9d6d3;
+}
+
+html[data-kis-theme="beacon"] .btn--primary {
+  background: linear-gradient(180deg, #14b8a6 0%, #0f766e 100%);
+  border-color: #0f766e;
+  color: #fff;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 8px 18px -10px rgba(13, 148, 136, 0.75);
+}
+
+html[data-kis-theme="beacon"] .btn--primary:hover {
+  background: linear-gradient(180deg, #2dd4bf 0%, #0f766e 100%);
+}
+
+html[data-kis-theme="beacon"] .btn--text {
+  color: var(--beacon-teal);
+}
+
+html[data-kis-theme="beacon"] .plan-table .btn-op-link,
+html[data-kis-theme="beacon"] .recruit-subject-table .table-row-actions__link,
+html[data-kis-theme="beacon"] .study-chain-table .chain-actions a,
+html[data-kis-theme="beacon"] table.desk-map-table [data-col="map-sync-action"] .btn-op-link,
+html[data-kis-theme="beacon"] table.acceptance-table .btn-op-link {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+html[data-kis-theme="beacon"] .push-dispatch-btn.is-unpushed {
+  color: #0f766e;
+  font-weight: 600;
+}
+
+/* ── Inputs / filters ───────────────────────────────────── */
+html[data-kis-theme="beacon"] input,
+html[data-kis-theme="beacon"] select,
+html[data-kis-theme="beacon"] textarea,
+html[data-kis-theme="beacon"] .input,
+html[data-kis-theme="beacon"] .table-pagination__size select {
+  border-color: var(--beacon-line);
+  border-radius: 10px;
+  background: #fff;
+  color: var(--beacon-ink);
+}
+
+html[data-kis-theme="beacon"] input:focus,
+html[data-kis-theme="beacon"] select:focus,
+html[data-kis-theme="beacon"] textarea:focus,
+html[data-kis-theme="beacon"] .input:focus,
+html[data-kis-theme="beacon"] .app-bar__project select:focus {
+  outline: 2px solid var(--mui-primary-light);
+  border-color: #14b8a6;
+}
+
+html[data-kis-theme="beacon"] .quick-filters {
+  background: var(--beacon-head);
+  border-color: var(--beacon-line);
+  border-radius: 12px;
+  padding: 4px;
+}
+
+html[data-kis-theme="beacon"] .quick-filters button {
+  border-radius: 9px;
+}
+
+html[data-kis-theme="beacon"] .quick-filters button:hover {
+  background: rgba(255, 255, 255, 0.7);
+  color: var(--beacon-ink);
+}
+
+html[data-kis-theme="beacon"] .quick-filters button.is-active {
+  background: #fff;
+  color: #134e4a;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 0 0 1px #ccfbf1;
+}
+
+/* ── Cards / panels ─────────────────────────────────────── */
+html[data-kis-theme="beacon"] .data-panel,
+html[data-kis-theme="beacon"] .paper,
+html[data-kis-theme="beacon"] .placeholder-panel {
+  border-radius: 16px;
+  border-color: rgba(219, 228, 226, 0.9);
+  box-shadow:
+    0 1px 2px rgba(16, 24, 40, 0.04),
+    0 14px 32px -22px rgba(16, 24, 40, 0.2);
+  background: #fff;
+}
+
+html[data-kis-theme="beacon"] .data-panel__toolbar {
+  background: linear-gradient(180deg, #f4f8f7 0%, #ffffff 100%);
+  border-bottom-color: var(--beacon-line);
+  padding: 16px 18px;
+}
+
+html[data-kis-theme="beacon"] .data-panel__quick-bar {
+  background: #fff;
+  border-bottom-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .data-panel__quick-label {
+  color: #94a3b8;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+html[data-kis-theme="beacon"] .desk-tag {
+  border-radius: 999px;
+  background: var(--beacon-teal-mid);
+  color: #115e59;
+  font-weight: 600;
+}
+
+/* ── Tables (all common list tables) ────────────────────── */
+html[data-kis-theme="beacon"] table.plan-table thead th,
+html[data-kis-theme="beacon"] table.recruit-subject-table thead th,
+html[data-kis-theme="beacon"] table.study-chain-table thead th,
+html[data-kis-theme="beacon"] table.acceptance-table thead th,
+html[data-kis-theme="beacon"] table.desk-map-table thead th,
+html[data-kis-theme="beacon"] table.inbound-schedule-table th,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-right.th-actions,
+html[data-kis-theme="beacon"] table.recruit-subject-table thead th.col-sticky-op,
+html[data-kis-theme="beacon"] .study-chain-table thead th.th-push-dispatch,
+html[data-kis-theme="beacon"] .study-chain-table thead th.th-sticky-act {
+  background: var(--beacon-head);
+  border-bottom: 1px solid var(--beacon-line);
+  color: #64748b;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="beacon"] .plan-table .td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="beacon"] .plan-table .td-sticky-right,
+html[data-kis-theme="beacon"] table.recruit-subject-table .col-sticky-op {
+  border-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody td,
+html[data-kis-theme="beacon"] table.recruit-subject-table tbody td,
+html[data-kis-theme="beacon"] .study-chain-table tbody td,
+html[data-kis-theme="beacon"] table.acceptance-table tbody td,
+html[data-kis-theme="beacon"] table.desk-map-table td,
+html[data-kis-theme="beacon"] table.inbound-schedule-table td {
+  border-bottom-color: #eef3f2;
+  color: #334155;
+}
+
+html[data-kis-theme="beacon"] .study-chain-table tbody tr td,
+html[data-kis-theme="beacon"] .plan-table tbody tr:not([data-inbound]) td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"] td,
+html[data-kis-theme="beacon"] table.recruit-subject-table tbody tr td {
+  background: #fff;
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody tr:hover td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"]:hover td,
+html[data-kis-theme="beacon"] table.recruit-subject-table tbody tr:hover td,
+html[data-kis-theme="beacon"] table.recruit-subject-table tbody tr:hover .col-sticky-op,
+html[data-kis-theme="beacon"] .study-chain-table tbody tr:hover td,
+html[data-kis-theme="beacon"] .study-chain-table tbody tr:hover .td-push-dispatch,
+html[data-kis-theme="beacon"] .study-chain-table tbody tr:hover .td-sticky-act,
+html[data-kis-theme="beacon"] table.acceptance-table tbody tr:hover td,
+html[data-kis-theme="beacon"] table.desk-map-table tbody tr:hover td {
+  background: var(--beacon-row-hover);
+  filter: none;
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"] td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"] td.td-sticky-right {
+  background: #fffbeb;
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"]:hover td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="changed"]:hover td.td-sticky-right {
+  background: #fef3c7;
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"] td,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"] td.td-sticky-right {
+  background: #f8fafc;
+}
+
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-right,
+html[data-kis-theme="beacon"] .plan-table tbody tr:hover .td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr:hover .td-sticky-right,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"]:hover td.td-sticky-right,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="unscheduled"]:hover td.td-sticky-right {
+  background: var(--beacon-row-hover);
+}
+
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-left,
+html[data-kis-theme="beacon"] .plan-table thead th.th-sticky-right {
+  background: var(--beacon-head);
+}
+
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr[data-inbound="scheduled"] td.td-sticky-right,
+html[data-kis-theme="beacon"] .plan-table tbody tr:not([data-inbound]) td.td-sticky-left,
+html[data-kis-theme="beacon"] .plan-table tbody tr:not([data-inbound]) .td-sticky-right {
+  background: #fff;
+}
+
+/* ── Badges / status pills ──────────────────────────────── */
+html[data-kis-theme="beacon"] .badge-cell,
+html[data-kis-theme="beacon"] .badge-cell--status-pending,
+html[data-kis-theme="beacon"] .badge-cell--status-not-started,
+html[data-kis-theme="beacon"] .badge-cell--status-active,
+html[data-kis-theme="beacon"] .badge-cell--status-done,
+html[data-kis-theme="beacon"] .badge-cell--ok,
+html[data-kis-theme="beacon"] .badge-cell--warn,
+html[data-kis-theme="beacon"] .badge-cell--err,
+html[data-kis-theme="beacon"] .badge-cell--info,
+html[data-kis-theme="beacon"] .badge-cell--muted {
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.04);
+}
+
+html[data-kis-theme="beacon"] .badge-cell--ok,
+html[data-kis-theme="beacon"] .badge-cell--status-active {
+  background: #d1fae5;
+  color: #065f46;
+}
+
+html[data-kis-theme="beacon"] .badge-cell--warn {
+  background: #ffedd5;
+  color: #9a3412;
+}
+
+html[data-kis-theme="beacon"] .badge-cell--err {
+  background: #ffe4e6;
+  color: #9f1239;
+}
+
+html[data-kis-theme="beacon"] .badge-cell--info,
+html[data-kis-theme="beacon"] .badge-cell--status-not-started {
+  background: #ccfbf1;
+  color: #115e59;
+}
+
+html[data-kis-theme="beacon"] .badge-cell--muted,
+html[data-kis-theme="beacon"] .badge-cell--status-done,
+html[data-kis-theme="beacon"] .badge-cell--status-pending {
+  background: #f1f5f9;
+  color: #475569;
+}
+
+/* ── Table footer / pagination ──────────────────────────── */
+html[data-kis-theme="beacon"] .table-footer-bar {
+  background: linear-gradient(180deg, #ffffff 0%, #f4f8f7 100%);
+  border-top-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .table-footer-bar__legend {
+  background: #fff;
+  border-bottom-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .table-pagination button {
+  border-radius: 10px;
+  border-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .table-pagination button:hover:not(:disabled) {
+  background: var(--beacon-teal-soft);
+  border-color: #99f6e4;
+  color: #134e4a;
+}
+
+html[data-kis-theme="beacon"] .table-pagination button.is-active {
+  background: linear-gradient(180deg, #14b8a6 0%, #0f766e 100%);
+  border-color: #0f766e;
+  color: #fff;
+  box-shadow: 0 6px 14px -8px rgba(13, 148, 136, 0.8);
+}
+
+/* ── Misc surfaces that still looked classic ────────────── */
+html[data-kis-theme="beacon"] .modal,
+html[data-kis-theme="beacon"] .inbound-modal,
+html[data-kis-theme="beacon"] [class*="modal__"] .paper,
+html[data-kis-theme="beacon"] .acceptance-detail,
+html[data-kis-theme="beacon"] .appt-queue-shell,
+html[data-kis-theme="beacon"] .readiness-bar,
+html[data-kis-theme="beacon"] .schedule-flow-banner,
+html[data-kis-theme="beacon"] .content-tabs,
+html[data-kis-theme="beacon"] .inbound-scope-bar {
+  border-color: var(--beacon-line);
+}
+
+html[data-kis-theme="beacon"] .lamp--ok {
+  background: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+}
+
+html[data-kis-theme="beacon"] .lamp--warn {
+  background: #f59e0b;
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.18);
+}
+
+html[data-kis-theme="beacon"] .inbound-tone-legend .tone-scheduled {
+  color: #0f766e;
+}
+
+html[data-kis-theme="beacon"] .study-chain-table thead th.is-sorted .sort-icon {
+  color: #0f766e;
+}
